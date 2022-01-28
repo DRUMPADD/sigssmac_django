@@ -220,7 +220,7 @@ body .container:nth-child(4) {
     display: flex;
     width: 100%;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 
@@ -292,7 +292,7 @@ form > textarea:focus {
 }
 
 .contact-content {
-    width: 100%;
+    /* width: 100%; */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -303,8 +303,7 @@ form > textarea:focus {
 
 .contact-content .contact-info {
     display: flex;
-    justify-content: space-evenly;
-    gap: 10px;
+    justify-content: center;
     align-items: center;
 }
 .contact-info .phone,
@@ -313,7 +312,7 @@ form > textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: .3em;
+    gap: .6em;
 }
 
 .fas {
@@ -321,10 +320,12 @@ form > textarea:focus {
 }
 
 .icons {
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 2em;
+    margin-bottom: 20px;
 }
 
 .icons a {
@@ -364,7 +365,7 @@ form > textarea:focus {
 
 /* Diseño responsivo */
 
-@media screen and (max-width: 1064px){
+@media screen and (max-width: 1024px) {
     .header-content .navbar {
         justify-content: center;
         padding-left: 1em;
@@ -394,13 +395,16 @@ form > textarea:focus {
     .title {
         line-height: 1.7em;
     }
+
+    .contacto-form {
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
 }
 
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
     .header-content .navbar {
         justify-content: space-between;
-        padding-left: 1em;
-        padding-right: 1em;
     }
 
     .img{
@@ -461,13 +465,6 @@ form > textarea:focus {
         width: 300px;
         height: 300px;
     }
-    .contacto-form {
-        display: flex;
-        width: 100%;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column-reverse;
-    }
 
     .contacto-form > div {
         width: 90%;
@@ -514,9 +511,6 @@ form > textarea:focus {
 
     .contact-content .contact-info {
         flex-direction: column;
-        justify-content: center;
-        text-align: center;
-        gap: 0;
     }
 
     .contact-info .phone,
