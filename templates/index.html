@@ -6,9 +6,536 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGSSMAC</title>
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
+:root {
+    --bg_blue: #142955;
+    --bg_dark: #242329;
+    --bg_white: #fff;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.efecto-espejo {
+    border-radius: .5em;
+    background: rgba(255, 255, 255, 0.19);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(8.4px);
+    -webkit-backdrop-filter: blur(8.4px);
+    border: 1px solid rgba(255, 255, 255, 0.77);
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.fa-bars {
+    background-color: var(--bg_dark);
+    color: #fff;
+    padding: .1em;
+    font-size: 2.5em;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background-color: var(--bg_dark);
+    border: none;
+}
+
+.hamburger:focus {
+    outline: none;
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-content .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* padding: .3em 2em; */
+    background-color: var(--bg_white);
+    flex-wrap: wrap;
+}
+
+
+.img{
+    height: 100px;
+    max-width: 100%;
+    background-color: #fff;
+}
+
+.nav-content .link-content{
+    display: flex;
+}
+
+.link-content li {
+    margin: 0 .2em;
+    text-align: center;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.link {
+    background-color: var(--bg_dark);
+    display: block;
+    color: #fff;
+    padding: 1em;
+    font-size: 16px;
+    font-weight: 900;
+    width: 100%;
+    transition: all .3s ease-in-out;
+    border: 10px solid transparent;
+}
+
+.link:hover {
+    border-color: var(--bg_dark);
+    background-color: #fff;
+    color: var(--bg_dark);
+    outline: none;
+    font-weight: bolder;
+}
+
+.container {
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+/* body .container:nth-child(2) {
+    background-image: url("../img/services/muro.jpg");
+    color: #fff;
+}
+body .container:nth-child(3) {
+    background-image: url("../img/services/muro.jpg");
+    color: #fff;
+}
+body .container:nth-child(4) {
+    background-image: url("../img/services/muro2.jpg");
+    color: #fff;
+} */
+
+.logo-detras {
+    position: absolute;
+    /* padding: 20em; */
+    width: 100%;
+    /* overflow-x: hidden; */
+}
+
+
+.info-company,
+.info-services,
+.info-q-somos .section-info {
+    width: 95%;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.info-services,
+.info-q-somos {
+    flex-direction: column;
+}
+
+.info-services .services {
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.section-info {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+}
+
+.section-info .info-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-info .info-img img{
+    width: 55%;
+    /* max-width: 300px; */
+    height: 300px;
+}
+
+.info-img img {
+    border-radius: 50%;
+}
+
+.title,
+.title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.info {
+    width: 90%;
+    margin: .5em auto;
+    padding: 1em;
+    line-height: 1.5em;
+}
+
+.info,
+.contact-content .address p {
+    text-align: justify;
+    font-size: 20px;
+    line-height: 1.5em;
+    font-weight: 600;
+}
+.contact-content .address p {
+    text-align: center;
+}
+
+.valores .valor {
+    list-style-type: circle;
+}
+
+
+/* .services section:nth-child(1) {
+    background-image: url("../img/services/equipo.jpg");
+    width: 30%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+} */
+
+.contacto-form {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.contacto-form iframe,
+.contacto-form form {
+    padding: 2em;
+    margin: 2em;
+}
+
+.contacto-form div form {
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    outline: none;
+}
+
+textarea {
+    resize: none;
+}
+
+form input,
+form textarea {
+    padding: 1em;
+    margin: 1em;
+    border: none;
+    transition: all .10s ease-in-out;
+    font-size: 1.1rem;
+    border-radius: 5px;
+}
+
+form > h1 {
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+form .inputs {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+form .inputs input,
+form input[name="email"]{
+    border: 2px solid rgb(172, 166, 166);
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+form > textarea {
+    width: 40rem;
+    height: 10rem;
+    border: 2px solid rgb(172, 166, 166);
+    -webkit-transition: .5s;
+    transition: .5s;
+}
+
+form input[type="submit"] {
+    background-color: var(--bg_dark);
+    color: var(--bg_white);
+}
+
+form .inputs input:focus,
+form > input:focus,
+form > textarea:focus {
+    border-color: #000;
+}
+
+.contact-content {
+    /* width: 100%; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--bg_blue);
+    color:#fff;
+}
+
+.contact-content .contact-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contact-info .phone,
+.contact-info .email,
+.contact-info .location {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6em;
+}
+
+.fas {
+    color: #e2e1e9;
+}
+
+.icons {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2em;
+    margin-bottom: 20px;
+}
+
+.icons a {
+    font-size: 1.7rem;
+    background-color: var(--bg_dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icons a .fab {
+    color: #fff;
+}
+.fa-facebook-f,
+.fa-instagram, 
+.fa-whatsapp {
+    width: 100%;
+    padding: .5em;
+    border-radius: 50%;
+    transition: all .1s ease-in;
+}
+
+.fa-facebook-f:hover {
+    background-color: #3b5998;
+}
+.fa-instagram:hover {
+    background: #f09433; 
+    background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+    background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+    background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+}
+.fa-whatsapp:hover {
+    background-color: #25d366;
+}
+
+
+/* Diseño responsivo */
+
+@media screen and (max-width: 1024px) {
+    .header-content .navbar {
+        justify-content: center;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .link-content li a {
+        color: #fff;
+        padding: .4em;
+        font-weight: 900;
+    }
+
+    .section-info .info-img img{ 
+        width: 200px;
+        height: 200px;
+    }
+
+    .info {
+        font-size: 1.4em;
+    }
+
+    .section-info {
+        width: 90%;
+        line-height: 2em;
+    }
+    
+    .title {
+        line-height: 1.7em;
+    }
+
+    .contacto-form {
+        justify-content: center;
+        flex-direction: column-reverse;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .header-content .navbar {
+        justify-content: space-between;
+    }
+
+    .img{
+        width: 50%;
+        height: auto;
+    }
+
+    .nav-content {
+        display: none;
+        width: 100%;
+    }
+    .link-content {
+        width: 100%;
+        flex-direction: column;
+        gap: 10px;
+        padding: 0;
+        justify-content: center;
+    }
+
+    .nav-content.show {
+        display: flex;
+        width: 100%;
+    }
+
+    .hamburger {
+        display: inline;
+    }
+
+    .info-company,
+    .info-q-somos,
+    .info-services .services,
+    .contact-content {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .info-q-somos .info {
+        font-size: 1em;
+        line-height: 1.9em;
+    }
+
+    .info {
+        font-size: 1em;
+    }
+
+    .section-info {
+        width: 90%;
+        line-height: 1.4em;
+    }
+    
+    .title {
+        line-height: 1.4em;
+    }
+
+    .section-info .info-img img{ 
+        width: 300px;
+        height: 300px;
+    }
+
+    .contacto-form > div {
+        width: 90%;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .contacto-form > div:nth-child(2) {
+        width: 100%;
+    }
+
+    .contacto-form iframe {
+        padding: 0;
+        margin: 0;
+        width: 90%;
+    }
+
+    .contacto-form div iframe {
+        width: 100%;
+        align-items: center;
+        justify-content: center;
+    }
+    .contacto-form div form {
+        align-items: center;
+        justify-content: center;
+    }
+
+    form input,
+    form textarea {
+        margin: .6rem;
+    }
+    
+
+    form .inputs {
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+    form .inputs > input,
+    form textarea, 
+    form input {
+        width: 100%;
+    }
+
+    .contact-content .contact-info {
+        flex-direction: column;
+    }
+
+    .contact-info .phone,
+    .contact-info .email,
+    .contact-info .location {
+        gap: .5em;
+    }
+
+    .contact-content .address p {
+        font-size: 18px;
+    }
+}
+/* fin */
+    </style>
 </head>
 <body>
     <header class="header-content" id="inicio">
