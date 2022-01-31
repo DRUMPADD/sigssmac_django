@@ -120,7 +120,8 @@
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.8886900080906!2d-97.44285368498272!3d20.510788786281243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85da6a81817294d9%3A0xdd62d7366d11cc8d!2sMora%20y%20Valles%20309%2C%20Revolucion%2C%2093390%20Poza%20Rica%20de%20Hidalgo%2C%20Ver.!5e0!3m2!1ses-419!2smx!4v1642792436009!5m2!1ses-419!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
             </div>
             <div>
-                <form action="" class="efecto-espejo">
+                <form action="enviar" method="POST" class="efecto-espejo">
+                    {% csrf_token %}
                     <h1 class="title">Obten una cotización</h1>
                     <div class="inputs">
                         <input type="text" name="nombre" placeholder="Nombre (s)">
