@@ -38,7 +38,7 @@ def index(request):
     context = {
         "title": "TARCO"
     }
-    return render(request, "index.html", context)
+    return render(request, "tarco.html", context)
 
 @db_operational_handler
 def informacion(request):
