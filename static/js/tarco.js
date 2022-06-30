@@ -121,7 +121,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function validar() {
-    return inp_id.value != '' && inp_nombre.value != '' && inp_car.value != null && inp_ubi.value != '' && inp_frec.value != '' && inp_fec_ins.value != '' && inp_conds.value != '' && inp_fec_col.value != '' && inp_fec_reem.value != '' && inp_cond.value != undefined;
+    return inp_id.value != '' && inp_nombre.value != '' && inp_car.value != '' && inp_ubi.value != '' && inp_frec.value != null && inp_fec_ins.value != '' && inp_conds.value != '' && inp_fec_col.value != '' && inp_fec_reem.value != '' && inp_cond.value != undefined;
 }
 
 function enviar() {
