@@ -67,51 +67,55 @@ async function getItems2() {
     const data = await response.json();
     
     
-    const items = new Array(data.info);
+    try {
+        const items = new Array(data.info);
 
-    items[0].forEach(element => {
-        const tr = document.createElement("tr");
+        items[0].forEach(element => {
+            const tr = document.createElement("tr");
 
-        const f_ac = element[5] != null ? element[5]: '';
-        const fech_ac_formato = f_ac.split('-');
-        const fecha_act = new Date(fech_ac_formato[0], fech_ac_formato[1], fech_ac_formato[2]);
-        const cal_fech_ac = Math.round((fecha_act.getTime() - Date.now())/ (1000*60*60*24));
-        tr.innerHTML += `
-            <td>${element[0]}</td>
-            <td>${element[1]}</td>
-            <td>${element[2]}</td>
-            <td>${element[3]}</td>
-            <td>${element[4]}</td>
-            <td class='bg-${cal_fech_ac > element[4] ? 'danger': 'dark '} text-white'>${element[5] == null ? '': element[5]}</td>
-            <td>${element[6]}</td>
-            <td>${element[7] == null ? '': element[7]}</td>
-            <td>${element[8] == null ? '': element[8]}</td>
-            <td class='bg-${element[9] == 'Malo' ? "danger": element[9] == 'Regular' ? "warning": "success"}'>${element[9]}</td>
-        `;
+            const f_ac = element[5] != null ? element[5]: '';
+            const fech_ac_formato = f_ac.split('-');
+            const fecha_act = new Date(fech_ac_formato[0], fech_ac_formato[1], fech_ac_formato[2]);
+            const cal_fech_ac = Math.round((fecha_act.getTime() - Date.now())/ (1000*60*60*24));
+            tr.innerHTML += `
+                <td>${element[0]}</td>
+                <td>${element[1]}</td>
+                <td>${element[2]}</td>
+                <td>${element[3]}</td>
+                <td>${element[4]}</td>
+                <td class='bg-${cal_fech_ac > element[4] ? 'danger': 'dark '} text-white'>${element[5] == null ? '': element[5]}</td>
+                <td>${element[6]}</td>
+                <td>${element[7] == null ? '': element[7]}</td>
+                <td>${element[8] == null ? '': element[8]}</td>
+                <td class='bg-${element[9] == 'Malo' ? "danger": element[9] == 'Regular' ? "warning": "success"}'>${element[9]}</td>
+            `;
 
-        tb_info.appendChild(tr);
-    });
-    
-    for(let i = 1; i < table.rows.length; i++) {
-        if(table.rows[i].cells != 10) {
-            table.rows[i].onclick = function(e) {
-                inp_id.value = this.cells[0].innerHTML;
-                inp_id.setAttribute("disabled", "");
-                inp_nombre.value = this.cells[1].innerHTML;
-                inp_car.value = this.cells[2].innerHTML;
-                inp_ubi.value = this.cells[3].innerHTML;
-                inp_frec.value = this.cells[4].innerHTML;
-                inp_fec_ins.value = this.cells[5].innerHTML;
-                inp_conds.value = this.cells[6].innerHTML;
-                inp_fec_col.value = this.cells[7].innerHTML;
-                inp_fec_reem.value = this.cells[8].innerHTML;
-                inp_cond.value = this.cells[9].innerHTML;
-                
-                opcion_post.value = 'ACTUALIZAR';
-                btnLimpiar.removeAttribute("disabled");
-                btnEliminar.removeAttribute("disabled");
+            tb_info.appendChild(tr);
+        });
+        
+        for(let i = 1; i < table.rows.length; i++) {
+            if(table.rows[i].cells != 10) {
+                table.rows[i].onclick = function(e) {
+                    inp_id.value = this.cells[0].innerHTML;
+                    inp_id.setAttribute("disabled", "");
+                    inp_nombre.value = this.cells[1].innerHTML;
+                    inp_car.value = this.cells[2].innerHTML;
+                    inp_ubi.value = this.cells[3].innerHTML;
+                    inp_frec.value = this.cells[4].innerHTML;
+                    inp_fec_ins.value = this.cells[5].innerHTML;
+                    inp_conds.value = this.cells[6].innerHTML;
+                    inp_fec_col.value = this.cells[7].innerHTML;
+                    inp_fec_reem.value = this.cells[8].innerHTML;
+                    inp_cond.value = this.cells[9].innerHTML;
+                    
+                    opcion_post.value = 'ACTUALIZAR';
+                    btnLimpiar.removeAttribute("disabled");
+                    btnEliminar.removeAttribute("disabled");
+                }
             }
         }
+    } catch (e){
+        return e;
     }
 }
 
