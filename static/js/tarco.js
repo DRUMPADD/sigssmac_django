@@ -7,8 +7,11 @@ var values = ["Malo", "Regular", "Bueno"];
 
 
 var table = document.getElementById("tb_items"), rIndex;
+
+// Botones
 let btnEnviar = document.getElementById("btnEnviar");
 let btnLimpiar = document.getElementById("btnLimpiar");
+let btnEliminar = document.getElementById("btnEliminar");
 
 // Inputs
 let inp_id = document.querySelector(".id_");
@@ -21,6 +24,7 @@ let inp_conds = document.querySelector(".condiciones");
 let inp_fec_col = document.querySelector(".fecha_col");
 let inp_fec_reem = document.querySelector(".fecha_reem");
 let inp_cond = document.querySelector(".sl_condicion");
+let opcion_post = document.querySelector(".opcion_post");
 
 let formulario = new FormData(document.getElementById("form_item"));
 let form_r = document.getElementById("form_item");
@@ -101,7 +105,9 @@ async function getItems2() {
                     inp_fec_reem.value = this.cells[8].innerHTML;
                     inp_cond.value = this.cells[9].innerHTML;
 
+                    opcion_post.value = 'ACTUALIZAR';
                     btnLimpiar.removeAttribute("disabled");
+                    btnEliminar.removeAttribute("disabled");
                 }
             }
         }
@@ -152,6 +158,76 @@ function enviar() {
     console.log(formulario);
 }
 
+function modificar() {
+    let mensaje = "";
+    fetch("/actualizarItem", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            id: inp_id.value,
+            nombre: inp_nombre.value,
+            car: inp_car.value,
+            ubi: inp_ubi.value,
+            frec: inp_frec.value,
+            fec_ins: inp_fec_ins.value,
+            conds: inp_conds.value,
+            fec_col: inp_fec_col.value,
+            fec_reem: inp_fec_reem.value,
+            cond: inp_cond.value,
+        })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        mensaje = data.msg;
+    })
+    .catch(err => {
+        return
+    })
+
+    return mensaje;
+}
+
+function eliminar() {
+    let mensaje = "";
+    fetch("/eliminarItem", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            id: inp_id.value,
+            nombre: inp_nombre.value,
+            car: inp_car.value,
+            ubi: inp_ubi.value,
+            frec: inp_frec.value,
+            fec_ins: inp_fec_ins.value,
+            conds: inp_conds.value,
+            fec_col: inp_fec_col.value,
+            fec_reem: inp_fec_reem.value,
+            cond: inp_cond.value,
+        })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        mensaje = data.msg;
+    })
+    .catch(err => {
+        return
+    })
+    return mensaje;
+}
+
+
 function limpiarForm() {
     inp_id.value = "";
     inp_nombre.value = "";
@@ -168,18 +244,39 @@ function limpiarForm() {
 
 btnEnviar.addEventListener("click", (e) => {
     e.preventDefault();
+    let res = "";
     if(validar()) {
-        enviar();
+        if (opcion_post.value == 'AGREGAR') {
+            res = enviar();
+            opcion_post.value = 'AGREGAR';
+        } else {
+            res = modificar();
+        }
         form_r.reset();
         reload("tb_items");
+        alert(res);
     } else {
         alert("Debe llenar el formulario")
     }
-
 })
 
 btnLimpiar.addEventListener("click", () => {
     limpiarForm();
     btnLimpiar.setAttribute("disabled", "");
+    btnEliminar.setAttribute("disabled", "");
     inp_id.removeAttribute("disabled");
+    opcion_post.value = 'AGREGAR';
+})
+
+btnEliminar.addEventListener("click", async (e) => {
+    e.preventDefault();
+    let res = "";
+    if(validar()) {
+        if(confirm("¿Está seguro de que desea eliminar este item?\nLos datos no se podrán recuperar")) {
+            res = eliminar();
+            form_r.reset();
+            await reload("tb_items");
+            alert(res);
+        }
+    }
 })
