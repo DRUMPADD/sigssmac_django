@@ -51,7 +51,7 @@ def informacion(request):
             return JsonResponse({"status": "success", "info": mensaje}, status=200)
         except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
             print(e)
-            return JsonResponse({"status": "error", "info": "Hubo un error"}, status=200)
+            return JsonResponse({"status": "error", "info": "Hubo un error en el sistema"}, status=200)
 
 def enviar_item(request):
     if request.method == 'POST':
@@ -64,4 +64,34 @@ def enviar_item(request):
             return JsonResponse({"status": "success", "msg": "Datos enviados"}, status=200)
         except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
             print(e)
-            return JsonResponse({"status": "error", "msg": "Hubo un error"}, status=200)
+            return JsonResponse({"status": "error", "msg": "Hubo un error en el sistema"}, status=200)
+
+@db_operational_handler
+def modificar_item(request):
+    if request.method == 'POST':
+        post_d = json.loads(request.body.decode("utf-8"))
+
+        datos_item = (post_d.get("nombre"), post_d.get("car"), post_d.get("ubi"), post_d.get("frec"), post_d.get("fec_ins"), post_d.get("conds"), post_d.get("fec_col"), post_d.get("fec_reem"), post_d.get("cond"), post_d.get("id"))
+        try:
+            cursor = connection.cursor()
+            cursor.execute("UPDATE items set elemento = %s, caracteristicas = %s, ubicacion = %s, frec_ins = %s, fech_ins = %s, condiciones = %s, fech_col = %s, fech_reem = %s, condicion = %s where item = %s", datos_item)
+            return JsonResponse({"status": "success", "msg": "Item modificado"}, status=200)
+        except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Hubo un error en el sistema"}, status=200)
+
+@db_operational_handler
+def eliminar_item(request):
+    if request.method == 'POST':
+        post_data = json.loads(request.body.decode("utf-8"))
+        id_item = str(post_data.get("id"))
+        print(id_item)
+
+        try:
+            cursor = connection.cursor()
+            cursor.execute("DELETE FROM items where item = %s", [id_item])
+
+            return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
+        except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Hubo un error en el sistema"}, status=200)
