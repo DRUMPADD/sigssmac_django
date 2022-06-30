@@ -9,4 +9,6 @@ urlpatterns = [
     path("tarco", index, name="principal"),
     path("getInfo", informacion, name="informacion"),
     path("agregarItem", enviar_item, name="enviar_item"),
+    path("actualizarItem", modificar_item, name="actualizar_item"),
+    path("eliminarItem", eliminar_item, name="eliminar_item"),
 ]
