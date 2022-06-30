@@ -60,9 +60,9 @@ async function getItems2() {
     const data = await response.json();
     
     
-    const items = data.info;
+    const items = new Array(data.info);
 
-    items.forEach(element => {
+    items[0].forEach(element => {
         const tr = document.createElement("tr");
 
         const f_ac = element[5] != null ? element[5]: '';
