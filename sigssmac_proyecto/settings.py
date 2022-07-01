@@ -132,6 +132,11 @@ EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', "zaailyeddrycxcbu")
 RECIPIENT_ADDRESS = os.environ.get('RECIPIENT_ADDRESS')
 
+LOGIN_URL = 'inicio_sesion'
+LOGIN_REDIRECT_URL = '/tarco'
+LOGOUT_URL = 'cerrar_sesion'
+LOGOUT_REDIRECT_URL = '/tarco'
+
 STATIC_ROOT = str(os.environ.get("ALLOWED_HOSTS")) + "/static/"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
