@@ -22,7 +22,10 @@ def iniciar_sesion(request):
             return HttpResponse(msg)
 
 def inicio(request):
-    return render(request, "login.html")
+    if request.user.is_authenticated:
+        return redirect("/tarco")
+    else:
+        return render(request, "login.html")
 
 def cerrar(request):
     logout(request)
