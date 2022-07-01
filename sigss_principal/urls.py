@@ -5,6 +5,9 @@ from sigss_principal.views import *
 
 urlpatterns = [
     path("", principal, name="inicio"),
+    path("inicio_sesion", inicio, name="inicio_sesion"),
+    path("iniciar_sesion", iniciar_sesion, name="iniciar_sesion"),
+    path("cerrar_sesion", cerrar, name="cerrar_sesion"),
     path("enviar", enviar_mensaje, name="enviar"),
     path("tarco", index, name="principal"),
     path("getInfo", informacion, name="informacion"),
