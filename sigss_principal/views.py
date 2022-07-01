@@ -1,10 +1,32 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.db import connection
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.db.utils import *
 import json
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+
 # Create your views here.
+def iniciar_sesion(request):
+    if request.method == 'POST':
+        username = request.POST.get("usuario")
+        password = request.POST.get("contrasenia")
+
+        user_auth = authenticate(request, username=username, password=password)
+        if user_auth is not None:
+            login(request, user_auth)
+            return HttpResponseRedirect("/")
+        else:
+            return HttpResponse("El usuario no existe")
+
+def inicio(request):
+    return render(request, "login.html")
+
+def cerrar(request):
+    logout(request)
+    return redirect("inicio_sesion")
+
 def principal(request):
     return render(request, "index.html")
 
@@ -33,6 +55,7 @@ def db_operational_handler(func):
             return HttpResponse("Error en la base de datos")
     return inner_function
 
+@login_required
 @db_operational_handler
 def index(request):
     context = {
