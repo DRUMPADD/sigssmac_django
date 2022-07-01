@@ -247,7 +247,11 @@ btnEnviar.addEventListener("click", (e) => {
         btnLimpiar.setAttribute("disabled", "");
         btnEliminar.setAttribute("disabled", "");
     } else {
-        alert("Debe llenar el formulario")
+        Swal.fire(
+            'Datos incompletos!',
+            'Debe llenar el formulario.',
+            'warning'
+        )
     }
 
 })
