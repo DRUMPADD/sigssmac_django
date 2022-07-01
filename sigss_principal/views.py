@@ -18,7 +18,7 @@ def iniciar_sesion(request):
             login(request, user_auth)
             return HttpResponseRedirect("/tarco")
         else:
-            msg = "<head><link rel='stylesheet' href='https://bootswatch.com/5/zephyr/bootstrap.min.css'></head><html><body class='container text-center'><h1 class='h1'>El usuario no existe</h1><br><br><a href='/inicio_sesion' class='btn btn-primary'>Regresar</a></body></html>"
+            msg = "<head><title>Inicio de sesión</title><link rel='stylesheet' href='https://bootswatch.com/5/zephyr/bootstrap.min.css'></head><html><body class='container text-center'><h1 class='h1'>El usuario no existe</h1><br><br><a href='/inicio_sesion' class='btn btn-primary'>Regresar</a></body></html>"
             return HttpResponse(msg)
 
 def inicio(request):
