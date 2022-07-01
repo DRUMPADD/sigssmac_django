@@ -16,7 +16,7 @@ def iniciar_sesion(request):
         user_auth = authenticate(request, username=username, password=password)
         if user_auth is not None:
             login(request, user_auth)
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect("/tarco")
         else:
             msg = "<head><link rel='stylesheet' href='https://bootswatch.com/5/zephyr/bootstrap.min.css'></head><html><body class='container text-center'><h1 class='h1'>El usuario no existe</h1><br><br><a href='/inicio_sesion' class='btn btn-primary'>Regresar</a></body></html>"
             return HttpResponse(msg)
@@ -56,7 +56,7 @@ def db_operational_handler(func):
             return HttpResponse("Error en la base de datos")
     return inner_function
 
-@login_required
+@login_required(login_url="inicio_sesion")
 @db_operational_handler
 def index(request):
     context = {
