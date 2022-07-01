@@ -244,6 +244,8 @@ btnEnviar.addEventListener("click", (e) => {
         }
         form_r.reset();
         reload();
+        btnLimpiar.setAttribute("disabled", "");
+        btnEliminar.setAttribute("disabled", "");
     } else {
         alert("Debe llenar el formulario")
     }
@@ -275,6 +277,8 @@ btnEliminar.addEventListener("click", (e) => {
                 eliminar();
                 reload();
                 form_r.reset();
+                btnLimpiar.setAttribute("disabled", "");
+                btnEliminar.setAttribute("disabled", "");
                 Swal.fire(
                     'Eliminado!',
                     'El item ha sido eliminado.',
