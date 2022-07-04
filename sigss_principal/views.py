@@ -91,10 +91,10 @@ def enviar_item(request):
         if request.method == 'POST':
             post_d = json.loads(request.body.decode("utf-8"))
 
-            datos_item = (post_d.get("id"), post_d.get("nombre"), post_d.get("car"), post_d.get("ubi"), post_d.get("frec"), post_d.get("fec_ins"), post_d.get("conds"), post_d.get("fec_col"), post_d.get("fec_reem"), post_d.get("cond"))
+            datos_item = (post_d.get("id"), post_d.get("nombre"), post_d.get("car"), post_d.get("ubi"), post_d.get("frec"), post_d.get("frec_num"), post_d.get("fec_ins"), post_d.get("hora_a"), post_d.get("hora_in"), post_d.get("conds"), post_d.get("fec_col"), post_d.get("fec_reem"), post_d.get("cond"))
             try:
                 cursor = connection.cursor()
-                cursor.execute("INSERT INTO items (item, elemento, caracteristicas, ubicacion, frec_ins, fech_ins, condiciones, fech_col, fech_reem, condicion) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", datos_item)
+                cursor.execute("INSERT INTO items (item, elemento, caracteristicas, ubicacion, frec_ins,  frec_hrs, fech_ins, hora_actual, hora_ins, condiciones, fech_col, fech_reem, condicion) values(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)", datos_item)
                 return JsonResponse({"status": "success", "msg": "Datos enviados"}, status=200)
             except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
                 print(e)
@@ -110,10 +110,10 @@ def modificar_item(request):
         if request.method == 'POST':
             post_d = json.loads(request.body.decode("utf-8"))
 
-            datos_item = (post_d.get("nombre"), post_d.get("car"), post_d.get("ubi"), post_d.get("frec"), post_d.get("fec_ins"), post_d.get("conds"), post_d.get("fec_col"), post_d.get("fec_reem"), post_d.get("cond"), post_d.get("id"))
+            datos_item = (post_d.get("nombre"), post_d.get("car"), post_d.get("ubi"), post_d.get("frec"), int(post_d.get("frec_num")), post_d.get("fec_ins"), int(post_d.get("hora_a")), int(post_d.get("hora_in")), post_d.get("conds"), post_d.get("fec_col"), post_d.get("fec_reem"), post_d.get("cond"), post_d.get("id"))
             try:
                 cursor = connection.cursor()
-                cursor.execute("UPDATE items set elemento = %s, caracteristicas = %s, ubicacion = %s, frec_ins = %s, fech_ins = %s, condiciones = %s, fech_col = %s, fech_reem = %s, condicion = %s where item = %s", datos_item)
+                cursor.execute("UPDATE items set elemento = %s, caracteristicas = %s, ubicacion = %s, frec_ins = %s, frec_hrs = %s, fech_ins = %s, hora_actual = %s, hora_ins = %s, condiciones = %s, fech_col = %s, fech_reem = %s, condicion = %s where item = %s", datos_item)
                 return JsonResponse({"status": "success", "msg": "Item modificado"}, status=200)
             except (InternalError, DatabaseError, IntegrityError, ProgrammingError) as e:
                 print(e)
