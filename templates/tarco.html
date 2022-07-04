@@ -18,9 +18,13 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item"><a href="{% url 'cerrar_sesion' %}" class="nav-link text-white">Cerrar sesión</a></li>
-        </ul>
+        <div class="p-2">
+            <img src="{% static 'img/tarco_logo.jpeg' %}" width="55%">
+        </div>
+        <div class="collapse navbar-collapse"></div>
+        <div class="navbar-nav d-flex align-items-center">
+            <a href="{% url 'cerrar_sesion' %}" class="nav-link text-white h5">Cerrar sesión</a>
+        </div>
     </nav>
     <div class="container mt-5">
         <form id="form_item" class="card card-body">
