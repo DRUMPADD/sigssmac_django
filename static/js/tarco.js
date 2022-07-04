@@ -23,10 +23,13 @@ let inp_fec_col = document.querySelector(".fecha_col");
 let inp_fec_reem = document.querySelector(".fecha_reem");
 let inp_cond = document.querySelector(".sl_condicion");
 let opcion_post = document.querySelector(".opcion_post");
+let hora_act = document.querySelector(".hora_act");
+let frec_hr = document.querySelector(".frec_hr");
+let hora_ins = document.querySelector(".hora_ins");
 
 let formulario = new FormData(document.getElementById("form_item"));
 let form_r = document.getElementById("form_item");
-
+var hora_actual = 0;
 
 function reload(){
     let filas_tabla = table.getElementsByTagName("tr");
@@ -73,24 +76,26 @@ async function getItems2() {
         items[0].forEach(element => {
             const tr = document.createElement("tr");
 
-            const f_ac = element[5] != null ? element[5]: '';
-                const fech_ac_formato = f_ac.split('-');
-                const fecha_hoy = new Date().getTime();
-                const fecha_act = new Date(fech_ac_formato[0], (fech_ac_formato[1])-1, fech_ac_formato[2]);
-                const cal_fech_ac = Math.round((fecha_hoy - fecha_act.getTime())/1000/60/60/24);
-                tr.innerHTML += `
-                    <td>${element[0]}</td>
-                    <td>${element[1]}</td>
-                    <td>${element[2]}</td>
-                    <td>${element[3]}</td>
-                    <td>${element[4]}</td>
-                    <td class='bg-${cal_fech_ac > element[4] ? 'danger': 'dark'} text-white'>${element[5] == null ? '': element[5]}</td>
-                    <td>${element[6]}</td>
-                    <td>${element[7] == null ? '': element[7]}</td>
-                    <td>${element[8] == null ? '': element[8]}</td>
-                    <td class='bg-${element[9] == 'Malo' ? "danger": element[9] == 'Regular' ? "warning": "success"} text-white'>${element[9]}</td>
-                `;
-
+            const f_ac = element[6] != null ? element[6]: '';
+            const fech_ac_formato = f_ac.split('-');
+            const fecha_hoy = new Date().getTime();
+            const fecha_act = new Date(fech_ac_formato[0], (fech_ac_formato[1])-1, fech_ac_formato[2]);
+            const cal_fech_ac = Math.round((fecha_hoy - fecha_act.getTime())/1000/60/60/24);
+            tr.innerHTML += `
+                <td>${element[0]}</td>
+                <td>${element[1]}</td>
+                <td>${element[2]}</td>
+                <td>${element[3]}</td>
+                <td>${element[4]}</td>
+                <td>${element[5]  == null ? 0: element[5]}</td>
+                <td class='bg-${cal_fech_ac > element[4] ? 'danger': 'dark'} text-white'>${element[6] == null ? '': element[6]}</td>
+                <td>${element[7]  == null ? 0: element[7]}</td>
+                <td>${element[8]  == null ? 0: element[8]}</td>
+                <td>${element[9]}</td>
+                <td>${element[10] == null ? '': element[10]}</td>
+                <td>${element[11] == null ? '': element[11]}</td>
+                <td class='bg-${element[12] == 'Malo' ? "danger": element[12] == 'Regular' ? "warning": "success"} text-white'>${element[12]}</td>
+            `;
             tb_info.appendChild(tr);
         });
         
@@ -99,6 +104,7 @@ async function getItems2() {
                 table.rows[i].onclick = function(e) {
                     inp_id.value = this.cells[0].innerHTML;
                     inp_id.setAttribute("disabled", "");
+                    hora_act.setAttribute("disabled", "");
                     inp_nombre.value = this.cells[1].innerHTML;
                     inp_car.value = this.cells[2].innerHTML;
                     inp_ubi.value = this.cells[3].innerHTML;
@@ -109,6 +115,8 @@ async function getItems2() {
                     inp_fec_reem.value = this.cells[8].innerHTML;
                     inp_cond.value = this.cells[9].innerHTML;
                     
+                    hora_act.value = this.cells[7].innerHTML;
+                    hora_actual = this.cells[7].innerHTML;
                     opcion_post.value = 'ACTUALIZAR';
                     btnLimpiar.removeAttribute("disabled");
                     btnEliminar.removeAttribute("disabled");
@@ -125,7 +133,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function validar() {
-    return inp_id.value != '' && inp_nombre.value != '' && inp_car.value != '' && inp_ubi.value != '' && inp_frec.value != null && inp_fec_ins.value != '' && inp_conds.value != '' && inp_fec_col.value != '' && inp_fec_reem.value != '' && inp_cond.value != undefined;
+    return inp_id.value != '' && inp_nombre.value != '' && inp_car.value != '' && inp_ubi.value != '' && inp_frec.value != null && inp_fec_ins.value != '' && inp_conds.value != '' && inp_fec_col.value != '' && inp_fec_reem.value != '' && inp_cond.value != undefined && frec_hr != null && hora_act != null && hora_ins != null;
 }
 
 function enviar() {
@@ -142,7 +150,10 @@ function enviar() {
             car: inp_car.value,
             ubi: inp_ubi.value,
             frec: inp_frec.value,
+            frec_num: frec_hr.value,
             fec_ins: inp_fec_ins.value,
+            hora_a: hora_act.value,
+            hora_in: hora_ins.value,
             conds: inp_conds.value,
             fec_col: inp_fec_col.value,
             fec_reem: inp_fec_reem.value,
@@ -174,7 +185,10 @@ function modificar() {
             car: inp_car.value,
             ubi: inp_ubi.value,
             frec: inp_frec.value,
+            frec_num: frec_hr.value,
             fec_ins: inp_fec_ins.value,
+            hora_a: hora_actual,
+            hora_in: hora_ins.value,
             conds: inp_conds.value,
             fec_col: inp_fec_col.value,
             fec_reem: inp_fec_reem.value,
@@ -262,6 +276,7 @@ btnLimpiar.addEventListener("click", () => {
     btnLimpiar.setAttribute("disabled", "");
     btnEliminar.setAttribute("disabled", "");
     inp_id.removeAttribute("disabled");
+    hora_act.removeAttribute("disabled");
     opcion_post.value = 'AGREGAR';
 })
 
@@ -282,6 +297,8 @@ btnEliminar.addEventListener("click", (e) => {
                 eliminar();
                 reload();
                 form_r.reset();
+                inp_id.removeAttribute("disabled");
+                hora_act.removeAttribute("disabled");
                 btnLimpiar.setAttribute("disabled", "");
                 btnEliminar.setAttribute("disabled", "");
                 Swal.fire(
