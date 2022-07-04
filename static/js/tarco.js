@@ -109,11 +109,13 @@ async function getItems2() {
                     inp_car.value = this.cells[2].innerHTML;
                     inp_ubi.value = this.cells[3].innerHTML;
                     inp_frec.value = this.cells[4].innerHTML;
-                    inp_fec_ins.value = this.cells[5].innerHTML;
-                    inp_conds.value = this.cells[6].innerHTML;
-                    inp_fec_col.value = this.cells[7].innerHTML;
-                    inp_fec_reem.value = this.cells[8].innerHTML;
-                    inp_cond.value = this.cells[9].innerHTML;
+                    frec_hr.value = this.cells[5].innerHTML;
+                    inp_fec_ins.value = this.cells[6].innerHTML;
+                    hora_ins.value = this.cells[8].innerHTML;
+                    inp_conds.value = this.cells[9].innerHTML;
+                    inp_fec_col.value = this.cells[10].innerHTML;
+                    inp_fec_reem.value = this.cells[11].innerHTML;
+                    inp_cond.value = this.cells[12].innerHTML;
                     
                     hora_act.value = this.cells[7].innerHTML;
                     hora_actual = this.cells[7].innerHTML;
