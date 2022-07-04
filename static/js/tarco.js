@@ -88,7 +88,7 @@ async function getItems2() {
                     <td>${element[6]}</td>
                     <td>${element[7] == null ? '': element[7]}</td>
                     <td>${element[8] == null ? '': element[8]}</td>
-                    <td class='bg-${element[9] == 'Malo' ? "danger": element[9] == 'Regular' ? "warning": "success"}'>${element[9]}</td>
+                    <td class='bg-${element[9] == 'Malo' ? "danger": element[9] == 'Regular' ? "warning": "success"} text-white'>${element[9]}</td>
                 `;
 
             tb_info.appendChild(tr);
