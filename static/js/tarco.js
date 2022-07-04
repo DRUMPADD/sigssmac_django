@@ -87,7 +87,7 @@ async function getItems2() {
                 <td>${element[2]}</td>
                 <td>${element[3]}</td>
                 <td>${element[4]}</td>
-                <td>${element[5]  == null ? 0: element[5]}</td>
+                <td class='bg-${element[8] - element[7] > element[5] ? 'danger': 'dark'} text-white'>${element[5]  == null ? 0: element[5]}</td>
                 <td class='bg-${cal_fech_ac > element[4] ? 'danger': 'dark'} text-white'>${element[6] == null ? '': element[6]}</td>
                 <td>${element[7]  == null ? 0: element[7]}</td>
                 <td>${element[8]  == null ? 0: element[8]}</td>
