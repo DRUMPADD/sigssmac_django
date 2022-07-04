@@ -118,7 +118,7 @@ async function getItems2() {
                     inp_cond.value = this.cells[12].innerHTML;
                     
                     hora_act.value = this.cells[7].innerHTML;
-                    hora_actual = this.cells[7].innerHTML;
+                    hora_actual = this.cells[8].innerHTML;
                     opcion_post.value = 'ACTUALIZAR';
                     btnLimpiar.removeAttribute("disabled");
                     btnEliminar.removeAttribute("disabled");
