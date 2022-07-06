@@ -104,21 +104,18 @@ async function getItems2() {
                 table.rows[i].onclick = function(e) {
                     inp_id.value = this.cells[0].innerHTML;
                     inp_id.setAttribute("disabled", "");
-                    hora_act.setAttribute("disabled", "");
                     inp_nombre.value = this.cells[1].innerHTML;
                     inp_car.value = this.cells[2].innerHTML;
                     inp_ubi.value = this.cells[3].innerHTML;
                     inp_frec.value = this.cells[4].innerHTML;
                     frec_hr.value = this.cells[5].innerHTML;
                     inp_fec_ins.value = this.cells[6].innerHTML;
+                    hora_act.value = this.cells[7].innerHTML;
                     hora_ins.value = this.cells[8].innerHTML;
                     inp_conds.value = this.cells[9].innerHTML;
                     inp_fec_col.value = this.cells[10].innerHTML;
                     inp_fec_reem.value = this.cells[11].innerHTML;
                     inp_cond.value = this.cells[12].innerHTML;
-                    
-                    hora_act.value = this.cells[7].innerHTML;
-                    hora_actual = this.cells[8].innerHTML;
                     opcion_post.value = 'ACTUALIZAR';
                     btnLimpiar.removeAttribute("disabled");
                     btnEliminar.removeAttribute("disabled");
@@ -189,7 +186,7 @@ function modificar() {
             frec: inp_frec.value,
             frec_num: frec_hr.value,
             fec_ins: inp_fec_ins.value,
-            hora_a: hora_actual,
+            hora_a: hora_act.value,
             hora_in: hora_ins.value,
             conds: inp_conds.value,
             fec_col: inp_fec_col.value,
@@ -218,15 +215,6 @@ function eliminar() {
         },
         body: JSON.stringify({
             id: inp_id.value,
-            nombre: inp_nombre.value,
-            car: inp_car.value,
-            ubi: inp_ubi.value,
-            frec: inp_frec.value,
-            fec_ins: inp_fec_ins.value,
-            conds: inp_conds.value,
-            fec_col: inp_fec_col.value,
-            fec_reem: inp_fec_reem.value,
-            cond: inp_cond.value,
         })
     })
     .then(res => {
@@ -254,7 +242,7 @@ btnEnviar.addEventListener("click", (e) => {
         } else {
             modificar();
             Swal.fire(
-                'Agregado!',
+                'Actualizado!',
                 'El item ha sido modificado.',
                 'success'
             )
@@ -278,7 +266,6 @@ btnLimpiar.addEventListener("click", () => {
     btnLimpiar.setAttribute("disabled", "");
     btnEliminar.setAttribute("disabled", "");
     inp_id.removeAttribute("disabled");
-    hora_act.removeAttribute("disabled");
     opcion_post.value = 'AGREGAR';
 })
 
@@ -300,7 +287,6 @@ btnEliminar.addEventListener("click", (e) => {
                 reload();
                 form_r.reset();
                 inp_id.removeAttribute("disabled");
-                hora_act.removeAttribute("disabled");
                 btnLimpiar.setAttribute("disabled", "");
                 btnEliminar.setAttribute("disabled", "");
                 Swal.fire(
