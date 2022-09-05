@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/manteinment.css' %}">
+{% endblock %}
+{% block content %}
+    <h1>Mantenimiento</h1>
+    <div class="manteinment">
+        <div>
+            <form class="form_manteinment">
+                <h2>Registrar mantenimiento correctivo</h2>
+                <div class="labels">
+                    <div class="input_box">
+                        <label>Seleccionar item</label>
+                        <select name="sl_item" class="item">
+                            <option selected disabled>--Seleccionar--</option>
+                            <option value="1">Máquina1</option>
+                            <option value="2">Máquina2</option>
+                            <option value="3">Máquina3</option>
+                            <option value="4">Máquina4</option>
+                        </select>
+                    </div>
+                    <div class="input_box">
+                        <label>Ubicación</label>
+                        <input type="text" name="ubicacion" class="input">
+                    </div>
+                    <div class="input_box">
+                        <label>Tipo de novedad</label>
+                        <input type="text" name="novedad" class="input">
+                    </div>
+                </div>
+                <div class="labels">
+                    <div class="input_box">
+                        <label>Seleccionar modo de fallo</label>
+                        <select name="sl_fallo" class="item">
+                            <option selected disabled>--Seleccionar--</option>
+                            <option value="1">Fallo1</option>
+                            <option value="2">Fallo2</option>
+                            <option value="3">Fallo3</option>
+                            <option value="4">Fallo4</option>
+                        </select>
+                    </div>
+                    <div class="input_box">
+                        <label>Fecha de reporte</label>
+                        <input type="date" name="reporte" class="input">
+                    </div>
+                    <div class="input_box">
+                        <label>Fecha de entrega</label>
+                        <input type="date" name="entrega" class="input">
+                    </div>
+                </div>
+                <div class="labels">
+                    <div class="input_box">
+                        <label>Días</label>
+                        <input type="number" name="dias" class="input">
+                    </div>
+                    <div class="input_box">
+                        <label>Seleccionar responsable</label>
+                        <select name="sl_responsable" class="item">
+                            <option selected disabled>--Seleccionar--</option>
+                            <option value="1">Fallo1</option>
+                            <option value="2">Fallo2</option>
+                            <option value="3">Fallo3</option>
+                            <option value="4">Fallo4</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="labels">
+                    <label>Observaciones</label>
+                    <textarea name="observaciones" class="textarea"></textarea>
+                </div>
+                <div class="button_box">
+                    <input type="submit" class="btnMant" value="Registrar">
+                </div>
+            </form>
+            <div class="scroll">
+                <table class="table">
+                    <thead class="t_header">
+                        <tr>
+                            <th>Código</th>
+                            <th>Máquina/Equipo</th>
+                            <th>Ubicación</th>
+                            <th>Tipo de novedad</th>
+                            <th>Fecha de reporte</th>
+                            <th>Modo de fallo</th>
+                            <th>Código</th>
+                            <th>Fecha de entrega</th>
+                            <th>Faltan (días)</th>
+                            <th>Responsable del mantenimiento</th>
+                            <th>Observaciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="t_body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}  
