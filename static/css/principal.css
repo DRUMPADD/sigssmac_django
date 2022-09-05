@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    display: flex;
+}
+
+header {
+    position: fixed;
+    width: 40vh;
+    height: 100vh;
+    padding: 0 5px;
+    background-color: rgb(0, 255, 162);
+}
+
+header h1 {
+    text-align: center;
+}
+
+h1 {
+    font-size: 2.3em;
+}
+
+a {
+    text-decoration: none;
+}
+
+.list {
+    margin-top: 20px;
+}
+
+.link {
+    position: relative;
+    display: inline-block;
+    margin: 0 auto;
+    padding: 14px 7px;
+    display: block;
+    font-size: 1.5em;
+    font-weight: 800;
+    color: #000;
+    overflow: hidden;
+    transition: all .5s;
+}
+
+.link:hover {
+    color: #fff;
+    background-color: #000;
+}
+
+.link::before,
+.link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 10px;
+    background-color: #000;
+    transition: all .5s;
+}
+
+.link::before {
+    top: 5px;
+    left: 0;
+}
+
+.link::after {
+    right: -100px;
+    bottom: 5px;
+}
+
+.link:hover::before {
+    width: 100%;
+}
+
+.link:hover::after {
+    width: 100%;
+    right: 0;
+}
+
+
+.link span {
+    position: relative;
+    z-index: 3;
+}
+
+.container {
+    padding: 20px;
+    width: 100%;
+    margin-left: 20%;
+}
+
+
+/* Formato de input tipo number */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none; 
+    margin: 0; 
+}
+input[type=number] { -moz-appearance:textfield; }
+
+/* Formato inputs, selects y textareas */
+input,
+select,
+textarea {
+    outline: none !important;
+    border: none !important;
+    font-family: 'Roboto' !important;
+}

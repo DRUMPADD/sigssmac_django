@@ -1,0 +1,133 @@
+/* Mantenimiento */
+.manteinment {
+    margin: 10px auto;
+}
+
+/* -- Formulario -- */
+.form_manteinment {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #90f7a4;
+}
+
+.form_manteinment h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+.form_manteinment .labels {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.labels .input_box {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+.labels:nth-child(4) {
+    gap: 20px;
+}
+
+.labels .textarea {
+    width: 80%;
+    height: 200px;
+    resize: none;
+    padding: 16px 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+.labels label {
+    font-size: 1.1em;
+}
+
+.input_box > input[type="number"] {
+    width: 30%;
+}
+
+.input_box input,
+.input_box select {
+    display: block;
+    width: 100%;
+    padding: 10px 8px;
+    border-radius: 3px;
+    border: 1px solid #ededed;
+}
+
+.input,
+.item {
+    font-size: 16px;
+}
+
+
+input[type="date"] {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+}
+
+.form_manteinment .button_box {
+    width: 100%;
+    padding: 10px;
+}
+
+.form_manteinment .button_box .btnMant {
+    width: 100%;
+    padding: 15px 20px;
+    font-size: 1em;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 3px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+    transition: .3s ease;
+}
+
+.form_manteinment .button_box .btnMant:hover {
+    background-color: #000;
+    color: #fff;
+}
+/* -- Formulario -- */
+
+/* -- Tabla -- */
+.scroll {
+    overflow-y: scroll;
+    width: 100%;
+    min-height: 500px;
+    padding: 10px 5px;
+}
+
+.table {
+    width: 100%;
+    margin: 10px auto;
+    border-collapse: collapse;
+}
+
+.table .t_header tr th {
+    background-color: #0e0e0e;
+    font-weight: 600;
+    font-size: 1.1em;
+    padding: 6px;
+    color: #fff;
+    
+}
+
+.table .t_body tr td {
+    border-bottom: 3px solid #0e0e0e;
+    text-align: center;
+    font-weight: 500;
+    padding: 4px;
+}
+
+.table .t_body tr {
+    transition: all .2s ease-in;
+}
+
+.table .t_body tr:hover {
+    background-color: rgba(97, 98, 99, 0.4);
+}
+/* -- Tabla -- */
