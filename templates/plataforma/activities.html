@@ -1,0 +1,50 @@
+{% extends 'plataforma/base.html' %}
+{% load static %}
+{% block styles %}
+
+<!-- ?? ACTUALIZACIONES PENDIENTES - PASAR A ARCHIVO CSS -->
+<link rel="stylesheet" href="{% static 'css/activity.css' %}">
+{% endblock %}
+{% block content %}
+    <h1>{{ message }}</h1>
+    <div class="container_activity">
+        <form class="form_act">
+            <h1>Agregar actividad</h1>
+            <div class="inputs_info_act">
+                <div class="info_act">
+                    <label>Código de actividad</label>
+                    <input type="text" name="id" class="input_form">
+                </div>
+                <div class="info_act">
+                    <label>Nombre de la actividad</label>
+                    <input type="text" name="name_act" class="input_form">
+                </div>
+            </div>
+            <div>
+                <label>Descripción</label>
+                <textarea name="description" cols="30" rows="10"></textarea>
+            </div>
+            <div>
+                <input type="submit" class="btnAct" value="Crear actividad">
+            </div>
+        </form>
+        <div class="scroll">
+            <table class="table">
+                <thead class="t_header">
+                    <tr>
+                        <th>Código</th>
+                        <th>Nombre de actividad</th>
+                        <th>Descripción</th>
+                    </tr>
+                </thead>
+                <tbody class="t_body">
+                    <tr>
+                        <td>C1</td>
+                        <td>Lorem ipsum dolor sit amet.</td>
+                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus error fugit corrupti tenetur, fuga nulla.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
