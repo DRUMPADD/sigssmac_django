@@ -1,29 +1,32 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title }}</title>
-        <link rel="stylesheet" href="{% static 'css/principal.css' %}">
-        {% block styles %}
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/principal.css' %}">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Plataforma industrial</h1>
+        <nav class="list">
+                <a href="{% url 'principal' %}" class="link"><span>General</span></a>
+                <a href="{% url 'actividades' %}" class="link"><span>Actividades</span></a>
+                <a href="{% url 'items' %}" class="link"><span>Artículos</span></a>
+                <a href="{% url 'manteinment' %}" class="link"><span>Mantenimiento preventivo</span></a>
+                <!-- <a href="" class="link"><span>Mantenimiento correctivo</span></a> -->
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}
         {% endblock %}
-    </head>
-    <body>
-        <header>
-            <h1>Plataforma industrial</h1>
-            <nav class="list">
-                    <a href="{% url 'principal' %}" class="link"><span>General</span></a>
-                    <a href="{% url 'actividades' %}" class="link"><span>Actividades</span></a>
-                    <a href="{% url 'items' %}" class="link"><span>Artículos</span></a>
-                    <a href="{% url 'manteinment' %}" class="link"><span>Mantenimiento preventivo</span></a>
-                    <!-- <a href="" class="link"><span>Mantenimiento correctivo</span></a> -->
-            </nav>
-        </header>
-        <div class="container">
-            {% block content %}
-            {% endblock %}
-        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+    {% block js_code %}
+    {% endblock %}
 </body>
 </html>
