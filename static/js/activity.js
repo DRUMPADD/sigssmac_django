@@ -83,7 +83,13 @@ function createActivity () {
     })
     .then(data => {
         showActivities();
-        console.log(data);
+        Swal.fire({
+            position: 'center',
+            icon: data.status,
+            title: data.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
     .catch(e => {
         console.log(e);
