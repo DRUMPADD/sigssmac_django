@@ -23,25 +23,25 @@ let form = document.querySelector("#form_act");
 async function getActivities() {
     let response = await fetch("/activities/getActivities");
     let data = await response.json();
-    return data;
+    return data.msg;
 }
 
 // ?? Colocar datos obtenidos en tabla
 async function showActivities() {
     let activities = await getActivities();
     let arr = new Array(activities);
-
     let str_datos = "";
-    arr.forEach(el => {
-        str_datos += `
-            <tr>
-                <td>${el.codigo}</td>
-                <td>${el.n_actividad}</td>
-                <td>${el.descripcion}</td>
-            </tr>
-        `;
+    arr[0].forEach(el => {
+        if(el.length !== 0) {
+            str_datos += `
+                <tr>
+                    <td>${el[0]}</td>
+                    <td>${el[1]}</td>
+                    <td>${el[2]}</td>
+                </tr>
+            `;
+        }
     })
-
     t_body.innerHTML = str_datos;
 }
 
