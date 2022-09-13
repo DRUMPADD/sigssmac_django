@@ -38,6 +38,16 @@ async function showActivities() {
                     <td>${el[0]}</td>
                     <td>${el[1]}</td>
                     <td>${el[2]}</td>
+                    <td>
+                        <a class="btn-modificar" href="#content-hidden">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn-eliminar" href="#content-hidden">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                    </td>
                 </tr>
             `;
         }
