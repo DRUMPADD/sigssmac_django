@@ -38,14 +38,25 @@
                     </tr>
                 </thead>
                 <tbody class="t_body">
-                    <tr>
-                        <td>C1</td>
-                        <td>Lorem ipsum dolor sit amet.</td>
-                        <td>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus error fugit corrupti tenetur, fuga nulla.</td>
-                    </tr>
                 </tbody>
             </table>
         </div>
+    </div>
+    <div class="update_hidden" id="content-hidden">
+        <form class="form_update">
+            <a class="btnClose">X</a>
+            <div class="content-update">
+                <label>Nombre anterior</label>
+                <input type="text" class="inp_hid" name="name_before" disabled>
+            </div>
+            <div class="content-update">
+                <label>Nombre nuevo</label>
+                <input type="text" class="inp_hid" name="name_after">
+            </div>
+            <div class="content-update">
+                <input type="button" class="btnUpd" value="Realizar cambios">
+            </div>
+        </form>
     </div>
 {% endblock %}
 {% block js_code %}
