@@ -92,7 +92,13 @@ function createActivity () {
         })
     })
     .catch(e => {
-        console.log(e);
+        Swal.fire({
+            position: 'center',
+            icon: e.status,
+            title: e.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
 }
 
