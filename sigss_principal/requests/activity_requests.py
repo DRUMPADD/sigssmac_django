@@ -1,6 +1,6 @@
 from django.http import JsonResponse, HttpResponse
 from django.db import connection
-from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors
+from django.db import InternalError as errors, IntegrityError as rep, InterfaceError as errors, ProgrammingError as errors
 import json
 
 
@@ -28,6 +28,9 @@ def create_activity(request):
         except (errors) as e:
             print(e)
             return JsonResponse({"status": "error","msg": "Error en el sistema"}, status=200)
+        except rep:
+            print(rep)
+            return JsonResponse({"status": "error","msg": "Este ID ya se encuentra registrado"}, status=200)
 
 def modify_activity(request):
     if request.methods == 'POST':
