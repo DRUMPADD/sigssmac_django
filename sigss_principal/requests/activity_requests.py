@@ -24,18 +24,10 @@ def create_activity(request):
 
             cursor = connection.cursor()
             cursor.execute("INSERT INTO actividades (codigo, n_act, descripcion) values(%s, %s, %s)", [responses.get('cod_act'), responses.get('name_act'), responses.get('desc')])
-            return JsonResponse({"msg": "Si se pudo"}, status=200)
+            return JsonResponse({"status": "success","msg": "Datos agregados con éxito"}, status=200)
         except (errors) as e:
             print(e)
-    else:
-        return HttpResponse("No pasó nada")
-        # try:
-        #     cursor = connection.cursor()
-        #     cursor.execute("INSERT INTO actividades values(%s, %s, %s)", [request.POST.get()])
-        # except (errors) as e:
-        #     print(e)
-        #     return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
-
+            return JsonResponse({"status": "error","msg": "Error en el sistema"}, status=200)
 
 def modify_activity(request):
     if request.methods == 'POST':
