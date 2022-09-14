@@ -1,10 +1,97 @@
-{% extends 'plataforma/base.html' %}
+{% extends 'base_layout.html' %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/general.css' %}">
+{% endblock %}
 
 {% block content %}
-    <h1>{{ message }}</h1>
+    <div class="general_mant">
+        <h1>Mantenimiento preventivo</h1>
+        <form class="form-mant">
+            <h3>Registro de mantenimiento</h3>
+            <div class="flex">
+                <div>
+                    <label>Elegir máquina o equipo</label>
+                    <select name="sl_item" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        <option value="1">Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                        <option value="3">Opcion 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Frecuencia</label>
+                    <select name="sl_item" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        <option value="1">Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                        <option value="3">Opcion 3</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Actividad</label>
+                    <select name="sl_item" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        <option value="1">Opcion 1</option>
+                        <option value="2">Opcion 2</option>
+                        <option value="3">Opcion 3</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="flex">
+                <div>
+                    <label>Fecha de creación</label>
+                    <input type="date" name="fec-creacion" class="inp">
+                </div>
+                <div>
+                    <label>Fecha próxima</label>
+                    <input type="date" name="fec-proxima" class="inp">
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <input type="submit" class="inp btnGen" value="Registrar">
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="scroll">
+        <table class="table">
+            <thead class="t_header">
+                <tr>
+                    <th>ID</th>
+                    <th>Máquina/Equipo</th>
+                    <th>Código</th>
+                    <th>Ubicación</th>
+                    <th>Frecuencia</th>
+                    <th>Fecha de creación</th>
+                    <th>Código de actividad</th>
+                    <th>Actividades</th>
+                    <th>Próxima fecha</th>
+                    <th>Faltan (días)</th>
+                    <th>Ver días</th>
+                </tr>
+            </thead>
+            <tbody class="t_body">
+                <tr>
+                    <td>1</td>
+                    <td>Equipo 1</td>
+                    <td>E1</td>
+                    <td>Ubicado</td>
+                    <td>Diaria</td>
+                    <td>10/09/2022</td>
+                    <td>AC1</td>
+                    <td>Actividad 1</td>
+                    <td>19/09/2022</td>
+                    <td>9</td>
+                    <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
+                </tr>
+            </tbody>
+        </table>
 
-    <div>
     </div>
 {% endblock %}
 {% block js_code %}
+    <script src="{% static 'js/general.js' %}"></script>
 {% endblock %}
