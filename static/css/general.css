@@ -62,6 +62,15 @@
     background-color: rgba(40, 145, 10, .9);
     color: #fff;
     cursor: pointer;
+    transition: .3s ease-in;
+}
+
+.btnGen:hover {
+    background-color: rgba(0, 0, 0, .9);
+}
+
+.btnGen:active {
+    transform: scale(0.9);
 }
 
 .details {
