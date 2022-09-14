@@ -1,0 +1,29 @@
+.scroll {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.box {
+    margin: 0 auto;
+}
+
+.grid-area {
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.box h2 {
+    text-align: center;
+}
+
+.flex div {
+    margin: 18px;
+}
+
+.flex div p {
+    display: inline;
+    font-size: 18px;
+    font-weight: 600;
+}
