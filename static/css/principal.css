@@ -112,3 +112,55 @@ textarea {
     border: none !important;
     font-family: 'Roboto' !important;
 }
+
+
+/* ?? Estilo de tabla - General */
+.table {
+    width: 100%;
+    border-radius: 5px;
+    border-collapse: collapse;
+    font-weight: 700;
+}
+
+.t_header tr th{
+    padding: 8px 3px;
+    text-transform: uppercase;
+}
+
+.table .t_header tr th {
+    text-align: center;
+}
+
+.table .t_header tr th,
+.table .t_body tr td {
+    border-bottom: 1px solid rgba(0, 0, 0, .4);
+}
+
+.table .t_body tr {
+    line-height: 40px;
+    transition: all .3s ease-out;
+}
+
+.table .t_body tr td {
+    padding: 10px;
+    font-size: 18px;
+    text-align: center;
+    order: 1;
+}
+
+.table .t_body tr:hover {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.scroll {
+    width: 65%;
+    min-height: 500px;
+    overflow-y: scroll;
+}
+
+
+/* ?? Alineación al centro */
+.center {
+    text-align: center;
+}
