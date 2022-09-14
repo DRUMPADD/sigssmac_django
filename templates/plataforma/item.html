@@ -1,0 +1,82 @@
+{% extends 'plataforma/base.html' %}
+{% load static %}
+
+{% block styles %}
+    <link rel="stylesheet" href="{% static 'css/item.css' %}">
+{% endblock %}
+
+{% block content %}
+    <h1 class="center">Item 001</h1>
+    <main class="box">
+        <h2>Características generales</h2>
+        <div class="grid-area">
+            <div class="flex">
+                <div>
+                    <p>Nombre:</p>
+                    <p>Máquina 1</p>
+                </div>
+                <div>
+                    <p>Código:</p>
+                    <p>MQ1</p>
+                </div>
+                <div>
+                    <p>Marca:</p>
+                    <p>RRR</p>
+                </div>
+                <div>
+                    <p>Fecha de compra:</p>
+                    <p>12 de Septiembre del 2022</p>
+                </div>
+                <div>
+                    <p>Estado:</p>
+                    <p>Activa</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <p>Serie:</p>
+                    <p>2000</p>
+                </div>
+                <div>
+                    <p>Modelo:</p>
+                    <p>2002</p>
+                </div>
+                <div>
+                    <p>Ubicación:</p>
+                    <p>ENSAMBLE</p>
+                </div>
+                <div>
+                    <p>Fecha de vencimiento de garantía:</p>
+                    <p>Vencida</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <main class="box">
+        <h2>Datos del proveedor</h2>
+        <div class="grid-area">
+            <div class="flex">
+                <div>
+                    <p>Nombre:</p>
+                    <p>Proveedor 1</p>
+                </div>
+                <div>
+                    <p>Nombre:</p>
+                    <p>Proveedor 1</p>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <p>Télefono:</p>
+                    <p>7821034958</p>
+                </div>
+                <div>
+                    <p>Correo:</p>
+                    <p>176P0398@itspozarica.edu.mx</p>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock  %}
+{% block js_code %}
+{% endblock %}
