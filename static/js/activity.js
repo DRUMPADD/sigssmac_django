@@ -1,3 +1,21 @@
+let box_update_form = document.getElementById("content-hidden");
+let form_update = document.querySelector(".form_update");
+let btns_update = document.querySelectorAll(".btn-modificar");
+let btnClose = document.querySelector(".btnClose");
+
+for(let i = 0; i < btns_update.length; i++) {
+    btns_update[i].addEventListener("click", (e) => {
+        box_update_form.style.visibility = "visible";
+        box_update_form.style.opacity = 1;
+        const parentTR = btns_update[i].parentElement.parentElement;
+        form_update["name_before"].value = parentTR.getElementsByTagName("td")[1].innerText;
+    });
+}
+
+btnClose.addEventListener("click", () => {
+    box_update_form.style.visibility = "hidden";
+    box_update_form.style.opacity = 0;
+});
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
