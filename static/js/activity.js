@@ -115,9 +115,9 @@ function createActivity () {
     .then(response => {
         return response.json();
     })
-    .then(data => {
+    .then(async data => {
         showActivities();
-        Swal.fire({
+        await Swal.fire({
             position: 'center',
             icon: data.status,
             title: data.msg,
