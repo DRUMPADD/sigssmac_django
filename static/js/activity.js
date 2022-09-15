@@ -62,7 +62,7 @@ async function showActivities() {
                         </a>
                     </td>
                     <td>
-                        <a class="btn-eliminar" href="#content-hidden">
+                        <a class="btn-eliminar" href="#">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                     </td>
