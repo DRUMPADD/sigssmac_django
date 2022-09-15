@@ -10,7 +10,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getItems() {
-    let response = await fetch("/items/getItems");
+    let response = await fetch("/plataforma/equipo/mostrarItems");
     let data = response.json();
     return data.msg;
 }
