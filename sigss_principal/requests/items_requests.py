@@ -17,9 +17,12 @@ def show_items(request):
 def create_item(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("cod_item"))
+        print(responses.get("name_item"))
+        print(responses.get("quantity"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO maquinas_equipos values(%s, %s, %s)", [responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")])
+            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", [responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")])
             return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
         except (errors) as e:
             print(e)
