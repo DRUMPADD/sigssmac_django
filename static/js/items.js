@@ -11,15 +11,13 @@ btnClose.addEventListener("click", () => {
 
 async function getItems() {
     let response = await fetch("/plataforma/equipo/mostrarItems");
-    let data = response.json();
+    let data = await response.json();
     return data.msg;
 }
 
 async function showItems() {
     let items = await getItems();
-    console.log(items);
     let ar_items = new Array(items);
-    console.log(ar_items);
     let str_items = "";
 
     ar_items[0].forEach(element => {
