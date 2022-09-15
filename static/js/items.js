@@ -4,9 +4,14 @@ let btnClose = document.querySelector(".btnClose");
 let t_body = document.getElementById("items");
 let form = document.querySelector("#form-item");
 
-btnClose.addEventListener("click", () => {
+function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
+    form_update.reset();
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
 });
 
 async function getItems() {
@@ -90,12 +95,24 @@ function createItem () {
     .then(response => {
         return response.json();
     })
-    .then(data => {
-        showActivities();
-        console.log(data);
+    .then(async data => {
+        await Swal.fire({
+            position: 'center',
+            icon: data.status,
+            title: data.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showItems();
     })
     .catch(e => {
-        console.log(e);
+        Swal.fire({
+            position: 'center',
+            icon: e.status,
+            title: e.msg,
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
 }
 
@@ -104,10 +121,10 @@ form.addEventListener("submit", (e) => {
 
     let isIdValid = checkId(e.target.id_item.value),
         isNameValid = checkName(e.target.name_item.value),
-        isDescriptionValid = checkDescription(e.target.quantity_item.value);
+        isDescriptionValid = checkQuantity(e.target.quantity_item.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(!isFormValid) {
-        createActivity();
+        createItem();
     } else {
         Swal.fire({
             position: 'center',
