@@ -1,5 +1,6 @@
+from sqlite3 import ProgrammingError
 from django.shortcuts import render
-
+from django.db import connection, OperationalError, DatabaseError
 # Create your views here.
 def general_view(request):
     context = {
@@ -18,6 +19,18 @@ def items_view(request):
         "title": "Listado de máquinas o equipo",
     }
     return render(request, "plataforma/items.html", context)
+
+def item_view(request, id_item):
+    context = {}
+    try:
+        cursor = connection.cursor()
+        cursor.callproc("MOSTRAR_CARACTERISTICAS_ITEM", [id_item])
+        context["caracteristicas"] = cursor.fetchall()
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+    finally:
+        cursor.close()
+    return render(request, "plataforma/item.html", context)
 
 # def manteinment_1_view(request):
 #     context = {
