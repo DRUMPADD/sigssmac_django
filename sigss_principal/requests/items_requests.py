@@ -8,6 +8,7 @@ def show_items(request):
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM maquinas_equipos")
         items = cursor.fetchall()
+        print(items)
         return JsonResponse({"msg": items}, status=200)
     except (errors) as e:
         print(e)

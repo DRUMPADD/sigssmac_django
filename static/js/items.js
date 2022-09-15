@@ -17,7 +17,9 @@ async function getItems() {
 
 async function showItems() {
     let items = await getItems();
+    console.log(items);
     let ar_items = new Array(items);
+    console.log(ar_items);
     let str_items = "";
 
     ar_items[0].forEach(element => {
