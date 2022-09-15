@@ -108,9 +108,9 @@ input[type=number] { -moz-appearance:textfield; }
 input,
 select,
 textarea {
-    outline: none !important;
-    border: none !important;
-    font-family: 'Roboto' !important;
+    outline: none;
+    border: none;
+    font-family: 'Roboto';
 }
 
 
