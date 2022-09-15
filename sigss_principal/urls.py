@@ -4,6 +4,7 @@ from .views import *
 from sigss_principal.plataforma.views import *
 # ? Activities requests
 import sigss_principal.requests.activity_requests as act_req
+import sigss_principal.requests.items_requests as it_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -20,10 +21,13 @@ urlpatterns = [
     path("plataforma/general", general_view, name="principal"),
     # ? Activities requests
     path("plataforma/actividades", activities_view, name="actividades"),
-    path("plataforma/actividades/crear_actividad", act_req.create_activity, name="crear_actividad"),
-    path("activities/getActivities", act_req.show_activities, name="crear_actividad"),
+    path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
+    path("plataforma/actividades/motrarActividad", act_req.show_activities, name="showAcivities"),
     # ? Items requests
     path("plataforma/equipo", items_view, name="items"),
+    path("plataforma/equipo/mostrarItems", it_req.show_items, name="showItems"),
+    path("plataforma/equipo/<slug:id_item>", item_view, name="item"),
+    path("plataforma/equipo/registrarItem", it_req.create_item, name="createItem"),
     # path("mantenimiento_preventivo", manteinment_1_view, name="manteinment1"),
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
