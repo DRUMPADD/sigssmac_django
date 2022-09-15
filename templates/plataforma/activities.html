@@ -44,9 +44,13 @@
             </table>
         </div>
     </div>
+{% endblock %}
+{% block out-content %}
     <div class="update_hidden" id="content-hidden">
         <form class="form_update">
+            {% csrf_token %}
             <a class="btnClose">X</a>
+            <input type="text" name="id_act" hidden>
             <div class="content-update">
                 <label>Nombre anterior</label>
                 <input type="text" class="inp_hid" name="name_before" disabled>
@@ -56,7 +60,7 @@
                 <input type="text" class="inp_hid" name="name_after">
             </div>
             <div class="content-update">
-                <input type="button" class="btnUpd" value="Realizar cambios">
+                <button type="submit" class="btnUpd">Realizar cambios</button>
             </div>
         </form>
     </div>
