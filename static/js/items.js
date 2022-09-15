@@ -21,7 +21,7 @@ async function showItems() {
     let str_items = "";
 
     ar_items[0].forEach(element => {
-        if(el.length !== 0) {
+        if(element.length !== 0) {
             str_items += `
                 <tr>
                     <td>${element[0]}</td>
