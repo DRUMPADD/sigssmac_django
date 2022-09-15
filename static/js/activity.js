@@ -2,9 +2,14 @@ let box_update_form = document.getElementById("content-hidden");
 let form_update = document.querySelector(".form_update");
 let btnClose = document.querySelector(".btnClose");
 
-btnClose.addEventListener("click", () => {
+function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
+    form_update.reset();
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
 });
 function getCookie(name) {
     let cookieValue = null;
@@ -29,7 +34,7 @@ let form = document.querySelector("#form_act");
 
 // ?? Conseguir datos de tabla actividades desde servidor
 async function getActivities() {
-    let response = await fetch("/activities/getActivities");
+    let response = await fetch("/plataforma/actividades/motrarActividad");
     let data = await response.json();
     return data.msg;
 }
@@ -68,6 +73,7 @@ async function showActivities() {
             box_update_form.style.visibility = "visible";
             box_update_form.style.opacity = 1;
             const parentTR = btns_update[i].parentElement.parentElement;
+            form_update["id_act"].value = parentTR.getElementsByTagName("td")[0].innerText;
             form_update["name_before"].value = parentTR.getElementsByTagName("td")[1].innerText;
         });
     }
@@ -124,7 +130,46 @@ function createActivity () {
             position: 'center',
             icon: e.status,
             title: e.msg,
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
+function modifyActivity() {
+    fetch("/plataforma/actividades/modificarActividad", {
+        method: 'POST',
+        mode: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            'cod_act': form_update["id_act"].value,
+            'newName': form_update["name_after"].value,
+        })
+    })
+    .then(result => {
+        return result.json();
+    })
+    .then(async data => {
+        await Swal.fire({
+            position: 'center',
+            icon: data.status,
+            title: data.msg,
             confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        hideUpdateForm();
+        showActivities();
+    })
+    .catch(e => {
+        Swal.fire({
+            position: 'center',
+            icon: e.status,
+            title: e.msg,
+            confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
     })
@@ -139,6 +184,24 @@ form.addEventListener("submit", (e) => {
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(!isFormValid) {
         createActivity();
+    } else {
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Todos los campos son requeridos',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ACEPTAR',
+        })
+    }
+})
+
+form_update.addEventListener("submit", (e) => {
+    e.preventDefault();
+    
+    let validForm = e.target.id_act.val !== '' && e.target.name_after.val !== '';
+    
+    if(validForm) {
+        modifyActivity();
     } else {
         Swal.fire({
             position: 'center',
