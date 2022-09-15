@@ -5,55 +5,57 @@
 {% endblock %}
 {% block content %}
     <h1>Máquinas y/o equipos</h1>
-    <div class="form-content-item">
-        <form class="form-item" id="form-item">
-            <h2 class="center">Registrar item</h2>
-            <div class="input-box">
-                <label>Código</label>
-                <input type="text" name="id_item" class="input">
-            </div>
-            <div class="input-box">
-                <label>Nombre</label>
-                <input type="text" name="name_item" class="input">
-            </div>
-            <div class="input-box">
-                <label>Cantidad <span>(opcional)</span></label>
-                <input type="number" name="quantity_item" class="input">
-            </div>
-            <div>
-                <input type="submit" class="btnSend" value="Registrar">
-            </div>
-        </form>
-    </div>
-    <div class="scroll">
-        <table class="table">
-            <thead class="t_header">
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Cantidad</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody class="t_body" id="items">
-                <tr>
-                    <td>MQ1</td>
-                    <td>Máquina 1</td>
-                    <td>5</td>
-                    <td style="display: flex; justify-content: center;">
-                        <a href="#" class="btn btn-see-charac">
-                            <i class="fa-regular fa-file-lines"></i>
-                        </a>
-                        <a class="btn btn-modificar" href="#content-hidden">
-                            <i class="fa-solid fa-pencil"></i>
-                        </a>
-                        <a class="btn btn-eliminar" href="#content-hidden">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <div class="flex-cont">
+        <div class="form-content-item">
+            <form class="form-item" id="form-item">
+                <h2 class="center">Registrar item</h2>
+                <div class="input-box">
+                    <label>Código</label>
+                    <input type="text" name="id_item" class="input">
+                </div>
+                <div class="input-box">
+                    <label>Nombre</label>
+                    <input type="text" name="name_item" class="input">
+                </div>
+                <div class="input-box">
+                    <label>Cantidad <span>(opcional)</span></label>
+                    <input type="number" name="quantity_item" class="input">
+                </div>
+                <div>
+                    <input type="submit" class="btnSend" value="Registrar">
+                </div>
+            </form>
+        </div>
+        <div class="scroll">
+            <table class="table">
+                <thead class="t_header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cantidad</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody class="t_body" id="items">
+                    <tr>
+                        <td>MQ1</td>
+                        <td>Máquina 1</td>
+                        <td>5</td>
+                        <td style="display: flex; justify-content: center;">
+                            <a href="#" class="btn btn-see-charac">
+                                <i class="fa-regular fa-file-lines"></i>
+                            </a>
+                            <a class="btn btn-modificar" href="#content-hidden">
+                                <i class="fa-solid fa-pencil"></i>
+                            </a>
+                            <a class="btn btn-eliminar" href="#content-hidden">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 {% endblock %}
 {% block out-content %}

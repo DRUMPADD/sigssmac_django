@@ -1,8 +1,13 @@
 .container {
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
+    display: block;
 }
+
+.flex-cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 .center {
     font-size: 1.7em;
