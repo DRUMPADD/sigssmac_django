@@ -2,9 +2,10 @@ from django.urls import path
 
 from .views import *
 from sigss_principal.plataforma.views import *
-# ? Activities requests
-import sigss_principal.requests.activity_requests as act_req
-import sigss_principal.requests.items_requests as it_req
+# ? Importing Activities requests
+import sigss_principal.plataforma.requests.activity_requests as act_req
+# ? Importing Items requests
+import sigss_principal.plataforma.requests.items_requests as it_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
