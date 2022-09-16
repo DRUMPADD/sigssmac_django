@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block content %}
+    {% if existe %}
     <h1 class="center">Item 001</h1>
     <main class="box">
         <h2>Características generales</h2>
@@ -77,6 +78,9 @@
             </div>
         </div>
     </main>
+    {% else %}
+        <h1>No existe registro</h1>
+    {% endif %}
 {% endblock  %}
 {% block js_code %}
 {% endblock %}
