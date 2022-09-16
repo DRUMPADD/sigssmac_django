@@ -4,6 +4,7 @@ let btnClose = document.querySelector(".btnClose");
 let t_body = document.getElementById("items");
 let form = document.querySelector("#form-item");
 
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -49,7 +50,7 @@ async function showItems() {
                     <td>${element[1]}</td>
                     <td>${element[2]}</td>
                     <td style="display: flex; justify-content: center;">
-                        <a href="plataforma/equipo/${element[0]}" class="btn btn-see-charac">
+                        <a href="/equipo/${element[0]}" class="btn btn-see-charac">
                             <i class="fa-regular fa-file-lines"></i>
                         </a>
                         <a class="btn btn-modificar" href="#content-hidden">
@@ -71,8 +72,9 @@ async function showItems() {
             box_update_form.style.visibility = "visible";
             box_update_form.style.opacity = 1;
             const parentTR = btns_update[i].parentElement.parentElement;
-            form_update["name_before"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            form_update["stuck_before"].value = parentTR.getElementsByTagName("td")[2].innerText;
+            form_update["id_"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form_update["new_name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form_update["new_stuck"].value = parentTR.getElementsByTagName("td")[2].innerText;
         });
     }
 }
@@ -132,6 +134,45 @@ function createItem () {
     })
 }
 
+function modifyItem () {
+    fetch("/plataforma/equipo/modificarItem", {
+        method: 'POST',
+        mode: 'same-origin',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            id_: form["id_"].value,
+            new_name: form["new_name"].value,
+            new_stuck: form["new_stuck"].value,
+        })
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(async data => {
+        await Swal.fire({
+            position: 'center',
+            icon: data.status,
+            title: data.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showItems();
+    })
+    .catch(e => {
+        Swal.fire({
+            position: 'center',
+            icon: e.status,
+            title: e.msg,
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -141,6 +182,26 @@ form.addEventListener("submit", (e) => {
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(!isFormValid) {
         createItem();
+    } else {
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Todos los campos son requeridos',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'Accept',
+        })
+    }
+})
+
+form_update.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    let isIdValid = checkId(e.target.id_.value),
+        isNameValid = checkName(e.target.new_name.value),
+        isDescriptionValid = checkQuantity(e.target.new_stuck.value);
+    let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+    if(!isFormValid) {
+        modifyItem();
     } else {
         Swal.fire({
             position: 'center',
