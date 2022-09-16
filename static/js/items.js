@@ -111,9 +111,11 @@ function createItem () {
         })
     })
     .then(response => {
+        console.log(response);
         return response.json();
     })
     .then(async data => {
+        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,

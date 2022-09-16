@@ -113,9 +113,11 @@ function createActivity () {
         })
     })
     .then(response => {
+        console.log(response);
         return response.json();
     })
     .then(async data => {
+        console.log(data);
         showActivities();
         await Swal.fire({
             position: 'center',
@@ -151,9 +153,11 @@ function modifyActivity() {
         })
     })
     .then(result => {
+        console.log(result);
         return result.json();
     })
     .then(async data => {
+        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,
