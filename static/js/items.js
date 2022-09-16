@@ -50,7 +50,7 @@ async function showItems() {
                     <td>${element[1]}</td>
                     <td>${element[2]}</td>
                     <td style="display: flex; justify-content: center;">
-                        <a href="/equipo/${element[0]}" class="btn btn-see-charac">
+                        <a href="/plataforma/equipo/${element[0]}" class="btn btn-see-charac">
                             <i class="fa-regular fa-file-lines"></i>
                         </a>
                         <a class="btn btn-modificar" href="#content-hidden">
