@@ -26,6 +26,7 @@ urlpatterns = [
     # ? Items requests
     path("plataforma/equipo", items_view, name="items"),
     path("plataforma/equipo/mostrarItems", it_req.show_items, name="showItems"),
+    path("plataforma/equipo/modificarItem", it_req.modify_item, name="modifyItems"),
     path("plataforma/equipo/<slug:id_item>", item_view, name="item"),
     path("plataforma/equipo/registrarItem", it_req.create_item, name="createItem"),
     # path("mantenimiento_preventivo", manteinment_1_view, name="manteinment1"),
