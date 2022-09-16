@@ -45,25 +45,17 @@
 {% block out-content %}
     <div class="update_hidden" id="content-hidden">
         <form class="form_update">
+            {% csrf_token %}
             <a class="btnClose">X</a>
-            <div class="flex">
-                <div class="content-update">
-                    <label>Nombre anterior</label>
-                    <label>Cantidad actual</label>
-                </div>
-                <div class="content-update">
-                    <input type="text" class="inp_hid" name="name_before" >
-                    <input type="text" class="inp_hid" name="stuck_before" >
-                </div>
-            </div>
+            <input type="text" name="id_" hidden>
             <div class="flex">
                 <div class="content-update">
                     <label>Nombre nuevo</label>
                     <label>Cantidad nueva</label>
                 </div>
                 <div class="content-update">
-                    <input type="text" class="inp_hid" name="name_after">
-                    <input type="text" class="inp_hid" name="stuck_after">
+                    <input type="text" class="inp_hid" name="new_name">
+                    <input type="text" class="inp_hid" name="new_stuck">
                 </div>
             </div>
             <div class="content-update-btn">
