@@ -22,15 +22,20 @@ def items_view(request):
 
 def item_view(request, id_item):
     context = {}
-    try:
-        cursor = connection.cursor()
-        cursor.callproc("MOSTRAR_CARACTERISTICAS_ITEM", [id_item])
-        context["caracteristicas"] = cursor.fetchall()
-    except (OperationalError, DatabaseError, ProgrammingError) as e:
-        print(e)
-    finally:
-        cursor.close()
-    return render(request, "plataforma/item.html", context)
+    if id_item != '' or id_item != None:
+        context["existe"] = True
+        try:
+            cursor = connection.cursor()
+            cursor.callproc("MOSTRAR_CARACTERISTICAS_ITEM", [id_item])
+            context["caracteristicas"] = cursor.fetchall()
+        except (OperationalError, DatabaseError, ProgrammingError) as e:
+            print(e)
+        finally:
+            cursor.close()
+        return render(request, "plataforma/item.html", context)
+    else:
+        context["existe"] = False
+        return render(request, "plataforma/item.html", context)
 
 # def manteinment_1_view(request):
 #     context = {
