@@ -32,9 +32,13 @@ def create_item(request):
 
 def modify_item(request):
     if request.method == 'POST':
+        responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("id_"))
+        print(responses.get("new_name"))
+        print(responses.get("new_stuck"))
         try:
             cursor = connection.cursor()
-            cursor.execute("")
+            cursor.execute("UPDATE maquinas_equipos set n_item = %s, cantidad = %s where maq_eq_id = %s", [responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")])
             return JsonResponse({"status": "success", "msg": "Item actualizado"}, status=200)
         except (errors) as e:
             print(e)
