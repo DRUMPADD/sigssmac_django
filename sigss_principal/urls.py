@@ -22,6 +22,7 @@ urlpatterns = [
     # ? Activities requests
     path("plataforma/actividades", activities_view, name="actividades"),
     path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
+    path("plataforma/actividades/modificarActividad", act_req.modify_activity, name="modifyActivity"),
     path("plataforma/actividades/motrarActividad", act_req.show_activities, name="showAcivities"),
     # ? Items requests
     path("plataforma/equipo", items_view, name="items"),
