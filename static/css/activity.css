@@ -158,6 +158,26 @@ input {
     font-size: 17px;
 }
 
+.btnUpd {
+    padding: 13px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s ease-out;
+}
+
+div > .btnUpd {
+    display: block;
+    border: 1px solid #ccc;
+}
+
+.btnUpd:hover {
+    color: rgb(255, 255, 255);
+    border: 1px solid #000;
+    background-color:rgb(24, 177, 13);
+}
+
 .btn-modificar,
 .btn-eliminar {
     text-decoration: none;
