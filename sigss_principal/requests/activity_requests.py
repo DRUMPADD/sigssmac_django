@@ -12,7 +12,7 @@ def show_activities(request):
         return JsonResponse({"msg": activities}, status=200)
     except (errors) as e:
         print(e)
-        return JsonResponse({"msg": None}, status=200)
+        return JsonResponse({"status": "error","msg": None}, status=200)
 
 def create_activity(request):
     if request.method == 'POST':
@@ -34,12 +34,17 @@ def create_activity(request):
 
 def modify_activity(request):
     if request.methods == 'POST':
-        response = json.loads(request.body.decode("utf-8"))
+        responses = json.loads(request.body.decode("utf-8"))
+
+        print(responses.get("cod_act"))
+        print(responses.get("new_name"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE  SET")
+            cursor.execute("UPDATE actividades SET n_act = %s where codigo = %s", [responses.get("new_name"), responses.get("cod_act")])
+            return JsonResponse({"status": "success", "msg": "Item "+ responses.get("cod_act")+" modificado"}, status=200)
         except (errors) as e:
             print(e)
+            return JsonResponse({"status": "error","msg": "Error en el sistema"}, status=200)
 
 def delete_activity(request):
     if request.methods == 'POST':
