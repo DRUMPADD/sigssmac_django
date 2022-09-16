@@ -26,7 +26,7 @@ def item_view(request, id_item):
         context["existe"] = True
         try:
             cursor = connection.cursor()
-            cursor.callproc("MOSTRAR_CARACTERISTICAS_ITEM", [id_item])
+            cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
             context["caracteristicas"] = cursor.fetchall()
         except (OperationalError, DatabaseError, ProgrammingError) as e:
             print(e)
