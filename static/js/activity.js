@@ -74,7 +74,7 @@ async function showActivities() {
             box_update_form.style.opacity = 1;
             const parentTR = btns_update[i].parentElement.parentElement;
             form_update["id_act"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            form_update["name_before"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form_update["new_name"].value = parentTR.getElementsByTagName("td")[1].innerText;
         });
     }
 }
@@ -146,8 +146,8 @@ function modifyActivity() {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            'cod_act': form_update["id_act"].value,
-            'newName': form_update["name_after"].value,
+            cod_act: form_update["id_act"].value,
+            newName: form_update["new_name"].value,
         })
     })
     .then(result => {
@@ -197,9 +197,7 @@ form.addEventListener("submit", (e) => {
 
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
-    
-    let validForm = e.target.id_act.val !== '' && e.target.name_after.val !== '';
-    
+    let validForm = e.target.id_act.val !== '' && e.target.new_name.val !== '';
     if(validForm) {
         modifyActivity();
     } else {
