@@ -183,17 +183,12 @@ function modifyItem () {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let isIdValid = checkId(e.target.id_item.value),
+    let isIdValid = checkId(e.target.cod_item.value),
         isNameValid = checkName(e.target.name_item.value),
         isDescriptionValid = checkQuantity(e.target.quantity_item.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    console.log(e.target.id_item.value);
-    console.log(e.target.name_item.value);
-    console.log(e.target.quantity_item.value);
     if(!isFormValid) {
-        createItem(
-            e.target.id_item.value, e.target.name_item.value, e.target.quantity_item.value
-        );
+        createItem(e.target.cod_item.value, e.target.name_item.value, e.target.quantity_item.value);
     } else {
         Swal.fire({
             position: 'center',
