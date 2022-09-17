@@ -50,7 +50,7 @@ def delete_item(request):
     if request.method == 'POST':
         try:
             cursor = connection.cursor()
-            cursor.execute("")
+            cursor.execute("DELETE FROM maquinas_equipos where maq_eq_id = %s")
             return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
