@@ -22,7 +22,7 @@ def create_item(request):
         print(responses.get("quantity"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", [responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")])
+            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")))
             return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
         except (errors) as e:
             print(e)
@@ -38,7 +38,7 @@ def modify_item(request):
         print(responses.get("new_stuck"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE maquinas_equipos set n_item = %s, cantidad = %s where maq_eq_id = %s", [responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")])
+            cursor.execute("UPDATE maquinas_equipos set n_item = %s, cantidad = %s where maq_eq_id = %s", (responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")))
             return JsonResponse({"status": "success", "msg": "Item actualizado"}, status=200)
         except (errors) as e:
             print(e)
