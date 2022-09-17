@@ -23,7 +23,7 @@ def create_activity(request):
             print(responses.get('desc'))
 
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO actividades (codigo, n_act, descripcion) values(%s, %s, %s)", [responses.get('cod_act'), responses.get('name_act'), responses.get('desc')])
+            cursor.execute("INSERT INTO actividades (codigo, n_act, descripcion) values(%s, %s, %s)", (responses.get('cod_act'), responses.get('name_act'), responses.get('desc')))
             return JsonResponse({"status": "success","msg": "Datos agregados con éxito"}, status=200)
         except (errors) as e:
             print(e)
@@ -37,10 +37,10 @@ def modify_activity(request):
         responses = json.loads(request.body.decode("utf-8"))
 
         print(responses.get("cod_act"))
-        print(responses.get("new_name"))
+        print(responses.get("newName"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE actividades SET n_act = %s where codigo = %s", [responses.get("new_name"), responses.get("cod_act")])
+            cursor.execute("UPDATE actividades SET n_act = %s where codigo = %s", (responses.get("newName"), responses.get("cod_act")))
             return JsonResponse({"status": "success", "msg": "Item "+ responses.get("cod_act")+" modificado"}, status=200)
         except (errors) as e:
             print(e)

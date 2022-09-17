@@ -106,7 +106,7 @@ function createActivity () {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            cod_act: form["id"].value,
+            cod_act: form["cod_act"].value,
             name_act: form["name_act"].value,
             desc: form["description"].value,
         })
