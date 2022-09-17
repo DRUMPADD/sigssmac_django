@@ -8,6 +8,7 @@
     <div class="flex-cont">
         <div class="form-content-item">
             <form class="form-item" id="form-item">
+                {% csrf_token %}
                 <h2 class="center">Registrar item</h2>
                 <div class="input-box">
                     <label>Código</label>
@@ -47,7 +48,9 @@
         <form class="form_update">
             {% csrf_token %}
             <a class="btnClose">X</a>
-            <input type="text" name="id_" hidden>
+            <div class="content-box">
+                <input type="text" name="id_" class="inp_hid" disabled>
+            </div>
             <div class="flex">
                 <div class="content-update">
                     <label>Nombre</label>
