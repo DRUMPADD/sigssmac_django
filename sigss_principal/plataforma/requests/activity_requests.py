@@ -33,7 +33,7 @@ def create_activity(request):
             return JsonResponse({"status": "error","msg": "Este ID ya se encuentra registrado"}, status=200)
 
 def modify_activity(request):
-    if request.methods == 'POST':
+    if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
 
         print(responses.get("cod_act"))

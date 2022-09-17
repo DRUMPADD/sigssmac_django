@@ -129,8 +129,8 @@ function createItem () {
         console.log(e)
         Swal.fire({
             position: 'center',
-            icon: e.status,
-            title: e.msg,
+            icon: "error",
+            title: "Error al registrar los datos",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
@@ -172,8 +172,8 @@ function modifyItem () {
         console.log(e)
         Swal.fire({
             position: 'center',
-            icon: e.status,
-            title: e.msg,
+            icon: "error",
+            title: "Error al modificar los datos",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
