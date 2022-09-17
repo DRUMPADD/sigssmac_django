@@ -100,7 +100,6 @@ function checkDescription(descrip) {
 function createActivity () {
     fetch("/plataforma/actividades/crear_actividad", {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
@@ -141,7 +140,6 @@ function createActivity () {
 function modifyActivity() {
     fetch("/plataforma/actividades/modificarActividad", {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
@@ -153,7 +151,7 @@ function modifyActivity() {
         })
     })
     .then(result => {
-        console.log(result);
+        console.log(result.json());
         return result.json();
     })
     .then(async data => {
@@ -169,6 +167,7 @@ function modifyActivity() {
         showActivities();
     })
     .catch(e => {
+        console.log(e)
         Swal.fire({
             position: 'center',
             icon: e.status,

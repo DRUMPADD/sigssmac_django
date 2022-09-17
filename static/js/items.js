@@ -98,7 +98,6 @@ function checkQuantity(quantity) {
 function createItem () {
     fetch("/plataforma/equipo/registrarItem", {
         method: 'POST',
-        mode: 'same-origin',
         headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
@@ -111,7 +110,7 @@ function createItem () {
         })
     })
     .then(response => {
-        console.log(response);
+        console.log(response.json());
         return response.json();
     })
     .then(async data => {
@@ -126,6 +125,7 @@ function createItem () {
         showItems();
     })
     .catch(e => {
+        console.log(e)
         Swal.fire({
             position: 'center',
             icon: e.status,
@@ -152,9 +152,11 @@ function modifyItem () {
         })
     })
     .then(response => {
+        console.log(response.json())
         return response.json();
     })
     .then(async data => {
+        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,
@@ -165,6 +167,7 @@ function modifyItem () {
         showItems();
     })
     .catch(e => {
+        console.log(e)
         Swal.fire({
             position: 'center',
             icon: e.status,
