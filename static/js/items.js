@@ -2,7 +2,7 @@ let box_update_form = document.getElementById("content-hidden");
 let form_update = document.querySelector(".form_update");
 let btnClose = document.querySelector(".btnClose");
 let t_body = document.getElementById("items");
-let form = document.querySelector("#form-item");
+let form = document.querySelector(".form-item");
 
 
 function getCookie(name) {
@@ -95,7 +95,7 @@ function checkQuantity(quantity) {
     return quantity === null || quantity === undefined;
 }
 
-function createItem () {
+function createItem (item_id, name_item, quantity_item) {
     fetch("/plataforma/equipo/registrarItem", {
         method: 'POST',
         headers: {
@@ -104,9 +104,9 @@ function createItem () {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            cod_item: form["id_item"].value,
-            name_item: form["name_item"].value,
-            quantity: form["quantity_item"].value,
+            cod_item: item_id,
+            name_item: name_item,
+            quantity: quantity_item,
         })
     })
     .then(response => {
@@ -187,8 +187,13 @@ form.addEventListener("submit", (e) => {
         isNameValid = checkName(e.target.name_item.value),
         isDescriptionValid = checkQuantity(e.target.quantity_item.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+    console.log(e.target.id_item.value);
+    console.log(e.target.name_item.value);
+    console.log(e.target.quantity_item.value);
     if(!isFormValid) {
-        createItem();
+        createItem(
+            e.target.id_item.value, e.target.name_item.value, e.target.quantity_item.value
+        );
     } else {
         Swal.fire({
             position: 'center',
