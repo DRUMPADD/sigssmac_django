@@ -95,7 +95,7 @@ function checkQuantity(quantity) {
     return quantity === null || quantity === undefined;
 }
 
-function createItem (item_id, name_item, quantity_item) {
+function createItem () {
     fetch("/plataforma/equipo/registrarItem", {
         method: 'POST',
         headers: {
@@ -104,9 +104,9 @@ function createItem (item_id, name_item, quantity_item) {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            cod_item: item_id,
-            name_item: name_item,
-            quantity: quantity_item,
+            cod_item: form["cod_item"].value,
+            name_item: form["name_item"].value,
+            quantity: form["quantity_item"].value,
         })
     })
     .then(response => {
@@ -188,7 +188,7 @@ form.addEventListener("submit", (e) => {
         isDescriptionValid = checkQuantity(e.target.quantity_item.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(!isFormValid) {
-        createItem(e.target.cod_item.value, e.target.name_item.value, e.target.quantity_item.value);
+        createItem();
     } else {
         Swal.fire({
             position: 'center',

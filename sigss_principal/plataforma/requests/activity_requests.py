@@ -1,6 +1,6 @@
 from django.http import JsonResponse, HttpResponse
 from django.db import connection
-from django.db import InternalError as errors, IntegrityError as rep, InterfaceError as errors, ProgrammingError as errors
+from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError
 import json
 
 
@@ -10,7 +10,7 @@ def show_activities(request):
         cursor.execute("SELECT * FROM actividades")
         activities = cursor.fetchall()
         return JsonResponse({"msg": activities}, status=200)
-    except (errors) as e:
+    except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
         print(e)
         return JsonResponse({"status": "error","msg": None}, status=200)
 
@@ -25,12 +25,9 @@ def create_activity(request):
             cursor = connection.cursor()
             cursor.execute("INSERT INTO actividades (codigo, n_act, descripcion) values(%s, %s, %s)", (responses.get('cod_act'), responses.get('name_act'), responses.get('desc')))
             return JsonResponse({"status": "success","msg": "Datos agregados con éxito"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error","msg": "Error en el sistema"}, status=200)
-        except rep:
-            print(rep)
-            return JsonResponse({"status": "error","msg": "Este ID ya se encuentra registrado"}, status=200)
 
 def modify_activity(request):
     if request.method == 'POST':
@@ -42,7 +39,7 @@ def modify_activity(request):
             cursor = connection.cursor()
             cursor.execute("UPDATE actividades SET n_act = %s where codigo = %s", (responses.get("newName"), responses.get("cod_act")))
             return JsonResponse({"status": "success", "msg": "Item "+ responses.get("cod_act")+" modificado"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error","msg": "Error en el sistema"}, status=200)
 
@@ -52,5 +49,5 @@ def delete_activity(request):
         try:
             cursor = connection.cursor()
             cursor.execute("UPDATE  SET")
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
