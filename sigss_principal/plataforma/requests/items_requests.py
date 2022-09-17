@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.db import connection
-from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors
+from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError
 import json
 
 def show_items(request):
@@ -10,7 +10,7 @@ def show_items(request):
         items = cursor.fetchall()
         print(items)
         return JsonResponse({"msg": items}, status=200)
-    except (errors) as e:
+    except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
         print(e)
         return JsonResponse({"msg": None}, status=200)
 
@@ -24,7 +24,7 @@ def create_item(request):
             cursor = connection.cursor()
             cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")))
             return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
@@ -40,7 +40,7 @@ def modify_item(request):
             cursor = connection.cursor()
             cursor.execute("UPDATE maquinas_equipos set n_item = %s, cantidad = %s where maq_eq_id = %s", (responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")))
             return JsonResponse({"status": "success", "msg": "Item actualizado"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
@@ -52,7 +52,7 @@ def delete_item(request):
             cursor = connection.cursor()
             cursor.execute("")
             return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
@@ -64,7 +64,7 @@ def search_item(request):
             cursor = connection.cursor()
             cursor.execute("SELECT * from items where codigo = %s", [request.POST.get("codigo")])
             return JsonResponse({"status": "success", "msg": cursor.fetchall()}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
@@ -76,7 +76,7 @@ def caract_item(request):
             cursor = connection.cursor()
             cursor.execute()
             return JsonResponse({"status": "success", "msg": "Características agregadas a item"}, status=200)
-        except (errors) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
