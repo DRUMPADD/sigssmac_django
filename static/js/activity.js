@@ -152,7 +152,7 @@ function modifyActivity() {
         })
     })
     .then(result => {
-        let res = response.json();
+        let res = result.json();
         console.log(res);
         return res;
     })

@@ -147,9 +147,9 @@ function modifyItem () {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            id_: form["id_"].value,
-            new_name: form["new_name"].value,
-            new_stuck: form["new_stuck"].value,
+            id_: form_update["id_"].value,
+            new_name: form_update["new_name"].value,
+            new_stuck: form_update["new_stuck"].value,
         })
     })
     .then(response => {
