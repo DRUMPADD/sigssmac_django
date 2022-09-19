@@ -15,7 +15,7 @@ def show_general_mant(request):
             return JsonResponse({"msg": general}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, ValueError) as e:
             print(e)
-            return HttpResponse({"msg": ""})
+            return HttpResponse({"msg": "Envió nada"})
 
 
 def create_general(request):
