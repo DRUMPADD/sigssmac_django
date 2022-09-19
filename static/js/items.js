@@ -116,8 +116,9 @@ function createItem () {
         })
     })
     .then(response => {
-        console.log(response.text());
-        return response.json();
+        let res = response;
+        console.log(res.text());
+        return res.json();
     })
     .then(async data => {
         console.log(data);
