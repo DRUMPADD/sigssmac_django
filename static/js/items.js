@@ -96,23 +96,27 @@ function checkQuantity(quantity) {
 }
 
 function createItem () {
+    console.log(JSON.stringify({
+        cod_item: form["cod_item"].value,
+        name_item: form["name_item"].value,
+        quantity: form["quantity_item"].value
+    }));
     fetch("/plataforma/equipo/registrarItem", {
         method: 'POST',
+        mode: 'same-origin',
         headers: {
-            'Accept': 'application/json',
+            'Content-Type': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
             cod_item: form["cod_item"].value,
             name_item: form["name_item"].value,
-            quantity: form["quantity_item"].value,
+            quantity: form["quantity_item"].value
         })
     })
     .then(response => {
-        let res = response.json();
-        console.log(res);
-        return res;
+        return response.json();
     })
     .then(async data => {
         console.log(data);
@@ -130,7 +134,7 @@ function createItem () {
         Swal.fire({
             position: 'center',
             icon: "error",
-            title: "Error al modificar los datos",
+            title: "Error al registrar los datos",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
@@ -153,9 +157,7 @@ function modifyItem () {
         })
     })
     .then(response => {
-        let res = response.json();
-        console.log(res);
-        return res;
+        return response.json();
     })
     .then(async data => {
         console.log(data);
