@@ -2,7 +2,7 @@ let box_update_form = document.getElementById("content-hidden");
 let form_update = document.querySelector(".form_update");
 let btnClose = document.querySelector(".btnClose");
 let t_body = document.getElementById("items");
-let form = document.querySelector(".form-item");
+let form = document.querySelector("#form_item");
 
 
 function getCookie(name) {
@@ -124,6 +124,16 @@ function createItem () {
             confirmButtonText: 'ACEPTAR',
         })
         showItems();
+    })
+    .catch(e => {
+        console.log("Error:",e)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al modificar los datos",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
 }
 
