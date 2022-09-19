@@ -96,11 +96,6 @@ function checkQuantity(quantity) {
 }
 
 function createItem () {
-    console.log(JSON.stringify({
-        cod_item: form["cod_item"].value,
-        name_item: form["name_item"].value,
-        quantity: form["quantity_item"].value
-    }));
     fetch("/plataforma/equipo/registrarItem", {
         method: 'POST',
         mode: 'same-origin',
@@ -117,6 +112,7 @@ function createItem () {
     })
     .then(response => {
         let res = response.json();
+        console.log(res);
         return res;
     })
     .then(async data => {
