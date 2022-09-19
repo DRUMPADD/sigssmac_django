@@ -12,7 +12,7 @@ def show_activities(request):
         return JsonResponse({"msg": activities}, status=200)
     except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
         print(e)
-        return JsonResponse({"status": "error","msg": None}, status=200)
+        return JsonResponse({"status": "error","msg": []}, status=200)
 
 def create_activity(request):
     if request.method == 'POST':
@@ -48,6 +48,6 @@ def delete_activity(request):
         response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE  SET")
+            cursor.execute("DELETE FROM actividades where codigo = %s", [])
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
