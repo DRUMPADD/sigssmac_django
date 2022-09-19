@@ -105,15 +105,13 @@ function createItem () {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            cod_item: form["cod_item"].value,
-            name_item: form["name_item"].value,
+            cod_: form["cod_item"].value,
+            name_: form["name_item"].value,
             quantity: form["quantity_item"].value
         })
     })
     .then(response => {
-        let res = response.json();
-        console.log(res);
-        return res;
+        return response.json();
     })
     .then(async data => {
         console.log(data);
