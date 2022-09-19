@@ -6,6 +6,8 @@ from sigss_principal.plataforma.views import *
 import sigss_principal.plataforma.requests.activity_requests as act_req
 # ? Importing Items requests
 import sigss_principal.plataforma.requests.items_requests as it_req
+# ? Importing General Manteinment requests
+import sigss_principal.plataforma.requests.general_requests as g_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -20,6 +22,7 @@ urlpatterns = [
     path("eliminarItem", eliminar_item, name="eliminar_item"),
     # ? General manteinment requests
     path("plataforma/general", general_view, name="principal"),
+    path("plataforma/general/mostrarGeneral", g_req.show_general_mant, name="showGeneralMnt"),
     # ? Activities requests
     path("plataforma/actividades", activities_view, name="actividades"),
     path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
