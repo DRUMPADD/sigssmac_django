@@ -12,10 +12,11 @@ def show_general_mant(request):
             get_info = cursor.fetchall()
             print("Yo habia ponido mi informacion aqui:",get_info)
             general = get_info if get_info else []
-            if general:
+            try:
                 print(general)
                 return JsonResponse({"msg": general}, status=200)
-            else:
+            except ValueError as e:
+                print(e)
                 print("Nada dentro del try")
                 return HttpResponse("<h1>Nada</h1>")
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
