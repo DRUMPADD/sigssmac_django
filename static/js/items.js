@@ -126,7 +126,7 @@ function createItem () {
         showItems();
     })
     .catch(e => {
-        console.log(e)
+        console.log("Error:",e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -169,7 +169,7 @@ function modifyItem () {
         showItems();
     })
     .catch(e => {
-        console.log(e)
+        console.log("Error:",e)
         Swal.fire({
             position: 'center',
             icon: "error",

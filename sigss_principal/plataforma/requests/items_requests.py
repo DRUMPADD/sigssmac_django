@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.db import connection
-from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError
+from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, DatabaseError, OperationalError
 import json
 
 def show_items(request):
@@ -24,11 +24,9 @@ def create_item(request):
             cursor = connection.cursor()
             cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (responses.get("cod_item"), responses.get("name_item"), responses.get("quantity")))
             return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
-        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError, DataError, DatabaseError, OperationalError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
-        finally:
-            cursor.close()
 
 def modify_item(request):
     if request.method == 'POST':
