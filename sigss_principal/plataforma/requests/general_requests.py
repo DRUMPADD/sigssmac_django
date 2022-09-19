@@ -1,7 +1,20 @@
 from django.http import JsonResponse, HttpResponse
 from django.db import connection
-from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors
+from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError
 import json
+
+
+def show_general_mant(request):
+    if request.method == 'POST':
+        try:
+            cursor = connection.cursor()
+            cursor.callproc("MOSTRAR_MANTENIMIENTO_PREVENTIVO")
+            mensaje = cursor.fetchall()
+            return JsonResponse({"msg": mensaje}, status=200)
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
+            print(e)
+            return JsonResponse({"msg": None}, status=200)
+
 
 def create_general(request):
     if request.method == 'POST':
@@ -9,7 +22,7 @@ def create_general(request):
             cursor = connection.cursor()
             cursor.execute("")
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo agregado"}, status=200)
-        except (errors) as e:
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
 
@@ -19,7 +32,7 @@ def modify_general(request):
             cursor = connection.cursor()
             cursor.execute("")
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo actualizado"}, status=200)
-        except (errors) as e:
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
 
@@ -29,6 +42,6 @@ def delete_general(request):
             cursor = connection.cursor()
             cursor.execute("")
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo eliminado"}, status=200)
-        except (errors) as e:
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
