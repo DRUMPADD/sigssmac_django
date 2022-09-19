@@ -112,9 +112,7 @@ function createActivity () {
         })
     })
     .then(response => {
-        let res = response.json();
-        console.log(res);
-        return res;
+        return response.json();
     })
     .then(async data => {
         console.log(data);
@@ -152,9 +150,7 @@ function modifyActivity() {
         })
     })
     .then(result => {
-        let res = result.json();
-        console.log(res);
-        return res;
+        return result.json();
     })
     .then(async data => {
         console.log(data);
