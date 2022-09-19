@@ -8,7 +8,8 @@ def show_activities(request):
     try:
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM actividades")
-        activities = cursor.fetchall()
+        get_info = cursor.fetchall()
+        activities = get_info if get_info != [] else "" 
         return JsonResponse({"msg": activities}, status=200)
     except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
         print(e)
