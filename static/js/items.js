@@ -125,16 +125,6 @@ function createItem () {
         })
         showItems();
     })
-    .catch(e => {
-        console.log("Error:",e)
-        Swal.fire({
-            position: 'center',
-            icon: "error",
-            title: "Error al registrar los datos",
-            confirmButtonColor: '#df1c11',
-            confirmButtonText: 'ACEPTAR',
-        })
-    })
 }
 
 function modifyItem () {
