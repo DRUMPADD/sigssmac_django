@@ -1,3 +1,5 @@
+let t_body = document.querySelector(".t_body");
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -13,3 +15,42 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+async function getGeneralManteinment () {
+    let response = await fetch("/plataforma/general/mostrarGeneral");
+    let data = await response.json();
+    return data.msg;
+}
+
+async function showGeneralManteinment () {
+    let gen_info = await getGeneralManteinment();
+    let ar_gen = new Array(gen_info);
+    let str_info = "";
+
+    ar_gen[0].forEach(element => {
+        if(element.length !== 0) {
+            str_info += `
+                <tr>
+                    <td>${element[0]}</td>
+                    <td>${element[1]}</td>
+                    <td>${element[2]}</td>
+                    <td>${element[3]}</td>
+                    <td>${element[4]}</td>
+                    <td>${element[5]}</td>
+                    <td>${element[6]}</td>
+                    <td>${element[7]}</td>
+                    <td>${element[8]}</td>
+                    <td>${element[9]}</td>
+                    <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
+                </tr>
+            `;
+        }
+    });
+
+    t_body.innerHTML = str_info;
+}
+
+
+window.addEventListener("DOMContentLoaded", () => {
+    showGeneralManteinment();
+})
