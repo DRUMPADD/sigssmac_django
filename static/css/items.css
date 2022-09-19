@@ -92,6 +92,12 @@
     min-height: 450px;
 }
 
+
+/* ?? Estilo de etiqueta i en tabla */
+.table .t_body tr td i {
+    padding: 10px;
+}
+
 /* ?? Formulario escondido de modificación de datos */
 .update_hidden {
     position: fixed;
