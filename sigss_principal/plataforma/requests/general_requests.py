@@ -10,11 +10,12 @@ def show_general_mant(request):
             cursor = connection.cursor()
             cursor.callproc("MOSTRAR_MANTENIMIENTO_PREVENTIVO")
             get_info = cursor.fetchall()
+            print(get_info)
             general = get_info if get_info != [] else ""
             return JsonResponse({"msg": general}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, ValueError) as e:
             print(e)
-            return JsonResponse({"msg": ""}, status=200)
+            return HttpResponse({"msg": ""})
 
 
 def create_general(request):
