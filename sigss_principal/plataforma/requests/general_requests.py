@@ -12,9 +12,9 @@ def show_general_mant(request):
             get_info = cursor.fetchall()
             general = get_info if get_info != [] else ""
             return JsonResponse({"msg": general}, status=200)
-        except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError, ValueError) as e:
             print(e)
-            return JsonResponse({"msg": []}, status=200)
+            return JsonResponse({"msg": ""}, status=200)
 
 
 def create_general(request):
