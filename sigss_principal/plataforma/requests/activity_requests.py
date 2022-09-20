@@ -61,7 +61,7 @@ def search_activity(request):
             return JsonResponse({"msg": "Error en el sistema"}, status=200)
 
 def delete_activity(request):
-    if request.methods == 'POST':
+    if request.method == 'POST':
         response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
@@ -72,7 +72,7 @@ def delete_activity(request):
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
 
 def delete_activity_with_mant(request):
-    if request.methods == 'POST':
+    if request.method == 'POST':
         response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
