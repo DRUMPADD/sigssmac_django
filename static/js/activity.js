@@ -83,7 +83,7 @@ async function showActivities() {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_delete[i].parentElement.parentElement;
             console.log(parentTR.getElementsByTagName("td")[0].innerText);
-            console.log(searchActivity(parentTR.getElementsByTagName("td")[0].innerText));
+            searchActivity(parentTR.getElementsByTagName("td")[0].innerText);
         });
     }
 }
@@ -185,8 +185,8 @@ function modifyActivity() {
     })
 }
 
-async function searchActivity(id_act) {
-    let mensaje = await fetch("/plataforma/actividades/buscarActividad", {
+function searchActivity(id_act) {
+    fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -201,22 +201,19 @@ async function searchActivity(id_act) {
         return result.json();
     })
     .then(data => {
-        m = data.msg;
+        console.log(data.msg);
         return data.msg;
     })
     .catch(e => {
         console.log(e)
         Swal.fire({
             position: 'center',
-            icon: e.status,
-            title: e.msg,
+            icon: "error",
+            title: "Error al buscar actividad",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
     })
-    let dat = await mensaje.json();
-    console.log(dat.msg);
-    return dat.msg;
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 

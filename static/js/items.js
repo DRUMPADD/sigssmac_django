@@ -82,7 +82,7 @@ async function showItems() {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_delete[i].parentElement.parentElement;
             console.log(parentTR.getElementsByTagName("td")[0].innerText);
-            console.log(searchItem(parentTR.getElementsByTagName("td")[0].innerText));
+            searchItem(parentTR.getElementsByTagName("td")[0].innerText);
         });
     }
 }
@@ -185,8 +185,8 @@ function modifyItem () {
 }
 
 
-async function searchItem (item_id) {
-    let mensaje = await fetch("/plataforma/equipo/buscarItem", {
+function searchItem (item_id) {
+    fetch("/plataforma/equipo/buscarItem", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -196,10 +196,24 @@ async function searchItem (item_id) {
         body: JSON.stringify({
             cod_item: item_id
         })
-    });
-    let dat = await mensaje.json();
-    console.log(dat.msg);
-    return dat.msg;
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(d => {
+        console.log(d.msg);
+        return d.msg;
+    })
+    .catch(e => {
+        console.log(e)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al buscar actividad",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
 }
 
 form.addEventListener("submit", (e) => {
