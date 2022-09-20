@@ -21,7 +21,6 @@ function getCookie(name) {
 async function getGeneralManteinment () {
     let response = await fetch("/plataforma/general/mostrarGeneral");
     let data = await response.json();
-    console.log(data.msg);
     return data.msg;
 }
 
