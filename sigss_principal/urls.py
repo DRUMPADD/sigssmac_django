@@ -23,6 +23,7 @@ urlpatterns = [
     # ? General manteinment requests
     path("plataforma/general", general_view, name="principal"),
     path("plataforma/general/mostrarGeneral", g_req.show_general_mant, name="showGeneralMnt"),
+    path("plataforma/general/crearGeneral", g_req.create_general, name="createGeneralMnt"),
     # ? Activities requests
     path("plataforma/actividades", activities_view, name="actividades"),
     path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
