@@ -44,6 +44,9 @@ def item_view(request, id_item):
             if get_info:
                 context["existe"] = True
                 context["title"] = 'Item ' + id_item
+            else:
+                context["title"] = 'Item no encontrado'
+                context["existe"] = False
         except (OperationalError, DatabaseError, ProgrammingError) as e:
             print(e)
         finally:
