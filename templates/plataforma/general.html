@@ -30,27 +30,27 @@
                         <label>Elegir máquina o equipo</label>
                         <select name="sl_item" class="inp select-per">
                             <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Opcion 1</option>
-                            <option value="2">Opcion 2</option>
-                            <option value="3">Opcion 3</option>
+                            {% for item in items %}
+                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div>
                         <label>Frecuencia</label>
                         <select name="sl_item" class="inp select-per">
                             <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Opcion 1</option>
-                            <option value="2">Opcion 2</option>
-                            <option value="3">Opcion 3</option>
+                            {% for freq in frequence %}
+                                <option value="{{ freq.0 }}">{{ freq.1 }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div>
                         <label>Actividad</label>
                         <select name="sl_item" class="inp select-per">
                             <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Opcion 1</option>
-                            <option value="2">Opcion 2</option>
-                            <option value="3">Opcion 3</option>
+                            {% for activity in activities %}
+                                <option value="{{ activity.0 }}">{{ activity.1 }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                 </div>
