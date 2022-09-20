@@ -35,8 +35,9 @@ def items_view(request):
 def item_view(request, id_item):
     context = {}
     print("ID:",id_item)
-    if id_item != '' or id_item != None:
+    if id_item != '':
         context["existe"] = True
+        context["title"] = 'Item ' + id_item
         try:
             cursor = connection.cursor()
             cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
@@ -47,6 +48,7 @@ def item_view(request, id_item):
             cursor.close()
         return render(request, "plataforma/item.html", context)
     else:
+        context["title"] = 'Item no encontrado'
         context["existe"] = False
         return render(request, "plataforma/item.html", context)
 
