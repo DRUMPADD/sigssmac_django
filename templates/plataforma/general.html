@@ -37,7 +37,7 @@
                     </div>
                     <div>
                         <label>Frecuencia</label>
-                        <select name="sl_item" class="inp select-per">
+                        <select name="sl_frec" class="inp select-per">
                             <option selected disabled>--Seleccionar--</option>
                             {% for freq in frequence %}
                                 <option value="{{ freq.0 }}">{{ freq.1 }}</option>
@@ -46,7 +46,7 @@
                     </div>
                     <div>
                         <label>Actividad</label>
-                        <select name="sl_item" class="inp select-per">
+                        <select name="sl_act" class="inp select-per">
                             <option selected disabled>--Seleccionar--</option>
                             {% for activity in activities %}
                                 <option value="{{ activity.0 }}">{{ activity.1 }}</option>
