@@ -73,8 +73,9 @@ def search_item(request):
         response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [response("cod_item")])
+            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [response.get("cod_item")])
             found_ = cursor.fetchall()
+            print(found_)
             if found_:
                 return JsonResponse({"msg": "Encontrado"}, status=200)
             else:
