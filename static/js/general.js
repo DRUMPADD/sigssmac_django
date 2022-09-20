@@ -44,12 +44,36 @@ async function showGeneralManteinment () {
                     <td>${element[8] != null ? element[8] : "Sin fecha"}</td>
                     <td>${element[9] != null ? element[9] : 0}</td>
                     <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
+                    <td><a href="#" class="btn-modificar"><i class="fa-solid fa-pencil"></i></a></td>
+                    <td><a href="#" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
             `;
         }
     });
 
     t_body.innerHTML = str_info;
+
+    let btnsUpdate = document.querySelectorAll(".btn-modificar");
+    let btnsDelete = document.querySelectorAll(".btn-eliminar");
+    for(let i = 0; i < btnsUpdate.length; i++) {
+        btnsUpdate[i].addEventListener("click", (e) => {
+            box_update_form.style.visibility = "visible";
+            box_update_form.style.opacity = 1;
+            const parentTR = btnsUpdate[i].parentElement.parentElement;
+            form_mant["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
+            form_mant["sl_frec"].value = parentTR.getElementsByTagName("td")[4].innerText;
+            form_mant["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
+            form_mant["fec-creacion"].value = parentTR.getElementsByTagName("td")[5].innerText;
+            form_mant["fec-proxima"].value = parentTR.getElementsByTagName("td")[7].innerText;
+        });
+    }
+    
+    for(let i = 0; i < btnsDelete.length; i++) {
+        btnsDelete[i].addEventListener("click", (e) => {
+            const parentTR = btnsUpdate[i].parentElement.parentElement;
+            console.log(parentTR.getElementsByTagName("td")[0].innerText);
+        });
+    }
 }
 
 
