@@ -101,11 +101,11 @@ function createManteinment (elements) {
 }
 
 function checkSelect(value_inp) {
-    return value_inp !== null || value_inp !== undefined || value_inp !== "";
+    return value_inp == null || value_inp == undefined || value_inp == "" && value_inp != '--Seleccionar--';
 }
 
 function checkDate(value_inp) {
-    return value_inp !== null || value_inp !== undefined || value_inp !== "";
+    return value_inp == null || value_inp == undefined || value_inp == "";
 }
 
 function modifyManteinment () {
