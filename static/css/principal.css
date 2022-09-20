@@ -159,6 +159,27 @@ textarea {
     overflow-y: scroll;
 }
 
+/* ?? Estilos de botones eliminar y modificar */
+.btn-modificar,
+.btn-eliminar {
+    text-decoration: none;
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding: 10px 15px;
+    transition: all .3s ease;
+}
+
+.btn-modificar:hover {
+    background-color: rgba(9, 40, 240, 0.963);
+    color: #fff;
+}
+
+.btn-eliminar:hover {
+    background-color: rgba(209, 16, 16, 1);
+    color: #fff;
+}
 
 /* ?? Alineación al centro */
 .center {
