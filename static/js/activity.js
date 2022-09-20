@@ -202,6 +202,7 @@ function searchActivity(id_act) {
     })
     .then(data => {
         console.log(data.msg);
+        deleteActivity(data.msg, id_act);
         return data.msg;
     })
     .catch(e => {
