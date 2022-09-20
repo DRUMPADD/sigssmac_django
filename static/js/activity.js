@@ -186,7 +186,8 @@ function modifyActivity() {
 }
 
 function searchActivity(id_act) {
-    fetch("/plataforma/actividades/buscarActividad", {
+    var mensaje;
+    mensaje = fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -213,6 +214,8 @@ function searchActivity(id_act) {
             confirmButtonText: 'ACEPTAR',
         })
     })
+
+    return mensaje;
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
