@@ -186,8 +186,9 @@ function modifyActivity() {
 }
 
 async function searchActivity(id_act) {
-    var m = "";
-    await fetch("/plataforma/actividades/buscarActividad", {
+    var m;
+    var mensaje;
+    mensaje = await fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

@@ -187,12 +187,11 @@ function modifyItem () {
 
 async function searchItem (item_id) {
     var m = "";
-    await fetch("/plataforma/equipo/buscarItem", {
+    let mensaje = await fetch("/plataforma/equipo/buscarItem", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             "X-Requested-With": "XMLHttpRequest",
-            "X-CSRFToken": getCookie("csrftoken")
         },
         body: JSON.stringify({
             cod_item: item_id
