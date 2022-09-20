@@ -46,15 +46,27 @@ def modify_item(request):
 
 def delete_item(request):
     if request.method == 'POST':
+        response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM maquinas_equipos where maq_eq_id = %s")
+            cursor.execute("DELETE FROM maquinas_equipos where maq_eq_id = %s", [response.get("cod_item")])
             return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
         finally:
             cursor.close()
+
+def delete_item_complete(request):
+    if request.method == 'POST':
+        response = json.loads(request.body.decode("utf-8"))
+        try:
+            cursor = connection.cursor()
+            cursor.callproc("ELIMINAR_ITEM_COMPLETO", [response.get("cod_item")])
+            return JsonResponse({"msg": "Eliminado"}, status=200)
+        except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
+            print(e)
+            return JsonResponse({"msg": "Error en el sistema"}, status=200)
 
 def search_item(request):
     if request.methods == 'GET':
