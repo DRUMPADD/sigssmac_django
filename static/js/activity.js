@@ -82,7 +82,6 @@ async function showActivities() {
     for(let i = 0; i < btns_delete.length; i++) {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_delete[i].parentElement.parentElement;
-            console.log(parentTR.getElementsByTagName("td")[0].innerText);
             searchActivity(parentTR.getElementsByTagName("td")[0].innerText);
         });
     }
@@ -124,7 +123,6 @@ function createActivity () {
         return response.json();
     })
     .then(async data => {
-        console.log(data);
         showActivities();
         await Swal.fire({
             position: 'center',
@@ -174,7 +172,6 @@ function modifyActivity() {
         showActivities();
     })
     .catch(e => {
-        console.log(e)
         Swal.fire({
             position: 'center',
             icon: e.status,
@@ -201,7 +198,6 @@ function searchActivity(id_act) {
         return result.json();
     })
     .then(data => {
-        console.log(data.msg);
         deleteActivity(data.msg, id_act);
         return data.msg;
     })
@@ -245,7 +241,6 @@ function deleteActivity(msg, act_cod) {
                 return result.json();
             })
             .then(async data => {
-                console.log(data);
                 await Swal.fire({
                     position: 'center',
                     icon: data.status,
