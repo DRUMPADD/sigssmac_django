@@ -8,6 +8,8 @@ import sigss_principal.plataforma.requests.activity_requests as act_req
 import sigss_principal.plataforma.requests.items_requests as it_req
 # ? Importing General Manteinment requests
 import sigss_principal.plataforma.requests.general_requests as g_req
+# ? Importing Corrective Manteinment requests
+import sigss_principal.plataforma.requests.manteinment_requests as mnt_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -41,4 +43,5 @@ urlpatterns = [
     # path("mantenimiento_preventivo", manteinment_1_view, name="manteinment1"),
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
+    path("plataforma/correctivo/mostrarCorrectivo", mnt_req.show_corrective_mant, name="showManteinments"),
 ]
