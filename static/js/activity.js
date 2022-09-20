@@ -218,44 +218,55 @@ function searchActivity(id_act) {
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
-    let confirm_message = msg == "Encontrado" ? confirm("Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?") : confirm("¿Está seguro de eliminar esta actividad?");
-    if(confirm_message) {
-        fetch(url_fetch, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'X-Requested-With': 'XMLHttpRequest',
-                'X-CSRFToken': getCookie('csrftoken'),
-            },
-            body: JSON.stringify({
-                id_act: act_cod,
+    let confirm_message = msg == "Encontrado" ? "Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?" : "¿Está seguro de eliminar esta actividad?";
+    Swal.fire({
+        title: confirm_message,
+        text: "Esta acción no podrá ser revertida",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            fetch(url_fetch, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({
+                    id_act: act_cod,
+                })
             })
-        })
-        .then(result => {
-            return result.json();
-        })
-        .then(async data => {
-            console.log(data);
-            await Swal.fire({
-                position: 'center',
-                icon: data.status,
-                title: data.msg,
-                confirmButtonColor: '#19ec27',
-                confirmButtonText: 'ACEPTAR',
+            .then(result => {
+                return result.json();
             })
-            showActivities();
-        })
-        .catch(e => {
-            console.log(e)
-            Swal.fire({
-                position: 'center',
-                icon: "error",
-                title: "Error al eliminar el dato",
-                confirmButtonColor: '#df1c11',
-                confirmButtonText: 'ACEPTAR',
+            .then(async data => {
+                console.log(data);
+                await Swal.fire({
+                    position: 'center',
+                    icon: data.status,
+                    title: data.msg,
+                    confirmButtonColor: '#19ec27',
+                    confirmButtonText: 'ACEPTAR',
+                })
+                showActivities();
             })
-        })
-    }
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    position: 'center',
+                    icon: "error",
+                    title: "Error al eliminar el dato",
+                    confirmButtonColor: '#df1c11',
+                    confirmButtonText: 'ACEPTAR',
+                })
+            })
+        }
+    })
 }
 
 form.addEventListener("submit", (e) => {
