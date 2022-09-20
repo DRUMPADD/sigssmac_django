@@ -83,7 +83,7 @@ async function showActivities() {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_update[i].parentElement.parentElement;
             console.log(parentTR.getElementsByTagName("td")[0].innerText);
-            searchActivity(parentTR.getElementsByTagName("td")[0].innerText);
+            console.log(searchActivity(parentTR.getElementsByTagName("td")[0].innerText));
         });
     }
 }
