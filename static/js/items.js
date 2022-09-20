@@ -67,6 +67,7 @@ async function showItems() {
 
     t_body.innerHTML = str_items;
     let btns_update = document.querySelectorAll(".btn-modificar");
+    let btns_delete = document.querySelectorAll(".btn-eliminar");
     for(let i = 0; i < btns_update.length; i++) {
         btns_update[i].addEventListener("click", (e) => {
             box_update_form.style.visibility = "visible";
@@ -75,6 +76,12 @@ async function showItems() {
             form_update["id_"].value = parentTR.getElementsByTagName("td")[0].innerText;
             form_update["new_name"].value = parentTR.getElementsByTagName("td")[1].innerText;
             form_update["new_stuck"].value = parentTR.getElementsByTagName("td")[2].innerText;
+        });
+    }
+    for(let i = 0; i < btns_delete.length; i++) {
+        btns_delete[i].addEventListener("click", (e) => {
+            const parentTR = btns_update[i].parentElement.parentElement;
+            console.log(searchItem(parentTR.getElementsByTagName("td")[0].innerText));
         });
     }
 }
@@ -174,6 +181,32 @@ function modifyItem () {
             confirmButtonText: 'ACEPTAR',
         })
     })
+}
+
+
+async function searchItem (item_id) {
+    var m = "";
+    var res;
+    res = await fetch("/plataforma/equipo/buscarItem", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+            cod_item: item_id
+        })
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(d => {
+        m = d.msg;
+        return d.msg;
+    })
+    console.log("Mensaje:", m);
+    return await res;
 }
 
 form.addEventListener("submit", (e) => {
