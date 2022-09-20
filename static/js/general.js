@@ -59,7 +59,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function createManteinment (elements) {
     let {item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
-    fetch("plataforma/general/crearGeneral", {
+    fetch("/plataforma/general/crearGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
