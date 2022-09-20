@@ -34,7 +34,7 @@ let form = document.querySelector("#form_act");
 
 // ?? Conseguir datos de tabla actividades desde servidor
 async function getActivities() {
-    let response = await fetch("/plataforma/actividades/motrarActividad");
+    let response = await fetch("/plataforma/actividades/mostrarActividad");
     let data = await response.json();
     return data.msg;
 }
