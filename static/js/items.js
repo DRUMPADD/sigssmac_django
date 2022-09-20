@@ -192,6 +192,7 @@ async function searchItem (item_id) {
         headers: {
             'Accept': 'application/json',
             "X-Requested-With": "XMLHttpRequest",
+            'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
             cod_item: item_id
@@ -204,6 +205,7 @@ async function searchItem (item_id) {
         m = d.msg;
         return d.msg;
     })
+    await mensaje;
     return m;
 }
 
