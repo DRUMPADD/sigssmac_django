@@ -59,45 +59,44 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function createManteinment (elements) {
     let {item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
-    console.log(item_sl);
-    console.log(frec_);
-    console.log(act_);
-    console.log(fecha_cre);
-    console.log(fecha_prox);
-    // fetch("plataforma/general/crearGeneral", {
-    //     method: 'POST',
-    //     headers: {
-    //         'Accept': 'application/json',
-    //         'X-Requested-With': 'XMLHttpRequest',
-    //         'X-CSRFToken': getCookie("csrftoken")
-    //     },
-    //     body: JSON.stringify({
-
-    //     })
-    // })
-    // .then(res => {
-    //     return res.json();
-    // })
-    // .then(async d => {
-    //     Swal.fire({
-    //         position: 'center',
-    //         icon: d.status,
-    //         title: d.msg,
-    //         confirmButtonColor: '#19ec27',
-    //         confirmButtonText: 'ACEPTAR',
-    //     })
-    //     showGeneralManteinment()
-    // })
-    // .catch(err => {
-    //     console.log("Error:",err)
-    //     Swal.fire({
-    //         position: 'center',
-    //         icon: "error",
-    //         title: "Error al registrar los datos",
-    //         confirmButtonColor: '#df1c11',
-    //         confirmButtonText: 'ACEPTAR',
-    //     })
-    // })
+    fetch("plataforma/general/crearGeneral", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+            item_id: item_sl,
+            frec_: frec_,
+            create_date: fecha_cre,
+            act_: act_,
+            date_next: fecha_prox,
+        })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showGeneralManteinment()
+    })
+    .catch(err => {
+        console.log("Error:",err)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al registrar los datos",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
 }
 
 function checkSelect(value_inp) {
@@ -136,23 +135,28 @@ form_mant.addEventListener("submit", (e) => {
     e.preventDefault();
     let arr_els = new Array();
     for(let i = 0; i < form_mant.elements.length; i++) {
-        console.log("Elemento "+ form_mant.elements[i].name+":",form_mant.elements[i].value);
         arr_els.push(form_mant.elements[i].value);
     }
 
-    console.log(checkSelect(arr_els[0]));
-    console.log(checkSelect(arr_els[1]));
-    console.log(checkSelect(arr_els[2]));
-    console.log(checkDate(arr_els[3]));
-    console.log(checkDate(arr_els[4]));
+    let validForm = checkSelect(arr_els[0]) && checkSelect(arr_els[1]) && checkSelect(arr_els[2]) && checkDate(arr_els[3]) && checkDate(arr_els[4]);
 
-    createManteinment(
-        {
-            item_sl: arr_els[0], 
-            frec_: arr_els[1], 
-            act_: arr_els[2], 
-            fecha_cre: arr_els[3], 
-            fecha_prox: arr_els[4]
-        }
-    );
+    if(validForm) {
+        createManteinment(
+            {
+                item_sl: arr_els[0], 
+                frec_: arr_els[1], 
+                act_: arr_els[2], 
+                fecha_cre: arr_els[3], 
+                fecha_prox: arr_els[4]
+            }
+        );
+    } else {
+        Swal.fire({
+            position: 'center',
+            icon: "warning",
+            title: "Todos los campos son requeridos",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    }
 })
