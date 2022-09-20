@@ -26,7 +26,6 @@ async function getGeneralManteinment () {
 
 async function showGeneralManteinment () {
     let gen_info = await getGeneralManteinment();
-    console.log(gen_info);
     let ar_gen = new Array(gen_info);
     let str_info = "";
 
@@ -58,8 +57,51 @@ window.addEventListener("DOMContentLoaded", () => {
     showGeneralManteinment();
 })
 
-function createManteinment () {
-    fetch("plataforma/general/crearGeneral", {
+function createManteinment (elements) {
+    let {item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
+    console.log(item_sl);
+    console.log(frec_);
+    console.log(act_);
+    console.log(fecha_cre);
+    console.log(fecha_prox);
+    // fetch("plataforma/general/crearGeneral", {
+    //     method: 'POST',
+    //     headers: {
+    //         'Accept': 'application/json',
+    //         'X-Requested-With': 'XMLHttpRequest',
+    //         'X-CSRFToken': getCookie("csrftoken")
+    //     },
+    //     body: JSON.stringify({
+
+    //     })
+    // })
+    // .then(res => {
+    //     return res.json();
+    // })
+    // .then(async d => {
+    //     Swal.fire({
+    //         position: 'center',
+    //         icon: d.status,
+    //         title: d.msg,
+    //         confirmButtonColor: '#19ec27',
+    //         confirmButtonText: 'ACEPTAR',
+    //     })
+    //     showGeneralManteinment()
+    // })
+    // .catch(err => {
+    //     console.log("Error:",err)
+    //     Swal.fire({
+    //         position: 'center',
+    //         icon: "error",
+    //         title: "Error al registrar los datos",
+    //         confirmButtonColor: '#df1c11',
+    //         confirmButtonText: 'ACEPTAR',
+    //     })
+    // })
+}
+
+function modifyManteinment () {
+    fetch("plataforma/general/modificarGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -75,7 +117,7 @@ function createManteinment () {
     })
     .then(async d => {
         console.log(d);
-        showGeneralManteinment()
+        showGeneralManteinment();
     })
     .catch(err => {
         console.log(err);
@@ -84,9 +126,19 @@ function createManteinment () {
 
 form_mant.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log("Seleccionar todos los elementos:",form_mant.elements);
+    let arr_els = new Array();
     for(let i = 0; i < form_mant.elements.length; i++) {
-        console.log("Elemento "+ i +":",form_mant.elements[i].value);
+        console.log("Elemento "+ form_mant.elements[i].name+":",form_mant.elements[i].value);
+        arr_els.push(form_mant.elements[i].value);
     }
-    console.log("Evento target:",e.target);
+
+    createManteinment(
+        {
+            item_sl: arr_els[0], 
+            frec_: arr_els[1], 
+            act_: arr_els[2], 
+            fecha_cre: arr_els[3], 
+            fecha_prox: arr_els[4]
+        }
+    );
 })
