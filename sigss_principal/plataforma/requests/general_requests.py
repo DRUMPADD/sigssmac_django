@@ -9,15 +9,11 @@ def show_general_mant(request):
         cursor = connection.cursor()
         cursor.callproc("MOSTRAR_MANTENIMIENTO_PREVENTIVO")
         get_info = cursor.fetchall()
-        print("Yo habia ponido mi informacion aqui:",get_info)
         return JsonResponse({"msg": get_info}, status=200)
     except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
         print(e)
-        print("Nada dentro de except")
         return JsonResponse({"msg": "Error en el sistema"}, status=200)
     except ValueError as e:
-        print(e)
-        print("Nada dentro de except valueerror")
         return HttpResponse("<h1>Nada</h1>")
     finally:
         cursor.close()
