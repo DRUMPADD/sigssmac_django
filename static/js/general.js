@@ -100,6 +100,14 @@ function createManteinment (elements) {
     // })
 }
 
+function checkSelect(value_inp) {
+    return value_inp !== null || value_inp !== undefined || value_inp !== "";
+}
+
+function checkDate(value_inp) {
+    return value_inp !== null || value_inp !== undefined || value_inp !== "";
+}
+
 function modifyManteinment () {
     fetch("plataforma/general/modificarGeneral", {
         method: 'POST',
@@ -131,6 +139,12 @@ form_mant.addEventListener("submit", (e) => {
         console.log("Elemento "+ form_mant.elements[i].name+":",form_mant.elements[i].value);
         arr_els.push(form_mant.elements[i].value);
     }
+
+    console.log(checkSelect(arr_els[0]));
+    console.log(checkSelect(arr_els[1]));
+    console.log(checkSelect(arr_els[2]));
+    console.log(checkDate(arr_els[3]));
+    console.log(checkDate(arr_els[4]));
 
     createManteinment(
         {
