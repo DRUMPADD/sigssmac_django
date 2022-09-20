@@ -35,16 +35,16 @@ async function showGeneralManteinment () {
         if(element.length !== 0) {
             str_info += `
                 <tr>
-                    <td>${element[0]}</td>
-                    <td>${element[1]}</td>
-                    <td>${element[2]}</td>
-                    <td>${element[3]}</td>
-                    <td>${element[4]}</td>
-                    <td>${element[5]}</td>
-                    <td>${element[6]}</td>
-                    <td>${element[7]}</td>
-                    <td>${element[8]}</td>
-                    <td>${element[9]}</td>
+                    <td>${element[0] != null ? element[0] : ""}</td>
+                    <td>${element[1] != null ? element[1] : ""}</td>
+                    <td>${element[2] != null ? element[2] : ""}</td>
+                    <td>${element[3] != null ? element[3] : ""}</td>
+                    <td>${element[4] != null ? element[4] : ""}</td>
+                    <td>${element[5] != null ? element[5] : ""}</td>
+                    <td>${element[6] != null ? element[6] : ""}</td>
+                    <td>${element[7] != null ? element[7] : ""}</td>
+                    <td>${element[8] != null ? element[8] : "Sin fecha"}</td>
+                    <td>${element[9] != null ? element[9] : 0}</td>
                     <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
                 </tr>
             `;
