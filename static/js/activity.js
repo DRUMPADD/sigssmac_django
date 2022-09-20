@@ -216,6 +216,7 @@ async function searchActivity(id_act) {
             confirmButtonText: 'ACEPTAR',
         })
     })
+    await mensaje;
     return m;
 }
 function deleteActivity(msg, act_cod) {
