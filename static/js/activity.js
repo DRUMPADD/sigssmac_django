@@ -186,6 +186,7 @@ function modifyActivity() {
 }
 
 async function searchActivity(id_act) {
+    var m;
     var mensaje;
     mensaje = await fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
@@ -202,6 +203,7 @@ async function searchActivity(id_act) {
         return result.json();
     })
     .then(data => {
+        m = data.msg;
         return data.msg;
     })
     .catch(e => {
@@ -214,8 +216,8 @@ async function searchActivity(id_act) {
             confirmButtonText: 'ACEPTAR',
         })
     })
-
-    return mensaje;
+    console.log("Mensaje:", m);
+    return await mensaje;
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
