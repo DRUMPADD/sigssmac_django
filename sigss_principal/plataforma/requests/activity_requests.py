@@ -53,7 +53,7 @@ def search_activity(request):
             encontrado = cursor.fetchall()
             print(encontrado)
             if encontrado:
-                return JsonResponse({"msg": encontrado}, status=200)
+                return JsonResponse({"msg": "Encontrado"}, status=200)
             else:
                 return JsonResponse({"msg": "No encontrado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
