@@ -77,6 +77,15 @@ async function showActivities() {
             form_update["new_name"].value = parentTR.getElementsByTagName("td")[1].innerText;
         });
     }
+    
+    let btns_delete = document.querySelectorAll(".btn-eliminar");
+    for(let i = 0; i < btns_delete.length; i++) {
+        btns_delete[i].addEventListener("click", (e) => {
+            const parentTR = btns_update[i].parentElement.parentElement;
+            console.log(parentTR.getElementsByTagName("td")[0].innerText);
+            console.log(searchActivity(parentTR.getElementsByTagName("td")[0].innerText));
+        });
+    }
 }
 
 // ?? Mostrar datos cuando el contenido esté cargado
@@ -174,6 +183,81 @@ function modifyActivity() {
             confirmButtonText: 'ACEPTAR',
         })
     })
+}
+
+function searchActivity(id_act) {
+    var mensaje = "";
+    fetch("/plataforma/actividades/buscarActividad", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie('csrftoken'),
+        },
+        body: JSON.stringify({
+            id_act: id_act,
+        })
+    })
+    .then(result => {
+        return result.json();
+    })
+    .then(data => {
+        mensaje = data.msg;
+        console.log(data.msg);
+    })
+    .catch(e => {
+        console.log(e)
+        Swal.fire({
+            position: 'center',
+            icon: e.status,
+            title: e.msg,
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+
+    return mensaje;
+}
+function deleteActivity(msg, act_cod) {
+    let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
+    let confirm_message = msg == "Encontrado" ? confirm("Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?") : confirm("¿Está seguro de eliminar esta actividad?");
+    if(confirm_message) {
+        fetch(url_fetch, {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest',
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+            body: JSON.stringify({
+                id_act: act_cod,
+            })
+        })
+        .then(result => {
+            return result.json();
+        })
+        .then(async data => {
+            console.log(data);
+            await Swal.fire({
+                position: 'center',
+                icon: data.status,
+                title: data.msg,
+                confirmButtonColor: '#19ec27',
+                confirmButtonText: 'ACEPTAR',
+            })
+            showActivities();
+        })
+        .catch(e => {
+            console.log(e)
+            Swal.fire({
+                position: 'center',
+                icon: "error",
+                title: "Error al eliminar el dato",
+                confirmButtonColor: '#df1c11',
+                confirmButtonText: 'ACEPTAR',
+            })
+        })
+    }
 }
 
 form.addEventListener("submit", (e) => {
