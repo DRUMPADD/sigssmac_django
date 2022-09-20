@@ -1,5 +1,7 @@
 let t_body = document.querySelector(".t_body");
 
+let form_mant = document.querySelector(".form-mant");
+
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -55,4 +57,32 @@ async function showGeneralManteinment () {
 
 window.addEventListener("DOMContentLoaded", () => {
     showGeneralManteinment();
+})
+
+function createManteinment () {
+    fetch("", {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+
+        })
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        console.log(d);
+        showGeneralManteinment()
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}
+
+form_mant.addEventListener("submit", (e) => {
+    console.log(e.target);
 })
