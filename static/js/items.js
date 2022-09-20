@@ -80,7 +80,8 @@ async function showItems() {
     }
     for(let i = 0; i < btns_delete.length; i++) {
         btns_delete[i].addEventListener("click", (e) => {
-            const parentTR = btns_update[i].parentElement.parentElement;
+            const parentTR = btns_delete[i].parentElement.parentElement;
+            console.log(parentTR.getElementsByTagName("td")[0].innerText);
             console.log(searchItem(parentTR.getElementsByTagName("td")[0].innerText));
         });
     }
@@ -186,8 +187,7 @@ function modifyItem () {
 
 async function searchItem (item_id) {
     var m = "";
-    var res;
-    res = await fetch("/plataforma/equipo/buscarItem", {
+    await fetch("/plataforma/equipo/buscarItem", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -205,8 +205,7 @@ async function searchItem (item_id) {
         m = d.msg;
         return d.msg;
     })
-    console.log("Mensaje:", m);
-    return await res;
+    return m;
 }
 
 form.addEventListener("submit", (e) => {

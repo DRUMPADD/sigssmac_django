@@ -81,7 +81,7 @@ async function showActivities() {
     let btns_delete = document.querySelectorAll(".btn-eliminar");
     for(let i = 0; i < btns_delete.length; i++) {
         btns_delete[i].addEventListener("click", (e) => {
-            const parentTR = btns_update[i].parentElement.parentElement;
+            const parentTR = btns_delete[i].parentElement.parentElement;
             console.log(parentTR.getElementsByTagName("td")[0].innerText);
             console.log(searchActivity(parentTR.getElementsByTagName("td")[0].innerText));
         });
@@ -186,9 +186,8 @@ function modifyActivity() {
 }
 
 async function searchActivity(id_act) {
-    var m;
-    var mensaje;
-    mensaje = await fetch("/plataforma/actividades/buscarActividad", {
+    var m = "";
+    await fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -216,8 +215,7 @@ async function searchActivity(id_act) {
             confirmButtonText: 'ACEPTAR',
         })
     })
-    console.log("Mensaje:", m);
-    return await mensaje;
+    return m;
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
