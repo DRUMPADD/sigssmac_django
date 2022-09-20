@@ -36,12 +36,14 @@ def item_view(request, id_item):
     context = {}
     print("ID:",id_item)
     if id_item != '':
-        context["existe"] = True
-        context["title"] = 'Item ' + id_item
         try:
             cursor = connection.cursor()
             cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
-            context["caracteristicas"] = cursor.fetchall()
+            get_info = cursor.fetchall()
+            context["caracteristicas"] = get_info
+            if get_info:
+                context["existe"] = True
+                context["title"] = 'Item ' + id_item
         except (OperationalError, DatabaseError, ProgrammingError) as e:
             print(e)
         finally:
