@@ -83,7 +83,7 @@ async function showActivities() {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_update[i].parentElement.parentElement;
             console.log(parentTR.getElementsByTagName("td")[0].innerText);
-            console.log(searchActivity(parentTR.getElementsByTagName("td")[0].innerText));
+            searchActivity(parentTR.getElementsByTagName("td")[0].innerText);
         });
     }
 }
@@ -186,7 +186,6 @@ function modifyActivity() {
 }
 
 function searchActivity(id_act) {
-    var mensaje = "";
     fetch("/plataforma/actividades/buscarActividad", {
         method: 'POST',
         headers: {
@@ -202,8 +201,7 @@ function searchActivity(id_act) {
         return result.json();
     })
     .then(data => {
-        mensaje = data.msg;
-        console.log(data.msg);
+        return data.msg;
     })
     .catch(e => {
         console.log(e)
@@ -215,8 +213,6 @@ function searchActivity(id_act) {
             confirmButtonText: 'ACEPTAR',
         })
     })
-
-    return mensaje;
 }
 function deleteActivity(msg, act_cod) {
     let url_fetch = msg == "Encontrado" ? "/plataforma/actividades/eliminarActividadCompleto" : "/plataforma/actividades/eliminarActividad"; 
