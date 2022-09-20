@@ -69,10 +69,10 @@ def delete_item_complete(request):
             return JsonResponse({"msg": "Error en el sistema"}, status=200)
 
 def search_item(request):
-    if request.methods == 'GET':
+    if request.method == 'POST':
         try:
             cursor = connection.cursor()
-            cursor.execute("SELECT * from items where codigo = %s", [request.POST.get("codigo")])
+            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [request.POST.get("codigo")])
             return JsonResponse({"status": "success", "msg": cursor.fetchall()}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
