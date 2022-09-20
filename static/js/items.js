@@ -190,7 +190,7 @@ function searchItem (item_id) {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
-            "X-Requested-With": "XMLHttpRequest",
+            'X-Requested-With': 'XMLHttpRequest',
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
