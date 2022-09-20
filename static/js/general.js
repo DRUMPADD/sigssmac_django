@@ -60,7 +60,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function createManteinment () {
-    fetch("", {
+    fetch("plataforma/general/crearGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -84,5 +84,6 @@ function createManteinment () {
 }
 
 form_mant.addEventListener("submit", (e) => {
+    e.preventDefault();
     console.log(e.target);
 })
