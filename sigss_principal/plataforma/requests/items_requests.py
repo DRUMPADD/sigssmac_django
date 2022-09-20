@@ -70,10 +70,15 @@ def delete_item_complete(request):
 
 def search_item(request):
     if request.method == 'POST':
+        response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [request.POST.get("codigo")])
-            return JsonResponse({"status": "success", "msg": cursor.fetchall()}, status=200)
+            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [response("cod_item")])
+            found_ = cursor.fetchall()
+            if found_:
+                return JsonResponse({"msg": "Encontrado"}, status=200)
+            else:
+                return JsonResponse({"msg": "No encontrado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
