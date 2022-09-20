@@ -29,6 +29,9 @@ urlpatterns = [
     path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
     path("plataforma/actividades/modificarActividad", act_req.modify_activity, name="modifyActivity"),
     path("plataforma/actividades/mostrarActividad", act_req.show_activities, name="showAcivities"),
+    path("plataforma/actividades/buscarActividad", act_req.search_activity, name="searchActivity"),
+    path("plataforma/actividades/eliminarActividad", act_req.delete_activity, name="deleteActivity"),
+    path("plataforma/actividades/eliminarActividadCompleto", act_req.delete_activity_with_mant, name="deleteAllActivity"),
     # ? Items requests
     path("plataforma/equipo", items_view, name="items"),
     path("plataforma/equipo/mostrarItems", it_req.show_items, name="showItems"),
