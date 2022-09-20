@@ -186,7 +186,6 @@ function modifyItem () {
 
 
 async function searchItem (item_id) {
-    var m = "";
     let mensaje = await fetch("/plataforma/equipo/buscarItem", {
         method: 'POST',
         headers: {
@@ -197,16 +196,10 @@ async function searchItem (item_id) {
         body: JSON.stringify({
             cod_item: item_id
         })
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(d => {
-        m = d.msg;
-        return d.msg;
-    })
-    await mensaje;
-    return m;
+    });
+    let dat = await mensaje.json();
+    console.log(dat.msg);
+    return dat.msg;
 }
 
 form.addEventListener("submit", (e) => {
