@@ -85,5 +85,9 @@ function createManteinment () {
 
 form_mant.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(e.target);
+    console.log("Seleccionar todos los elementos:",form_mant.elements);
+    for(let i = 0; i < form_mant.elements.length; i++) {
+        console.log("Elemento "+ i +":",form_mant.elements[i].value);
+    }
+    console.log("Evento target:",e.target);
 })
