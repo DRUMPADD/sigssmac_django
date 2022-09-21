@@ -38,19 +38,19 @@ def item_view(request, id_item):
     if id_item != '':
         try:
             cursor = connection.cursor()
+            cursor2 = connection.cursor()
             cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
+            cursor2.callproc("SELECT proveedor FROM maquinas_equipos where maq_eq_id = %s", [id_item])
             get_info = cursor.fetchall()
-            context["caracteristicas"] = get_info
-            if get_info:
-                context["existe"] = True
-                context["title"] = 'Item ' + id_item
-            else:
-                context["title"] = 'Item no encontrado'
-                context["existe"] = False
+            get_pro = cursor2.fetchall()
+            context["existe_prov"] = True if get_pro else False
+            context["existe"] = True if get_info else False
+            context["title"] = 'Item ' + id_item if get_info else 'Item no encontrado'
         except (OperationalError, DatabaseError, ProgrammingError) as e:
             print(e)
         finally:
             cursor.close()
+            cursor2.close()
         return render(request, "plataforma/item.html", context)
     else:
         context["title"] = 'Item no encontrado'
