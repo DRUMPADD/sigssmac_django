@@ -100,7 +100,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.1);
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
@@ -121,7 +121,7 @@
     width: 40%;
     margin: 10% auto;
     border-radius: 10px;
-    background-color: rgba(134, 255, 174, 0.4);
+    background-color: rgba(74, 226, 124, 0.7);
     padding: 30px;
 }
 
