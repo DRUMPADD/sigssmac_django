@@ -146,6 +146,9 @@ function checkSelect(value_inp) {
 function checkDate(value_inp) {
     return value_inp != null && value_inp != undefined && value_inp != "";
 }
+function checkData(value_inp) {
+    return value_inp != null && value_inp != undefined && value_inp != "" && value_inp != '--Seleccionar--';
+}
 
 function modifyManteinment () {
     fetch("plataforma/general/modificarGeneral", {
@@ -204,4 +207,16 @@ form_mant.addEventListener("submit", (e) => {
             confirmButtonText: 'ACEPTAR',
         })
     }
+})
+
+form_update.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let arr_els = new Array();
+    for(let i = 0; i < form_mant.elements.length; i++) {
+        console.log(form_mant.elements[i].name + ":", checkData(form_mant.elements[i].value) + " - " + form_mant.elements[i].value);
+        arr_els.push(form_mant.elements[i].value);
+    }
+
+    console.log(arr_els);
+
 })
