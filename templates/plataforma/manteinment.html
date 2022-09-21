@@ -14,10 +14,9 @@
                         <label>Seleccionar item</label>
                         <select name="sl_item" class="item">
                             <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Máquina1</option>
-                            <option value="2">Máquina2</option>
-                            <option value="3">Máquina3</option>
-                            <option value="4">Máquina4</option>
+                            {% for item in items %}
+                                <option value="{{ item.0 }}">{{ item.1 }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="input_box">
@@ -34,10 +33,9 @@
                         <label>Seleccionar modo de fallo</label>
                         <select name="sl_fallo" class="item">
                             <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Fallo1</option>
-                            <option value="2">Fallo2</option>
-                            <option value="3">Fallo3</option>
-                            <option value="4">Fallo4</option>
+                            {% for fail in fails %}
+                                <option value="{{ fail.0 }}">{{ fail.1 }}</option>
+                            {% endfor %}
                         </select>
                     </div>
                     <div class="input_box">
@@ -53,16 +51,6 @@
                     <div class="input_box">
                         <label>Días</label>
                         <input type="number" name="dias" class="input">
-                    </div>
-                    <div class="input_box">
-                        <label>Seleccionar responsable</label>
-                        <select name="sl_responsable" class="item">
-                            <option selected disabled>--Seleccionar--</option>
-                            <option value="1">Fallo1</option>
-                            <option value="2">Fallo2</option>
-                            <option value="3">Fallo3</option>
-                            <option value="4">Fallo4</option>
-                        </select>
                     </div>
                 </div>
                 <div class="labels">
