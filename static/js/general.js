@@ -1,6 +1,8 @@
 let t_body = document.querySelector(".t_body");
-
+let box_update_form = document.getElementById("content-hidden");
 let form_mant = document.querySelector(".form-mant");
+let form_update = document.querySelector(".form_update");
+let btnClose = document.querySelector(".btnClose");
 
 function getCookie(name) {
     let cookieValue = null;
@@ -17,6 +19,16 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function hideUpdateForm() {
+    box_update_form.style.visibility = "hidden";
+    box_update_form.style.opacity = 0;
+    form_update.reset();
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
+});
 
 async function getGeneralManteinment () {
     let response = await fetch("/plataforma/general/mostrarGeneral");
@@ -58,14 +70,15 @@ async function showGeneralManteinment () {
     let btnsDelete = document.querySelectorAll(".btn-eliminar");
     for(let i = 0; i < btnsUpdate.length; i++) {
         btnsUpdate[i].addEventListener("click", (e) => {
+            box_update_form.style.visibility = "visible";
+            box_update_form.style.opacity = 1;
             const parentTR = btnsUpdate[i].parentElement.parentElement;
-            form_mant["option"].value = "MODIFICAR";
-            form_mant["id_mant"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            form_mant["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
-            form_mant["sl_frec"].value = parentTR.getElementsByTagName("td")[10].innerText;
-            form_mant["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
-            form_mant["fec-creacion"].value = parentTR.getElementsByTagName("td")[5].innerText;
-            form_mant["fec-proxima"].value = parentTR.getElementsByTagName("td")[8].innerText;
+            form_update["id_mant"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form_update["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
+            form_update["sl_frec"].value = parentTR.getElementsByTagName("td")[10].innerText;
+            form_update["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
+            form_update["fec-creacion"].value = parentTR.getElementsByTagName("td")[5].innerText;
+            form_update["fec-proxima"].value = parentTR.getElementsByTagName("td")[8].innerText;
         });
     }
     
