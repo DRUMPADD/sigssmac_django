@@ -1,5 +1,5 @@
 from sqlite3 import ProgrammingError
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 from django.db import connection, OperationalError, DatabaseError, InternalError
 # Create your views here.
 def general_view(request):
@@ -68,4 +68,14 @@ def manteinment_view(request):
     context = {
         "title": "Mantenimiento correctivo",
     }
+    try:
+        cursor = connection.cursor()
+        cursor2 = connection.cursor()
+        cursor.execute("SELECT * FROM maquinas_equipos")
+        cursor2.execute("SELECT * FROM modos_fallo")
+        context["items"] = cursor.fetchall()
+        context["fails"] = cursor2.fetchall()
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+        return HttpResponse("<h1>Ocurrió un error</h1>")
     return render(request, "plataforma/manteinment.html", context)
