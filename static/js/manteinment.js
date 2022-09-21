@@ -64,6 +64,15 @@ function createManteinment (data_) {
     let { item, ubicacion, novedad, fail, report, rec_date, days, notes } = data_;
 
     console.log(data_);
+    console.log(item);
+    console.log(ubicacion);
+    console.log(novedad);
+    console.log(fail);
+    console.log(report);
+    console.log(rec_date);
+    console.log(days);
+    console.log(notes);
+    
 }
 
 form.addEventListener("submit", (e) => {
