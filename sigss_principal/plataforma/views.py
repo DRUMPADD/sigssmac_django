@@ -71,11 +71,18 @@ def manteinment_view(request):
     try:
         cursor = connection.cursor()
         cursor2 = connection.cursor()
+        cursor3 = connection.cursor()
         cursor.execute("SELECT * FROM maquinas_equipos")
         cursor2.execute("SELECT * FROM modos_fallo")
+        cursor3.execute("SELECT * FROM novedad")
         context["items"] = cursor.fetchall()
         context["fails"] = cursor2.fetchall()
+        context["novedad"] = cursor3.fetchall()
     except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
         return HttpResponse("<h1>Ocurrió un error</h1>")
+    finally:
+        cursor.close()
+        cursor2.close()
+        cursor3.close()
     return render(request, "plataforma/manteinment.html", context)
