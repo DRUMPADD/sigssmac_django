@@ -1,4 +1,5 @@
 let t_body = document.querySelector(".t_body");
+let form = document.querySelector(".form_manteinment")
 
 function getCookie(name) {
     let cookieValue = null;
@@ -53,4 +54,33 @@ async function showCorMant () {
 
 window.addEventListener("DOMContentLoaded", () => {
     showCorMant();
+})
+
+function checkData (value_) {
+    return value_ != "" || value_ != null || value_ != undefined;
+}
+
+function createManteinment (data_) {
+    let { item, ubicacion, novedad, fail, report, rec_date, days, notes } = data_;
+
+    console.log(data_);
+}
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let ar = new Array();
+    for(let i = 0; i < form.elements.length; i++) {
+        console.log(form.elements[i].name + ":", checkData(form.elements[i].value));
+    }
+
+    createManteinment({
+        item: ar[0],
+        ubicacion: ar[1],
+        novedad: ar[2],
+        fail: ar[3],
+        report: ar[4],
+        rec_date: ar[5],
+        days: ar[6],
+        notes: ar[7],
+    })
 })
