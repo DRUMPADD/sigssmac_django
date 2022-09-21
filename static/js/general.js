@@ -57,9 +57,9 @@ async function showGeneralManteinment () {
     let btnsDelete = document.querySelectorAll(".btn-eliminar");
     for(let i = 0; i < btnsUpdate.length; i++) {
         btnsUpdate[i].addEventListener("click", (e) => {
-            box_update_form.style.visibility = "visible";
-            box_update_form.style.opacity = 1;
             const parentTR = btnsUpdate[i].parentElement.parentElement;
+            form_mant["option"].value = "MODIFICAR";
+            form_mant["id_mant"].value = parentTR.getElementsByTagName("td")[0].innerText;
             form_mant["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
             form_mant["sl_frec"].value = parentTR.getElementsByTagName("td")[4].innerText;
             form_mant["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
@@ -81,9 +81,10 @@ window.addEventListener("DOMContentLoaded", () => {
     showGeneralManteinment();
 })
 
-function createManteinment (elements) {
-    let {item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
-    fetch("/plataforma/general/crearGeneral", {
+function createManteinment (option, elements) {
+    let {prev_cod, item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
+    let url = option == 'AGREGAR' ? "/plataforma/general/crearGeneral" : "/plataforma/general/modificarGeneral";
+    fetch(url, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -96,6 +97,7 @@ function createManteinment (elements) {
             create_date: fecha_cre,
             act_: act_,
             date_next: fecha_prox,
+            prev_cod: prev_cod,
         })
     })
     .then(res => {
@@ -162,16 +164,21 @@ form_mant.addEventListener("submit", (e) => {
         arr_els.push(form_mant.elements[i].value);
     }
 
-    let validForm = checkSelect(arr_els[0]) && checkSelect(arr_els[1]) && checkSelect(arr_els[2]) && checkDate(arr_els[3]) && checkDate(arr_els[4]);
+    let validForm = checkSelect(arr_els[2]) && checkSelect(arr_els[2]) && checkSelect(arr_els[4]) && checkDate(arr_els[5]) && checkDate(arr_els[6]);
+
+
+    console.log("Option selected:",e.target.option.value);
+    console.log("ID:",e.target.id_mant.value);
 
     if(validForm) {
-        createManteinment(
+        createManteinment(arr_els[0],
             {
-                item_sl: arr_els[0], 
-                frec_: arr_els[1], 
-                act_: arr_els[2], 
-                fecha_cre: arr_els[3], 
-                fecha_prox: arr_els[4]
+                prev_cod: arr_els[1], 
+                item_sl: arr_els[2], 
+                frec_: arr_els[3], 
+                act_: arr_els[4], 
+                fecha_cre: arr_els[5], 
+                fecha_prox: arr_els[6],
             }
         );
     } else {
