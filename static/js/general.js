@@ -43,6 +43,7 @@ async function showGeneralManteinment () {
                     <td>${element[7] != null ? element[7] : ""}</td>
                     <td>${element[8] != null ? element[8] : "Sin fecha"}</td>
                     <td>${element[9] != null ? element[9] : 0}</td>
+                    <td style="display: none;">${element[10] != null ? element[10] : ""}</td>
                     <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
                     <td><a href="#" class="btn-modificar"><i class="fa-solid fa-pencil"></i></a></td>
                     <td><a href="#" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a></td>
@@ -61,10 +62,10 @@ async function showGeneralManteinment () {
             form_mant["option"].value = "MODIFICAR";
             form_mant["id_mant"].value = parentTR.getElementsByTagName("td")[0].innerText;
             form_mant["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
-            form_mant["sl_frec"].value = parentTR.getElementsByTagName("td")[4].innerText;
+            form_mant["sl_frec"].value = parentTR.getElementsByTagName("td")[10].innerText;
             form_mant["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
             form_mant["fec-creacion"].value = parentTR.getElementsByTagName("td")[5].innerText;
-            form_mant["fec-proxima"].value = parentTR.getElementsByTagName("td")[7].innerText;
+            form_mant["fec-proxima"].value = parentTR.getElementsByTagName("td")[8].innerText;
         });
     }
     
