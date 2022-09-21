@@ -1,4 +1,5 @@
 let sl_providers = document.querySelector(".sl_providers")
+let form = document.querySelector(".form_create");
 
 function getCookie(name) {
     let cookieValue = null;
@@ -45,4 +46,13 @@ async function showProviders () {
 
 window.addEventListener("DOMContentLoaded", () => {
     showProviders();
+})
+
+
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    for(let i = 0; i < form.elements.length; i++) {
+        console.log(form.elements[i].name + ":",form.elements[i].value);
+    }
 })
