@@ -43,6 +43,8 @@ def item_view(request, id_item):
             cursor2.execute("SELECT proveedor FROM maquinas_equipos where maq_eq_id = %s", [id_item])
             get_info = cursor.fetchall()
             get_pro = cursor2.fetchall()
+            print(get_info)
+            print(get_pro, True if get_pro else False)
             context["existe_prov"] = True if get_pro else False
             context["existe"] = True if get_info else False
             context["title"] = 'Item ' + id_item if get_info else 'Item no encontrado'
