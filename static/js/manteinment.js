@@ -1,5 +1,8 @@
 let t_body = document.querySelector(".t_body");
 let form = document.querySelector(".form_manteinment")
+let form_update = document.querySelector(".form_update")
+let box_update_form = document.getElementById("content-hidden");
+let btnClose = document.querySelector(".btnClose");
 
 function getCookie(name) {
     let cookieValue = null;
@@ -16,6 +19,16 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function hideUpdateForm() {
+    box_update_form.style.visibility = "hidden";
+    box_update_form.style.opacity = 0;
+    form_update.reset();
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
+});
 
 async function getCorMant () {
     let res = await fetch("/plataforma/correctivo/mostrarCorrectivo");
@@ -75,6 +88,22 @@ function createManteinment (data_) {
     
 }
 
+function modifyManteinment (data_) {
+    let { mant_id, item, ubicacion, novedad, fail, report, rec_date, days, notes } = data_;
+
+    console.log(data_);
+    console.log(mant_id);
+    console.log(item);
+    console.log(ubicacion);
+    console.log(novedad);
+    console.log(fail);
+    console.log(report);
+    console.log(rec_date);
+    console.log(days);
+    console.log(notes);
+    
+}
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let ar = new Array();
@@ -92,5 +121,26 @@ form.addEventListener("submit", (e) => {
         rec_date: ar[5],
         days: ar[6],
         notes: ar[7],
+    })
+})
+
+form_update.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let ar = new Array();
+    for(let i = 0; i < form_update.elements.length; i++) {
+        console.log(form_update.elements[i].name + ":", checkData(form_update.elements[i].value) + " - " + form_update.elements[i].value);
+        ar.push(form_update.elements[i].value);
+    }
+
+    modifyManteinment({
+        mant_id: ar[0],
+        item: ar[1],
+        ubicacion: ar[2],
+        novedad: ar[3],
+        fail: ar[4],
+        report: ar[5],
+        rec_date: ar[6],
+        days: ar[7],
+        notes: ar[8],
     })
 })
