@@ -70,7 +70,8 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
     let ar = new Array();
     for(let i = 0; i < form.elements.length; i++) {
-        console.log(form.elements[i].name + ":", checkData(form.elements[i].value));
+        console.log(form.elements[i].name + ":", checkData(form.elements[i].value) + " - " + form.elements[i].value);
+        ar.push(form.elements[i].value);
     }
 
     createManteinment({
