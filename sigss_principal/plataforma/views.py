@@ -30,7 +30,7 @@ def items_view(request):
     context = {
         "title": "Listado de máquinas o equipo",
     }
-    return render(request, "plataforma/items.html", context)
+    return render(request, "plataforma/items_new.html", context)
 
 def item_view(request, id_item):
     context = {}
