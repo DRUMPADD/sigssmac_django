@@ -25,7 +25,12 @@
                     </div>
                     <div class="input_box">
                         <label>Tipo de novedad</label>
-                        <input type="text" name="novedad" class="input">
+                        <select name="sl_fallo" class="item">
+                            <option selected disabled>--Seleccionar--</option>
+                            {% for nov in novedad %}
+                                <option value="{{ nov.0 }}">{{ nov.1 }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                 </div>
                 <div class="labels">
