@@ -10,6 +10,8 @@ import sigss_principal.plataforma.requests.items_requests as it_req
 import sigss_principal.plataforma.requests.general_requests as g_req
 # ? Importing Corrective Manteinment requests
 import sigss_principal.plataforma.requests.manteinment_requests as mnt_req
+# ? Importing Providers requests
+import sigss_principal.plataforma.requests.providers_requests as pro_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -46,4 +48,9 @@ urlpatterns = [
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
     path("plataforma/correctivo/mostrarCorrectivo", mnt_req.show_corrective_mant, name="showManteinments"),
+    # ? Provider requests
+    path("plataforma/proveedor/mostrarProveedores", pro_req.show_providers, name="showProviders"),
+    path("plataforma/correctivo/agregarProveedor", pro_req.create_provider, name="createProviders"),
+    path("plataforma/correctivo/modificarProveedor", pro_req.modify_provider, name="modifyProviders"),
+    path("plataforma/correctivo/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
 ]
