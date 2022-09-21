@@ -70,7 +70,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function checkData (value_) {
-    return value_ != "" || value_ != null || value_ != undefined;
+    return value_ != "" && value_ != null && value_ != undefined && value_ != '--Seleccionar--';
 }
 
 function createManteinment (data_) {
