@@ -40,7 +40,7 @@ def item_view(request, id_item):
             cursor = connection.cursor()
             cursor2 = connection.cursor()
             cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
-            cursor2.callproc("SELECT proveedor FROM maquinas_equipos where maq_eq_id = %s", [id_item])
+            cursor2.execute("SELECT proveedor FROM maquinas_equipos where maq_eq_id = %s", [id_item])
             get_info = cursor.fetchall()
             get_pro = cursor2.fetchall()
             context["existe_prov"] = True if get_pro else False
