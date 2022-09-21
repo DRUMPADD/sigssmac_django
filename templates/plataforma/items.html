@@ -26,6 +26,8 @@
             <div class="form-content-item">
                 <form class="form-item" id="form_item">
                     {% csrf_token %}
+                    <input type="text" name="option" value="AGREGAR" hidden>
+                    <input type="text" name="id_mant" hidden>
                     <h2 class="center">Registrar item</h2>
                     <div class="input-box">
                         <label>Código</label>
