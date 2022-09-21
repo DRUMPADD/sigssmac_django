@@ -96,6 +96,53 @@
             </table>
         </div>
     </div>
+    <div class="update_hidden" id="content-hidden">
+        <form class="form_update">
+            {% csrf_token %}
+            <a class="btnClose">X</a>
+            <div class="content-update">
+                <input type="text" name="id_mant" class="inp_hid" disabled>
+            </div>
+            <div class="content-update">
+                <label>Item</label>
+                <select name="sl_item" class="inp_hid">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for item in items %}
+                        <option value="{{ item.0 }}">{{ item.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="content-update">
+                <label>Frecuencia</label>
+                <select name="sl_frec" class="inp_hid">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for freq in frequence %}
+                        <option value="{{ freq.0 }}">{{ freq.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="content-update">
+                <label>Actividad</label>
+                <select name="sl_act" class="inp_hid">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for activity in activities %}
+                        <option value="{{ activity.0 }}">{{ activity.1 }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="content-update">
+                <label>Fecha de creación</label>
+                <input type="date" name="fec-creacion" class="inp">
+            </div>
+            <div class="content-update">
+                <label>Fecha próxima</label>
+                <input type="date" name="fec-proxima" class="inp">
+            </div>
+            <div class="content-update">
+                <button type="submit" class="btnUpd">Realizar cambios</button>
+            </div>
+        </form>
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
     <script src="{% static 'js/general-config.js' %}"></script>
     <script src="{% static 'js/general.js' %}"></script>
