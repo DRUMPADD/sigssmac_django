@@ -49,9 +49,10 @@ def modify_general(request):
 
 def delete_general(request):
     if request.method == 'POST':
+        responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("")
+            cursor.execute("DELETE FROM mantenimiento_prev where id_prev = %s", [responses.get("prev_id")])
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo eliminado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
