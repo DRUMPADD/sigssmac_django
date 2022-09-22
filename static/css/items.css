@@ -105,7 +105,7 @@
     top: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(3, 2, 2, 0.6);
+    background-color: rgba(255, 255, 255, 0.9);
     transition: opacity 500ms;
     visibility: hidden;
     opacity: 0;
@@ -116,7 +116,7 @@
     padding: 10px;
     margin: 200px auto;
     width: 30%;
-    background: rgba( 38, 191, 16, 0.6 );
+    background: rgba(74, 226, 124, 0.7);
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
     border-radius: 10px;
