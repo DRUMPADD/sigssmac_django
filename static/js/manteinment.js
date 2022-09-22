@@ -74,7 +74,7 @@ function checkData (value_) {
 }
 
 function createManteinment (data_) {
-    fetch("/plataforma/mantenimiento/agregarCorrectivo", {
+    fetch("/plataforma/correctivo/agregarCorrectivo", {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',
@@ -121,13 +121,12 @@ form.addEventListener("submit", (e) => {
     }
 
     createManteinment({
-        item: ar[0],
-        ubicacion: ar[1],
-        novedad: ar[2],
-        fail: ar[3],
+        item: ar[1],
+        days: ar[6],
+        novedad: ar[3],
+        fail: ar[2],
         report_date: ar[4],
         rec_date: ar[5],
-        days: ar[6],
         notes: ar[7],
     })
 })
