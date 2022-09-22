@@ -163,7 +163,7 @@ function checkData(value_inp) {
     return value_inp != null && value_inp != undefined && value_inp != "" && value_inp != '--Seleccionar--';
 }
 
-function modifyManteinment () {
+function modifyManteinment (answers) {
     fetch("plataforma/general/modificarGeneral", {
         method: 'POST',
         headers: {
@@ -171,9 +171,7 @@ function modifyManteinment () {
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRFToken': getCookie("csrftoken")
         },
-        body: JSON.stringify({
-
-        })
+        body: JSON.stringify(answers)
     })
     .then(res => {
         return res.json();
@@ -268,6 +266,21 @@ form_update.addEventListener("submit", (e) => {
     }
 
     console.log(full);
-    console.log(arr_els);
+    console.log({
+        item_id: arr_els[2],
+        frec_: arr_els[3],
+        create_date: arr_els[5],
+        act_: arr_els[4],
+        date_next: arr_els[6],
+        prev_cod: arr_els[1],
+    })
 
+    modifyManteinment({
+        item_id: arr_els[2],
+        frec_: arr_els[3],
+        create_date: arr_els[5],
+        act_: arr_els[4],
+        date_next: arr_els[6],
+        prev_cod: arr_els[1],
+    })
 })
