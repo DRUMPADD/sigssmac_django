@@ -89,19 +89,38 @@ function createManteinment (data_) {
 }
 
 function modifyManteinment (data_) {
-    let { mant_id, item, ubicacion, novedad, fail, report, rec_date, days, notes } = data_;
-
-    console.log(data_);
-    console.log(mant_id);
-    console.log(item);
-    console.log(ubicacion);
-    console.log(novedad);
-    console.log(fail);
-    console.log(report);
-    console.log(rec_date);
-    console.log(days);
-    console.log(notes);
-    
+    fetch("/plataforma/mantenimiento/agregarCorrectivo", {
+        method: 'POST',
+        headers: {
+            "Content-Type": 'application/json',
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(data_)
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        await Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showCorMant();
+    })
+    .catch(e => {
+        console.log("Error:",e)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al registrar los datos",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
 }
 
 form.addEventListener("submit", (e) => {
@@ -117,7 +136,7 @@ form.addEventListener("submit", (e) => {
         ubicacion: ar[1],
         novedad: ar[2],
         fail: ar[3],
-        report: ar[4],
+        report_date: ar[4],
         rec_date: ar[5],
         days: ar[6],
         notes: ar[7],
