@@ -108,24 +108,15 @@ window.addEventListener("DOMContentLoaded", () => {
     showGeneralManteinment();
 })
 
-function createManteinment (option, elements) {
-    let {prev_cod, item_sl, frec_, act_, fecha_cre, fecha_prox} = elements;
-    let url = option == 'AGREGAR' ? "/plataforma/general/crearGeneral" : "/plataforma/general/modificarGeneral";
-    fetch(url, {
+function createManteinment (elements) {
+    fetch("/plataforma/general/crearGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRFToken': getCookie("csrftoken")
         },
-        body: JSON.stringify({
-            item_id: item_sl,
-            frec_: frec_,
-            create_date: fecha_cre,
-            act_: act_,
-            date_next: fecha_prox,
-            prev_cod: prev_cod,
-        })
+        body: JSON.stringify(elements)
     })
     .then(res => {
         return res.json();
@@ -164,7 +155,7 @@ function checkData(value_inp) {
 }
 
 function modifyManteinment (answers) {
-    fetch("plataforma/general/modificarGeneral", {
+    fetch("/plataforma/general/modificarGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -249,7 +240,7 @@ form_mant.addEventListener("submit", (e) => {
     console.log("ID:",e.target.id_mant.value);
 
     if(validForm) {
-        createManteinment(arr_els[0],
+        createManteinment(
             {
                 prev_cod: arr_els[1], 
                 item_sl: arr_els[2], 
