@@ -74,21 +74,6 @@ function checkData (value_) {
 }
 
 function createManteinment (data_) {
-    let { item, ubicacion, novedad, fail, report, rec_date, days, notes } = data_;
-
-    console.log(data_);
-    console.log(item);
-    console.log(ubicacion);
-    console.log(novedad);
-    console.log(fail);
-    console.log(report);
-    console.log(rec_date);
-    console.log(days);
-    console.log(notes);
-    
-}
-
-function modifyManteinment (data_) {
     fetch("/plataforma/mantenimiento/agregarCorrectivo", {
         method: 'POST',
         headers: {
@@ -121,6 +106,10 @@ function modifyManteinment (data_) {
             confirmButtonText: 'ACEPTAR',
         })
     })
+}
+
+function modifyManteinment (data_) {
+    console.log(data_);
 }
 
 form.addEventListener("submit", (e) => {
