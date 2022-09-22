@@ -136,12 +136,14 @@
 }
 
 .flex .content-update label,
-.flex .content-update input{
+.flex .content-update input,
+.flex .content-update select{
     display: block;
     margin: 10px 0;
     padding: 10px;
 }
 
+.flex .content-update select,
 .flex .content-update input {
     width: 100%;
 }
