@@ -235,10 +235,6 @@ form_mant.addEventListener("submit", (e) => {
 
     let validForm = checkSelect(arr_els[2]) && checkSelect(arr_els[2]) && checkSelect(arr_els[4]) && checkDate(arr_els[5]) && checkDate(arr_els[6]);
 
-
-    console.log("Option selected:",e.target.option.value);
-    console.log("ID:",e.target.id_mant.value);
-
     if(validForm) {
         createManteinment(
             {
