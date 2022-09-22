@@ -98,50 +98,42 @@
         <div class="content-update">
             <input type="text" name="id_mant" class="inp_hid" disabled>
         </div>
-        <div class="content-update">
-            <label>Item</label>
-            <select name="sl_item" class="item">
-                <option selected disabled>--Seleccionar--</option>
-                {% for item in items %}
-                    <option value="{{ item.0 }}">{{ item.1 }}</option>
-                {% endfor %}
-            </select>
+        <div class="flex">
+            <div class="content-update">
+                <label>Item</label>
+                <label>Ubicación</label>
+                <label>Novedad</label>
+                <label>Modo de fallo</label>
+                <label>Fecha de reporte</label>
+                <label>Fecha de entrega</label>
+                <label>Días</label>
+            </div>
+            <div class="content-update">
+                <select name="sl_item" class="item">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for item in items %}
+                        <option value="{{ item.0 }}">{{ item.1 }}</option>
+                    {% endfor %}
+                </select>
+                <input type="text" name="ubicacion" class="input">
+                <select name="sl_nov" class="item">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for nov in novedad %}
+                        <option value="{{ nov.0 }}">{{ nov.1 }}</option>
+                    {% endfor %}
+                </select>
+                <select name="sl_fallo" class="item">
+                    <option selected disabled>--Seleccionar--</option>
+                    {% for fail in fails %}
+                        <option value="{{ fail.0 }}">{{ fail.1 }}</option>
+                    {% endfor %}
+                </select>
+                <input type="date" name="reporte" class="input">
+                <input type="date" name="entrega" class="input">
+                <input type="number" name="dias" class="input">
+            </div>
         </div>
-        <div class="content-update">
-            <<label>Ubicación</label>
-            <input type="text" name="ubicacion" class="input">
-        </div>
-        <div class="content-update">
-            <label>Novedad</label>
-            <select name="sl_fallo" class="item">
-                <option selected disabled>--Seleccionar--</option>
-                {% for nov in novedad %}
-                    <option value="{{ nov.0 }}">{{ nov.1 }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="content-update">
-            <label>Modo de fallo</label>
-            <select name="sl_fallo" class="item">
-                <option selected disabled>--Seleccionar--</option>
-                {% for fail in fails %}
-                    <option value="{{ fail.0 }}">{{ fail.1 }}</option>
-                {% endfor %}
-            </select>
-        </div>
-        <div class="content-update">
-            <label>Fecha de reporte</label>
-            <input type="date" name="reporte" class="input">
-        </div>
-        <div class="content-update">
-            <label>Fecha de entrega</label>
-            <input type="date" name="entrega" class="input">
-        </div>
-        <div class="content-update">
-            <label>Días</label>
-            <input type="number" name="dias" class="input">
-        </div>
-        <div class="content-update">
+        <div class="content-update-btn">
             <button type="submit" class="btnUpd">Realizar cambios</button>
         </div>
     </form>

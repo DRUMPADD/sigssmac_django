@@ -102,42 +102,38 @@
             <div class="content-update">
                 <input type="text" name="id_mant" class="inp" disabled>
             </div>
-            <div class="content-update">
-                <label>Item</label>
-                <select name="sl_item" class="inp">
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for item in items %}
-                        <option value="{{ item.0 }}">{{ item.1 }}</option>
-                    {% endfor %}
-                </select>
+            <div class="flex">
+                <div class="content-update">
+                    <label>Item</label>
+                    <label>Frecuencia</label>
+                    <label>Actividad</label>
+                    <label>Fecha de creación</label>
+                    <label>Fecha próxima</label>
+                </div>
+                <div class="content-update">
+                    <select name="sl_item" class="inp">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for item in items %}
+                            <option value="{{ item.0 }}">{{ item.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="sl_frec" class="inp">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for freq in frequence %}
+                            <option value="{{ freq.0 }}">{{ freq.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="sl_act" class="inp">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for activity in activities %}
+                            <option value="{{ activity.0 }}">{{ activity.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="date" name="fec-creacion" class="inp">
+                    <input type="date" name="fec-proxima" class="inp">
+                </div>
             </div>
-            <div class="content-update">
-                <label>Frecuencia</label>
-                <select name="sl_frec" class="inp">
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for freq in frequence %}
-                        <option value="{{ freq.0 }}">{{ freq.1 }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="content-update">
-                <label>Actividad</label>
-                <select name="sl_act" class="inp">
-                    <option selected disabled>--Seleccionar--</option>
-                    {% for activity in activities %}
-                        <option value="{{ activity.0 }}">{{ activity.1 }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <div class="content-update">
-                <label>Fecha de creación</label>
-                <input type="date" name="fec-creacion" class="inp">
-            </div>
-            <div class="content-update">
-                <label>Fecha próxima</label>
-                <input type="date" name="fec-proxima" class="inp">
-            </div>
-            <div class="content-update">
+            <div class="content-update-btn">
                 <button type="submit" class="btnUpd">Realizar cambios</button>
             </div>
         </form>
