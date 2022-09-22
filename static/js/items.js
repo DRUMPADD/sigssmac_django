@@ -130,6 +130,7 @@ function createItem (cod_item, name_item, quantity_item) {
             confirmButtonText: 'ACEPTAR',
         })
         showItems();
+        form.reset();
     })
     .catch(e => {
         console.log("Error:",e)
@@ -171,6 +172,7 @@ function modifyItem () {
             confirmButtonText: 'ACEPTAR',
         })
         showItems();
+        hideUpdateForm();
     })
     .catch(e => {
         console.log("Error:",e)

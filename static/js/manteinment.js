@@ -95,6 +95,7 @@ function createManteinment (data_) {
             confirmButtonText: 'ACEPTAR',
         })
         showCorMant();
+        form.reset();
     })
     .catch(e => {
         console.log("Error:",e)

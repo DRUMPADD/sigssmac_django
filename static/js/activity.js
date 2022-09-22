@@ -131,6 +131,7 @@ function createActivity () {
             confirmButtonColor: '#19ec27',
             confirmButtonText: 'ACEPTAR',
         })
+        form.reset();
     })
     .catch(e => {
         Swal.fire({

@@ -130,6 +130,7 @@ function createManteinment (elements) {
             confirmButtonText: 'ACEPTAR',
         })
         showGeneralManteinment()
+        form_mant.reset();
     })
     .catch(err => {
         console.log("Error:",err)
@@ -176,6 +177,7 @@ function modifyManteinment (answers) {
             confirmButtonText: 'ACEPTAR',
         })
         showGeneralManteinment()
+        hideUpdateForm();
     })
     .catch(err => {
         console.log("Error:",err)
