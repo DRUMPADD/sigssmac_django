@@ -8,6 +8,7 @@
     <div class="manteinment">
         <div>
             <form class="form_manteinment">
+                {% csrf_token %}
                 <h2>Registrar mantenimiento</h2>
                 <div class="labels">
                     <div class="input_box">
@@ -20,8 +21,13 @@
                         </select>
                     </div>
                     <div class="input_box">
-                        <label>Ubicación</label>
-                        <input type="text" name="ubicacion" class="input">
+                        <label>Seleccionar modo de fallo</label>
+                        <select name="sl_fallo" class="item">
+                            <option selected disabled>--Seleccionar--</option>
+                            {% for fail in fails %}
+                                <option value="{{ fail.0 }}">{{ fail.1 }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
                     <div class="input_box">
                         <label>Tipo de novedad</label>
@@ -34,15 +40,6 @@
                     </div>
                 </div>
                 <div class="labels">
-                    <div class="input_box">
-                        <label>Seleccionar modo de fallo</label>
-                        <select name="sl_fallo" class="item">
-                            <option selected disabled>--Seleccionar--</option>
-                            {% for fail in fails %}
-                                <option value="{{ fail.0 }}">{{ fail.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
                     <div class="input_box">
                         <label>Fecha de reporte</label>
                         <input type="date" name="reporte" class="input">
