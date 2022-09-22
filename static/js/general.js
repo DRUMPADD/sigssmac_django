@@ -212,7 +212,7 @@ form_mant.addEventListener("submit", (e) => {
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
     let arr_els = new Array(), full = 0;
-    for(let i = 0; i < form_update.elements.length; i++) {
+    for(let i = 0; i < form_update.elements.length - 1; i++) {
         arr_els.push(form_update.elements[i].value);
         full = checkData(form_update.elements[i].value) ? full++ : full;
     }
