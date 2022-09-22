@@ -187,7 +187,14 @@ function modifyManteinment (answers) {
         showGeneralManteinment()
     })
     .catch(err => {
-        console.log(err);
+        console.log("Error:",err)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al modificar los datos",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
 }
 
@@ -217,7 +224,14 @@ function deleteManteinment (mant_id) {
         showGeneralManteinment()
     })
     .catch(err => {
-
+        console.log("Error:",err)
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al eliminar registro",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
     })
 }
 
