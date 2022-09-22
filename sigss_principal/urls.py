@@ -29,6 +29,7 @@ urlpatterns = [
     path("plataforma/general/mostrarGeneral", g_req.show_general_mant, name="showGeneralMnt"),
     path("plataforma/general/crearGeneral", g_req.create_general, name="createGeneralMnt"),
     path("plataforma/general/modificarGeneral", g_req.modify_general, name="modifyGeneralMnt"),
+    path("plataforma/general/eliminarGeneral", g_req.delete_general, name="deleteGeneralMnt"),
     # ? Activities requests
     path("plataforma/actividades", activities_view, name="actividades"),
     path("plataforma/actividades/crear_actividad", act_req.create_activity, name="createActivity"),
