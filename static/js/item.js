@@ -1,5 +1,7 @@
 let sl_providers = document.querySelector(".sl_providers")
 let form = document.querySelector(".form_create");
+let box_update_form = document.getElementById("content-hidden");
+let btnClose = document.querySelector(".btnClose");
 
 function getCookie(name) {
     let cookieValue = null;
@@ -16,6 +18,17 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+
+function hideUpdateForm() {
+    box_update_form.style.visibility = "hidden";
+    box_update_form.style.opacity = 0;
+    form_update.reset();
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
+});
+
 
 async function getProviders () {
     let response = await fetch("/plataforma/proveedor/mostrarProveedores");
