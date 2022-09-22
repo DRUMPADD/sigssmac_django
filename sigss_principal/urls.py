@@ -49,9 +49,12 @@ urlpatterns = [
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
     path("plataforma/correctivo/mostrarCorrectivo", mnt_req.show_corrective_mant, name="showManteinments"),
+    path("plataforma/correctivo/agregarCorrectivo", mnt_req.create_manteinment, name="createManteinment"),
+    path("plataforma/correctivo/modificarCorrectivo", mnt_req.modify_manteinment, name="modifyManteinment"),
+    path("plataforma/correctivo/eliminarCorrectivo", mnt_req.delete_manteinment, name="deleteManteinment"),
     # ? Provider requests
     path("plataforma/proveedor/mostrarProveedores", pro_req.show_providers, name="showProviders"),
-    path("plataforma/correctivo/agregarProveedor", pro_req.create_provider, name="createProviders"),
-    path("plataforma/correctivo/modificarProveedor", pro_req.modify_provider, name="modifyProviders"),
-    path("plataforma/correctivo/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
+    path("plataforma/proveedor/agregarProveedor", pro_req.create_provider, name="createProviders"),
+    path("plataforma/proveedor/modificarProveedor", pro_req.modify_provider, name="modifyProviders"),
+    path("plataforma/proveedor/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
 ]
