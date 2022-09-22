@@ -215,6 +215,7 @@ form_update.addEventListener("submit", (e) => {
     for(let i = 0; i < form_update.elements.length - 1; i++) {
         arr_els.push(form_update.elements[i].value);
         full = checkData(form_update.elements[i].value) ? full++ : full;
+        console.log(checkData(form_update.elements[i].value) ? full++ : full);
     }
 
     console.log(full);
