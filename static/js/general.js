@@ -85,7 +85,20 @@ async function showGeneralManteinment () {
     for(let i = 0; i < btnsDelete.length; i++) {
         btnsDelete[i].addEventListener("click", (e) => {
             const parentTR = btnsUpdate[i].parentElement.parentElement;
-            console.log(parentTR.getElementsByTagName("td")[0].innerText);
+            Swal.fire({
+                title: "¿Está seguro de eliminar este registro?",
+                text: "Esta acción no podrá ser revertida",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, eliminar',
+                cancelButtonText: 'Cancelar',
+            }).then(result => {
+                if(result.isConfirmed) {
+                    deleteManteinment(parentTR.getElementsByTagName("td")[0].innerText)
+                }
+            })
         });
     }
 }
@@ -166,11 +179,47 @@ function modifyManteinment () {
         return res.json();
     })
     .then(async d => {
-        console.log(d);
-        showGeneralManteinment();
+        Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showGeneralManteinment()
     })
     .catch(err => {
         console.log(err);
+    })
+}
+
+function deleteManteinment (mant_id) {
+    fetch("/plataforma/general/eliminarGeneral", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With': 'XMLHttpRequest',
+            'X-CSRFToken': getCookie("csrftoken")
+        },
+        body: JSON.stringify({
+            prev_id: mant_id
+        })
+    })
+    .then(response => {
+        return response.json();
+    })
+    .then(d => {
+        Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        showGeneralManteinment()
+    })
+    .catch(err => {
+
     })
 }
 
