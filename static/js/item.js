@@ -2,6 +2,10 @@ let sl_providers = document.querySelector(".sl_providers")
 let form = document.querySelector(".form_create");
 let box_update_form = document.getElementById("content-hidden");
 let btnClose = document.querySelector(".btnClose");
+let sl_prov = document.querySelector(".sl_providers");
+let btn = document.querySelector(".select_option");
+let toggleEv = document.querySelector(".toggle-event");
+let selectBox = document.querySelector(".select_box");
 
 function getCookie(name) {
     let cookieValue = null;
@@ -19,11 +23,24 @@ function getCookie(name) {
     return cookieValue;
 }
 
+function toggleAction () {
+    toggleEv.classList.toggle("disable")
+}
+
 function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
+    if(selectBox.classList.contains("disable")) {
+        toggleEv.classList.toggle("disable")
+    }
     form_update.reset();
 }
+
+btn.addEventListener("click", () => {
+    if(sl_prov.value == "NUEVO") {
+        toggleAction();
+    }
+})
 
 btnClose.addEventListener("click", () => {
     hideUpdateForm();
@@ -54,6 +71,11 @@ async function showProviders () {
     str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
     
     sl_providers.innerHTML = str_prov;
+
+
+    sl_providers.addEventListener("click", (e) => {
+        console.log(e);
+    })
 }
 
 
@@ -65,7 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    for(let i = 0; i < form.elements.length; i++) {
+    for(let i = 0; i < form.elements.length - 1; i++) {
         console.log(form.elements[i].name + ":",form.elements[i].value);
     }
 })
