@@ -2,6 +2,7 @@ from django.http import JsonResponse
 from django.db import connection
 from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, DatabaseError, OperationalError
 import json
+from django.shortcuts import redirect
 
 def show_items(request):
     try:
@@ -16,14 +17,15 @@ def show_items(request):
 
 def create_item(request):
     if request.method == 'POST':
-        responses = json.loads(request.body.decode("utf-8"))
-        print(responses.get("cod_"))
-        print(responses.get("name_"))
-        print(responses.get("quantity"))
+        # responses = json.loads(request.body.decode("utf-8"))
+        print(request.POST.get("cod_item"))
+        print(request.POST.get("name_item"))
+        print(request.POST.get("quantity_item"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (responses.get("cod_"), responses.get("name_"), responses.get("quantity")))
-            return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
+            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (request.POST.get("cod_item"), request.POST.get("name_item"), request.POST.get("quantity_item")))
+            # return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
+            return redirect("items")
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError, DataError, DatabaseError, OperationalError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
