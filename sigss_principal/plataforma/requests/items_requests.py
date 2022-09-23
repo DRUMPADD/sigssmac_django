@@ -72,7 +72,8 @@ def search_item(request):
     if request.method == 'POST':
         response = json.loads(request.body.decode("utf-8"))
         print("Respuesta:",response.get("cod_item"))
-        found_, found_2 = ""
+        found_ = ""
+        found_2 = ""
         try:
             cursor = connection.cursor()
             cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO_PREVENTIVO", [response.get("cod_item")])
@@ -85,7 +86,7 @@ def search_item(request):
             cursor2 = connection.cursor()
             cursor2.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO_CORRECTIVO", [response.get("cod_item")])
             found_2 = cursor2.fetchall()
-            print(found_)
+            print(found_2)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print("Error:",e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
