@@ -45,9 +45,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         btn.addEventListener("click", () => {
             if(sl_prov.value == "NUEVO") {
                 console.log(sl_prov.value);
-                selectBox.style.display == 'none';
-                selectBox.style.visibility == 'hidden';
-                selectBox.style.opacity == 0;
+                selectBox.style.display = 'none';
+                selectBox.style.visibility = 'hidden';
+                selectBox.style.opacity = 0;
                 newProvBox.style.display = "flex";
                 newProvBox.style.visibility = "visible";
                 newProvBox.style.opacity = 1;
