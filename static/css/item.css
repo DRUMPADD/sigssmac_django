@@ -115,6 +115,13 @@ div > .btnUpd {
     background-color:rgb(24, 177, 13);
 }
 
+.btnClose {
+    color: #fff;
+    padding: 10px;
+    background-color: #d81818;
+    cursor: pointer;
+}
+
 /* ?? Estilo de boton para aparecer formulario */
 .link-add {
     color: #fff;
