@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <h1 class="center">Item {{ caracteristicas.1 }}</h1>
+    <h1 class="center">Item {{ item }}</h1>
     <main class="box">
         <h2>Características generales</h2>
         <div class="grid-area">
@@ -90,7 +90,7 @@
     <form class="form_create">
         {% csrf_token %}
         <a class="btnClose">X</a>
-        <input type="text" name="item" value="{{ caracteristicas.1 }}" disabled>
+        <input type="text" name="item" value="{{ item }}" disabled>
         <div class="flex select_box">
             <div class="content-update">
                 <label>Proveedor</label>
