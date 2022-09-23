@@ -37,29 +37,24 @@ def item_view(request, id_item):
         "item": id_item
     }
     print("ID:",id_item)
-    if id_item != '':
-        try:
-            cursor = connection.cursor()
-            cursor2 = connection.cursor()
-            cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
-            cursor2.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [id_item])
-            get_info = cursor.fetchall()
-            get_pro = cursor2.fetchall()
-            print(get_info)
-            print(get_pro, True if get_pro else False)
-            context["existe_prov"] = True if get_pro else False
-            context["existe"] = True if get_info else False
-            context["title"] = 'Item ' + id_item if get_info else 'Item no encontrado'
-        except (OperationalError, DatabaseError, ProgrammingError) as e:
-            print(e)
-        finally:
-            cursor.close()
-            cursor2.close()
-        return render(request, "plataforma/item.html", context)
-    else:
-        context["title"] = 'Item no encontrado'
-        context["existe"] = False
-        return render(request, "plataforma/item.html", context)
+    try:
+        cursor = connection.cursor()
+        cursor2 = connection.cursor()
+        cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
+        cursor2.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [id_item])
+        get_info = cursor.fetchall()
+        get_pro = cursor2.fetchall()
+        print(get_info)
+        print(get_pro, True if get_pro else False)
+        context["existe_prov"] = True if get_pro else False
+        context["existe"] = True if get_info else False
+        context["title"] = 'Item ' + id_item if get_info else 'Item no encontrado'
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+    finally:
+        cursor.close()
+        cursor2.close()
+    return render(request, "plataforma/item.html", context)
 
 # def manteinment_1_view(request):
 #     context = {
