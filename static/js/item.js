@@ -44,8 +44,10 @@ async function showProviders () {
     })
 }
 
+console.log("Existe:", prov_box.getElementsByClassName("id"));
+console.log("Existe texto:", prov_box.getElementsByClassName("id").innerText);
 
-if(prov_box.getElementsByClassName("id")) {
+if(prov_box.getElementsByClassName("id").innerText != "") {
     let btnAppearForm = document.querySelector(".link-add");
 
     btnAppearForm.addEventListener("click", () => {
@@ -80,7 +82,7 @@ function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
     form.reset();
-    if(prov_box.getElementsByClassName("id")) {
+    if(prov_box.getElementsByClassName("id").innerText != "") {
         if(btnAppearForm.style.display == 'none') {
             console.log("Display caja select:", btnAppearForm.style.display);
             btnAppearForm.style.display == 'block';
