@@ -5,45 +5,9 @@ let btnClose = document.querySelector(".btnClose");
 let sl_prov = document.querySelector(".sl_providers");
 let btn = document.querySelector(".select_option");
 let selectBox = document.querySelector(".select_box");
+
 let newProvBox = document.querySelector(".content-new-prov");
-let btnAppearForm = document.querySelector(".link-add");
-
-
-function getCookie(name) {
-    let cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        const cookies = document.cookie.split(';');
-        for (let i = 0; i < cookies.length; i++) {
-            const cookie = cookies[i].trim();
-            // Does this cookie string begin with the name we want?
-            if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
-            }
-        }
-    }
-    return cookieValue;
-}
-
-btnAppearForm.addEventListener("click", () => {
-    box_update_form.style.visibility = "visible";
-    box_update_form.style.opacity = 1;
-})
-
-function hideUpdateForm() {
-    box_update_form.style.visibility = "hidden";
-    box_update_form.style.opacity = 0;
-    form.reset();
-    if(btnAppearForm.style.display == 'none') {
-        console.log("Display caja select:", btnAppearForm.style.display);
-        btnAppearForm.style.display == 'block';
-        newProvBox.style.display == 'none';
-    }
-}
-
-btnClose.addEventListener("click", () => {
-    hideUpdateForm();
-});
+let prov_box = document.getElementById("provider-content");
 
 
 async function getProviders () {
@@ -78,14 +42,56 @@ async function showProviders () {
             newProvBox.style.display == 'block';
         }
     })
-    
 }
 
 
-window.addEventListener("DOMContentLoaded", () => {
-    showProviders();
-})
+if(prov_box.getElementsByClassName("id")) {
+    let btnAppearForm = document.querySelector(".link-add");
 
+    btnAppearForm.addEventListener("click", () => {
+        box_update_form.style.visibility = "visible";
+        box_update_form.style.opacity = 1;
+    })
+
+    window.addEventListener("DOMContentLoaded", () => {
+        showProviders();
+    })
+}
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
+
+function hideUpdateForm() {
+    box_update_form.style.visibility = "hidden";
+    box_update_form.style.opacity = 0;
+    form.reset();
+    if(prov_box.getElementsByClassName("id")) {
+        if(btnAppearForm.style.display == 'none') {
+            console.log("Display caja select:", btnAppearForm.style.display);
+            btnAppearForm.style.display == 'block';
+            newProvBox.style.display == 'none';
+        }
+    }
+}
+
+btnClose.addEventListener("click", () => {
+    hideUpdateForm();
+});
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
