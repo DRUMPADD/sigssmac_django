@@ -111,14 +111,26 @@
     font-size: 17px;
 }
 
-.btnUpd,
-.select_option {
+.btnUpd {
     padding: 13px;
     font-size: 18px;
     font-weight: 700;
     border-radius: 30px;
     cursor: pointer;
     transition: .2s ease-out;
+}
+
+.select_option {
+    border: 2px solid #000;
+    background-color: #fff;
+    border-radius: 50%;
+    transition: .2s ease-out;
+}
+
+.select_option i {
+    padding: 13px;
+    font-size: 18px;
+    color: #000;
 }
 
 div > .btnUpd {
@@ -140,7 +152,8 @@ div > .btnUpd {
 }
 
 .select_option:hover {
-    background-color: rgba(134, 255, 174, 0.6);
+    color: #fff;
+    background-color: rgb(6, 88, 231);
 }
 
 /* ?? Estilo de boton para aparecer formulario */
@@ -159,6 +172,7 @@ div > .btnUpd {
 }
 
 .content-new-prov {
+    display: none;
     visibility: hidden;
     opacity: 0;
 }
