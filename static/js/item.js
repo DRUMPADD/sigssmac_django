@@ -78,11 +78,6 @@ async function showProviders () {
     str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
     
     sl_providers.innerHTML = str_prov;
-
-
-    sl_providers.addEventListener("click", (e) => {
-        console.log(e);
-    })
 }
 
 
