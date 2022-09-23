@@ -50,7 +50,7 @@ def delete_item(request):
         try:
             cursor = connection.cursor()
             cursor.callproc("ELIMINAR_ITEM", [response.get("cod_item")])
-            return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
+            return JsonResponse({"status": "success", "msg": "Equipo eliminado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
@@ -63,7 +63,7 @@ def delete_item_complete(request):
         try:
             cursor = connection.cursor()
             cursor.callproc("ELIMINAR_ITEM_COMPLETO", [response.get("cod_item")])
-            return JsonResponse({"msg": "Eliminado"}, status=200)
+            return JsonResponse({"status": "success", "msg": "Equipo eliminado por completo"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"msg": "Error en el sistema"}, status=200)
@@ -96,11 +96,11 @@ def search_item(request):
             cursor2.close()
         
         if found_ and found_2:
-            return JsonResponse({"msg": "Encontrados"}, status=200)
+            return JsonResponse({"status": "success", "msg": "Encontrados"}, status=200)
         elif found_ or found_2:
-            return JsonResponse({"msg": "Encontrado"}, status=200)
+            return JsonResponse({"status": "success", "msg": "Encontrado"}, status=200)
         else:
-            return JsonResponse({"msg": "No encontrado"}, status=200)
+            return JsonResponse({"status": "success", "msg": "No encontrado"}, status=200)
 
 def caract_item(request):
     if request.methods == 'POST':
