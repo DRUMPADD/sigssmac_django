@@ -78,7 +78,9 @@
             </div>
         </div>
         {% else %}
-            <a href="#content-hidden" class="link-add">Agregar proveedor</a>
+            <div class="flex-appear">
+                <a href="#content-hidden" class="link-add">Agregar proveedor</a>
+            </div>
         {% endif %}
     </main>
 
@@ -89,12 +91,14 @@
         {% csrf_token %}
         <a class="btnClose">X</a>
         <input type="text" name="item" value="{{ caracteristicas.1 }}" disabled>
-        <div class="toggle-event content-update select_box">
-            <label>Proveedor</label>
-            <select name="sl_providers" class="sl_providers toggle-event"></select>
-            <button type="button" class="select_option toggle-event"></button>
+        <div class="flex select_box">
+            <div class="content-update">
+                <label>Proveedor</label>
+                <select name="sl_providers" class="sl_providers"></select>
+                <button type="button" class="select_option"><i class="fa-sharp fa-solid fa-circle-check"></i></button>
+            </div>
         </div>
-        <div class="flex toggle-event disable">
+        <div class="flex content-new-prov">
             <div class="content-update">
                 <label>Código o RFC</label>
                 <label>Nombre</label>
