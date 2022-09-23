@@ -49,7 +49,7 @@ def delete_item(request):
         response = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("DELETE FROM maquinas_equipos where maq_eq_id = %s", [response.get("cod_item")])
+            cursor.callproc("ELIMINAR_ITEM", [response.get("cod_item")])
             return JsonResponse({"status": "success", "msg": "Item eliminado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
