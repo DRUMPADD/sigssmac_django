@@ -6,6 +6,8 @@ let sl_prov = document.querySelector(".sl_providers");
 let btn = document.querySelector(".select_option");
 let toggleEv = document.querySelector(".toggle-event");
 let selectBox = document.querySelector(".select_box");
+let btnAppearForm = document.querySelector(".link-add");
+
 
 function getCookie(name) {
     let cookieValue = null;
@@ -26,6 +28,11 @@ function getCookie(name) {
 function toggleAction () {
     toggleEv.classList.toggle("disable")
 }
+
+btnAppearForm.addEventListener("click", () => {
+    box_update_form.style.visibility = "visible";
+    box_update_form.style.opacity = 1;
+})
 
 function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
