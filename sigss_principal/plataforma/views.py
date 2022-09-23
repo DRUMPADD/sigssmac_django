@@ -33,7 +33,9 @@ def items_view(request):
     return render(request, "plataforma/items_new.html", context)
 
 def item_view(request, id_item):
-    context = {}
+    context = {
+        "item": id_item
+    }
     print("ID:",id_item)
     if id_item != '':
         try:
