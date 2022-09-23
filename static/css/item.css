@@ -125,11 +125,13 @@
     background-color: #fff;
     border-radius: 50%;
     transition: .2s ease-out;
+    border: 0;
 }
 
 .select_option i {
-    font-size: 18px;
+    font-size: 28px;
     color: #000;
+    cursor: pointer;
 }
 
 div > .btnUpd {
@@ -150,7 +152,7 @@ div > .btnUpd {
     cursor: pointer;
 }
 
-.select_option:hover {
+.select_option i:hover {
     color: rgb(6, 88, 231);
 }
 
