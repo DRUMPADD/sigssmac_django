@@ -74,18 +74,23 @@ def search_item(request):
         print("Respuesta:",response.get("cod_item"))
         try:
             cursor = connection.cursor()
-            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO", [response.get("cod_item")])
+            cursor2 = connection.cursor()
+            cursor.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO_PREVENTIVO", [response.get("cod_item")])
+            cursor2.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO_CORRECTIVO", [response.get("cod_item")])
             found_ = cursor.fetchall()
+            found_2 = cursor2.fetchall()
             print(found_)
-            if found_:
+            if found_ and found_2:
+                return JsonResponse({"msg": "Encontrados"}, status=200)
+            elif found_:
+                return JsonResponse({"msg": "Encontrado"}, status=200)
+            elif found_2:
                 return JsonResponse({"msg": "Encontrado"}, status=200)
             else:
                 return JsonResponse({"msg": "No encontrado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print("Error:",e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
-        finally:
-            cursor.close()
 
 def caract_item(request):
     if request.methods == 'POST':
