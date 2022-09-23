@@ -157,3 +157,8 @@ div > .btnUpd {
     display: none;
     pointer-events: none;
 }
+
+.content-new-prov {
+    visibility: hidden;
+    opacity: 0;
+}
