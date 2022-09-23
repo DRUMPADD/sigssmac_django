@@ -103,46 +103,46 @@ function checkQuantity(quantity) {
     return quantity === null || quantity === undefined;
 }
 
-function createItem (cod_item, name_item, quantity_item) {
-    fetch("/plataforma/equipo/registrarItem", {
-        method: 'POST',
-        headers: {
-            'Accept': 'application/json',
-            'X-Requested-With': 'XMLHttpRequest',
-            'X-CSRFToken': getCookie('csrftoken'),
-        },
-        body: JSON.stringify({
-            cod_: cod_item,
-            name_: name_item,
-            quantity: quantity_item
-        })
-    })
-    .then(response => {
-        return response.json();
-    })
-    .then(async data => {
-        console.log(data);
-        await Swal.fire({
-            position: 'center',
-            icon: data.status,
-            title: data.msg,
-            confirmButtonColor: '#19ec27',
-            confirmButtonText: 'ACEPTAR',
-        })
-        showItems();
-        form.reset();
-    })
-    .catch(e => {
-        console.log("Error:",e)
-        Swal.fire({
-            position: 'center',
-            icon: "error",
-            title: "Error al registrar los datos",
-            confirmButtonColor: '#df1c11',
-            confirmButtonText: 'ACEPTAR',
-        })
-    })
-}
+// function createItem (cod_item, name_item, quantity_item) {
+//     fetch("/plataforma/equipo/registrarItem", {
+//         method: 'POST',
+//         headers: {
+//             'Accept': 'application/json',
+//             'X-Requested-With': 'XMLHttpRequest',
+//             'X-CSRFToken': getCookie('csrftoken'),
+//         },
+//         body: JSON.stringify({
+//             cod_: cod_item,
+//             name_: name_item,
+//             quantity: quantity_item
+//         })
+//     })
+//     .then(response => {
+//         return response.json();
+//     })
+//     .then(async data => {
+//         console.log(data);
+//         await Swal.fire({
+//             position: 'center',
+//             icon: data.status,
+//             title: data.msg,
+//             confirmButtonColor: '#19ec27',
+//             confirmButtonText: 'ACEPTAR',
+//         })
+//         showItems();
+//         form.reset();
+//     })
+//     .catch(e => {
+//         console.log("Error:",e)
+//         Swal.fire({
+//             position: 'center',
+//             icon: "error",
+//             title: "Error al registrar los datos",
+//             confirmButtonColor: '#df1c11',
+//             confirmButtonText: 'ACEPTAR',
+//         })
+//     })
+// }
 
 function modifyItem () {
     fetch("/plataforma/equipo/modificarItem", {
@@ -218,29 +218,29 @@ function searchItem (item_id) {
     })
 }
 
-form.addEventListener("submit", (e) => {
-    e.preventDefault();
+// form.addEventListener("submit", (e) => {
+//     e.preventDefault();
 
-    let isIdValid = checkId(e.target.cod_item.value),
-        isNameValid = checkName(e.target.name_item.value),
-        isDescriptionValid = checkQuantity(e.target.quantity_item.value);
-    let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    if(!isFormValid) {
-        createItem(
-            e.target.cod_item.value,
-            e.target.name_item.value,
-            e.target.quantity_item.value
-        );
-    } else {
-        Swal.fire({
-            position: 'center',
-            icon: 'warning',
-            title: 'Todos los campos son requeridos',
-            confirmButtonColor: '#d33',
-            confirmButtonText: 'Accept',
-        })
-    }
-})
+//     let isIdValid = checkId(e.target.cod_item.value),
+//         isNameValid = checkName(e.target.name_item.value),
+//         isDescriptionValid = checkQuantity(e.target.quantity_item.value);
+//     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+//     if(!isFormValid) {
+//         createItem(
+//             e.target.cod_item.value,
+//             e.target.name_item.value,
+//             e.target.quantity_item.value
+//         );
+//     } else {
+//         Swal.fire({
+//             position: 'center',
+//             icon: 'warning',
+//             title: 'Todos los campos son requeridos',
+//             confirmButtonColor: '#d33',
+//             confirmButtonText: 'Accept',
+//         })
+//     }
+// })
 
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
