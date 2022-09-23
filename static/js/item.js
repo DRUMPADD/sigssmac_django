@@ -51,8 +51,8 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     let btnAppearForm = document.querySelector(".link-add");
 
     btnAppearForm.addEventListener("click", () => {
-        box_update_form.style.visibility = "visible";
-        box_update_form.style.opacity = 1;
+        newProvBox.style.visibility = "visible";
+        newProvBox.style.opacity = 1;
     })
 
     window.addEventListener("DOMContentLoaded", () => {
@@ -83,10 +83,9 @@ function hideUpdateForm() {
     box_update_form.style.opacity = 0;
     form.reset();
     if(prov_box.getElementsByClassName("id").length == 0) {
-        if(btnAppearForm.style.display == 'none') {
-            console.log("Display caja select:", btnAppearForm.style.display);
-            btnAppearForm.style.display == 'block';
-            newProvBox.style.display == 'none';
+        if(newProvBox.style.visibility == 'visible') {
+            newProvBox.style.visibility == 'hidden';
+            newProvBox.style.opacity == 0;
         }
     }
 }
