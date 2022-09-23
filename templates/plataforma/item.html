@@ -90,7 +90,9 @@
     <form class="form_create">
         {% csrf_token %}
         <a class="btnClose">X</a>
-        <input type="text" name="item" value="{{ item }}" disabled>
+        <div class="content-update">
+            <input type="text" name="item" value="{{ item }}" disabled>
+        </div>
         <div class="flex_form select_box">
             <div class="content-update-select">
                 <label>Proveedor</label>
