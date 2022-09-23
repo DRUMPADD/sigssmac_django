@@ -54,7 +54,7 @@ def item_view(request, id_item):
         get_pro = cursor2.fetchall()
         print(get_pro[0][0])
         print(get_pro, True if get_pro[0][0] != None else False)
-        context["existe_prov"] = True if get_pro else False
+        context["existe_prov"] = True if get_pro[0][0] else False
         context["provider"] = get_pro
     except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
