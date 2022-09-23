@@ -10,44 +10,44 @@ let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
 
-async function getProviders () {
-    let response = await fetch("/plataforma/proveedor/mostrarProveedores");
-    let data = await response.json();
-    return data.msg;
-}
-
-async function showProviders () {
-    let providers = await getProviders();
-    let ar_prov = new Array(providers);
-    let str_prov = "";
-
-    str_prov += `<option selected disabled>--Seleccionar</option>`
-    
-    ar_prov[0].forEach(element => {
-        if(element.length !== 0) {
-            str_prov += `
-            <option value="${element[0]}">${element[1]}</option>
-            `
-        }
-    });
-    
-    str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
-    
-    sl_providers.innerHTML = str_prov;
-
-    btn.addEventListener("click", () => {
-        if(sl_prov.value == "NUEVO") {
-            console.log(sl_prov.value);
-            btnAppearForm.style.display == 'none';
-            newProvBox.style.display == 'block';
-        }
-    })
-}
-
 console.log("Existe:", prov_box.getElementsByClassName("id"));
 console.log("Existe texto:", prov_box.getElementsByClassName("id").innerText);
 
 if(prov_box.getElementsByClassName("id").length == 0) {
+    async function getProviders () {
+        let response = await fetch("/plataforma/proveedor/mostrarProveedores");
+        let data = await response.json();
+        return data.msg;
+    }
+    
+    async function showProviders () {
+        let providers = await getProviders();
+        let ar_prov = new Array(providers);
+        let str_prov = "";
+    
+        str_prov += `<option selected disabled>--Seleccionar</option>`
+        
+        ar_prov[0].forEach(element => {
+            if(element.length !== 0) {
+                str_prov += `
+                <option value="${element[0]}">${element[1]}</option>
+                `
+            }
+        });
+        
+        str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
+        
+        sl_providers.innerHTML = str_prov;
+    
+        btn.addEventListener("click", () => {
+            if(sl_prov.value == "NUEVO") {
+                console.log(sl_prov.value);
+                btnAppearForm.style.display == 'none';
+                newProvBox.style.visibility = "visible";
+                newProvBox.style.opacity = 1;
+            }
+        })
+    }
     let btnAppearForm = document.querySelector(".link-add");
 
     btnAppearForm.addEventListener("click", () => {
