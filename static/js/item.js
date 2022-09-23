@@ -38,9 +38,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         btn.addEventListener("click", () => {
             if(sl_prov.value == "NUEVO") {
                 console.log(sl_prov.value);
-                btnAppearForm.style.display == 'none';
-                btnAppearForm.style.visibility == 'hidden';
-                btnAppearForm.style.opacity == 0;
+                prov_box.style.display == 'none';
+                prov_box.style.visibility == 'hidden';
+                prov_box.style.opacity == 0;
                 newProvBox.style.display = "block";
                 newProvBox.style.visibility = "visible";
                 newProvBox.style.opacity = 1;
@@ -82,8 +82,11 @@ function hideUpdateForm() {
     box_update_form.style.opacity = 0;
     form.reset();
     if(prov_box.getElementsByClassName("id").length == 0) {
+        prov_box.style.display == 'flex';
+        prov_box.style.visibility == 'visible';
+        prov_box.style.opacity == 1;
         if(newProvBox.style.visibility == 'visible') {
-            newProvBox.style.display == 'block';
+            newProvBox.style.display == 'none';
             newProvBox.style.visibility == 'hidden';
             newProvBox.style.opacity == 0;
         }
