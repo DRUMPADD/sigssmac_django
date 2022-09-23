@@ -9,10 +9,6 @@ let selectBox = document.querySelector(".select_box");
 let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
-
-console.log("Existe:", prov_box.getElementsByClassName("id"));
-console.log("Existe texto:", prov_box.getElementsByClassName("id").innerText);
-
 if(prov_box.getElementsByClassName("id").length == 0) {
     async function getProviders () {
         let response = await fetch("/plataforma/proveedor/mostrarProveedores");
@@ -43,6 +39,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
             if(sl_prov.value == "NUEVO") {
                 console.log(sl_prov.value);
                 btnAppearForm.style.display == 'none';
+                btnAppearForm.style.visibility == 'hidden';
+                btnAppearForm.style.opacity == 0;
+                newProvBox.style.display = "block";
                 newProvBox.style.visibility = "visible";
                 newProvBox.style.opacity = 1;
             }
@@ -51,8 +50,8 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     let btnAppearForm = document.querySelector(".link-add");
 
     btnAppearForm.addEventListener("click", () => {
-        newProvBox.style.visibility = "visible";
-        newProvBox.style.opacity = 1;
+        box_update_form.style.visibility = "visible";
+        box_update_form.style.opacity = 1;
     })
 
     window.addEventListener("DOMContentLoaded", () => {
@@ -84,6 +83,7 @@ function hideUpdateForm() {
     form.reset();
     if(prov_box.getElementsByClassName("id").length == 0) {
         if(newProvBox.style.visibility == 'visible') {
+            newProvBox.style.display == 'block';
             newProvBox.style.visibility == 'hidden';
             newProvBox.style.opacity == 0;
         }
