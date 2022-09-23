@@ -4,8 +4,8 @@ let box_update_form = document.getElementById("content-hidden");
 let btnClose = document.querySelector(".btnClose");
 let sl_prov = document.querySelector(".sl_providers");
 let btn = document.querySelector(".select_option");
-let toggleEv = document.querySelector(".toggle-event");
 let selectBox = document.querySelector(".select_box");
+let newProvBox = document.querySelector(".content-new-prov");
 let btnAppearForm = document.querySelector(".link-add");
 
 
@@ -25,10 +25,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function toggleAction () {
-    toggleEv.classList.toggle("disable")
-}
-
 btnAppearForm.addEventListener("click", () => {
     box_update_form.style.visibility = "visible";
     box_update_form.style.opacity = 1;
@@ -37,15 +33,17 @@ btnAppearForm.addEventListener("click", () => {
 function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
-    if(selectBox.classList.contains("disable")) {
-        toggleEv.classList.toggle("disable")
-    }
     form_update.reset();
+    if(btnAppearForm.style.display == 'none') {
+        btnAppearForm.style.display == 'block';
+        newProvBox.style.display == 'none';
+    }
 }
 
 btn.addEventListener("click", () => {
     if(sl_prov.value == "NUEVO") {
-        toggleAction();
+        btnAppearForm.style.display == 'none';
+        newProvBox.style.display == 'block';
     }
 })
 
