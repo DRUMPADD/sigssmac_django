@@ -38,10 +38,10 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         btn.addEventListener("click", () => {
             if(sl_prov.value == "NUEVO") {
                 console.log(sl_prov.value);
-                prov_box.style.display == 'none';
-                prov_box.style.visibility == 'hidden';
-                prov_box.style.opacity == 0;
-                newProvBox.style.display = "block";
+                selectBox.style.display == 'none';
+                selectBox.style.visibility == 'hidden';
+                selectBox.style.opacity == 0;
+                newProvBox.style.display = "flex";
                 newProvBox.style.visibility = "visible";
                 newProvBox.style.opacity = 1;
             }
@@ -81,10 +81,10 @@ function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
     form.reset();
+    selectBox.style.display == 'flex';
+    selectBox.style.visibility == 'visible';
+    selectBox.style.opacity == 1;
     if(prov_box.getElementsByClassName("id").length == 0) {
-        prov_box.style.display == 'flex';
-        prov_box.style.visibility == 'visible';
-        prov_box.style.opacity == 1;
         if(newProvBox.style.visibility == 'visible') {
             newProvBox.style.display == 'none';
             newProvBox.style.visibility == 'hidden';
