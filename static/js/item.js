@@ -33,8 +33,9 @@ btnAppearForm.addEventListener("click", () => {
 function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
-    form_update.reset();
+    form.reset();
     if(btnAppearForm.style.display == 'none') {
+        console.log("Display caja select:", btnAppearForm.style.display);
         btnAppearForm.style.display == 'block';
         newProvBox.style.display == 'none';
     }
