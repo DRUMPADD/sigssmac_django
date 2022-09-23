@@ -89,15 +89,15 @@
     padding: 10px;
 }
 
-.flex_form .content-update-select button {
-    margin-left: 10px;
-    padding: 10px;
-    font-size: 17px;
-}
-
 .select,
 .select_option {
     pointer-events: visible;
+}
+
+.content-update-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .content-update > label,
@@ -121,14 +121,13 @@
 }
 
 .select_option {
-    border: 2px solid #000;
+    padding: 0;
     background-color: #fff;
     border-radius: 50%;
     transition: .2s ease-out;
 }
 
 .select_option i {
-    padding: 13px;
     font-size: 18px;
     color: #000;
 }
@@ -152,8 +151,7 @@ div > .btnUpd {
 }
 
 .select_option:hover {
-    color: #fff;
-    background-color: rgb(6, 88, 231);
+    color: rgb(6, 88, 231);
 }
 
 /* ?? Estilo de boton para aparecer formulario */
