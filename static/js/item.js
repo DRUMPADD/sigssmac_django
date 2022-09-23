@@ -40,13 +40,6 @@ function hideUpdateForm() {
     }
 }
 
-btn.addEventListener("click", () => {
-    if(sl_prov.value == "NUEVO") {
-        btnAppearForm.style.display == 'none';
-        newProvBox.style.display == 'block';
-    }
-})
-
 btnClose.addEventListener("click", () => {
     hideUpdateForm();
 });
@@ -76,6 +69,15 @@ async function showProviders () {
     str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
     
     sl_providers.innerHTML = str_prov;
+
+    btn.addEventListener("click", () => {
+        if(sl_prov.value == "NUEVO") {
+            console.log(sl_prov.value);
+            btnAppearForm.style.display == 'none';
+            newProvBox.style.display == 'block';
+        }
+    })
+    
 }
 
 
