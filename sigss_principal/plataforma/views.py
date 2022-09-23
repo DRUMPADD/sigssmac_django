@@ -43,7 +43,17 @@ def item_view(request, id_item):
         get_info = cursor.fetchall()
         print(get_info)
         context["existe"] = True if get_info else False
-        context["title"] = 'Item ' + id_item if get_info else 'Item no encontrado'
+        context["title"] = 'Item ' + id_item
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+    finally:
+        cursor.close()
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT n_item, cantidad from maquinas_equipos where maq_eq_id = %s", [id_item])
+        get_info = cursor.fetchall()
+        print(get_info)
+        context["item_info"] = get_info
     except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
     finally:
