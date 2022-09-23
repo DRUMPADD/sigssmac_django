@@ -49,8 +49,41 @@
     padding: 30px;
 }
 
-.content-update {
+.content-update-btn {
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+}
+
+
+.content-update,
+.content-update-select {
     margin-top: 15px;
+}
+
+.flex .content-update label {
+    width: 200px;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+.flex .content-update label,
+.flex .content-update input,
+.flex .content-update select{
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.flex .content-update button {
+    margin-left: 10px;
+    padding: 10px;
+    font-size: 17px;
+}
+
+.select,
+.select_option {
+    pointer-events: visible;
 }
 
 .content-update > label {
@@ -80,4 +113,10 @@ div > .btnUpd {
     color: rgb(255, 255, 255);
     border: 1px solid #000;
     background-color:rgb(24, 177, 13);
+}
+
+/* ?? Evento si se elige última opción */
+.disable {
+    display: none;
+    pointer-events: none;
 }
