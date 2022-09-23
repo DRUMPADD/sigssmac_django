@@ -208,3 +208,7 @@ div > .btnUpd {
 .btnClose:active {
     transform: scale(1);
 }
+
+.content-new-prov {
+    display: none;
+}
