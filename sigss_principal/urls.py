@@ -45,6 +45,8 @@ urlpatterns = [
     path("plataforma/equipo/info_item/<slug:id_item>", item_view, name="item"),
     path("plataforma/equipo/registrarItem", it_req.create_item, name="createItem"),
     path("plataforma/equipo/buscarItem", it_req.search_item, name="searchItem"),
+    path("plataforma/equipo/eliminarItem", it_req.delete_item, name="deleteItem"),
+    path("plataforma/equipo/eliminarItemCompleto", it_req.delete_item_complete, name="deleteCompleteItem"),
     # path("mantenimiento_preventivo", manteinment_1_view, name="manteinment1"),
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
