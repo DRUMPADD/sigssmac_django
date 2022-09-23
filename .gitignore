@@ -1,2 +1,6 @@
 # Django #
 db.sqlite3
+
+
+static/css
+static/js
