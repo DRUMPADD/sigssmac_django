@@ -24,7 +24,7 @@
         <h1>Máquinas y/o equipos</h1>
         <div class="flex-cont">
             <div class="form-content-item">
-                <form class="form-item" id="form_item">
+                <form action="{% url 'create item' %}" method="POST" class="form-item" id="form_item">
                     {% csrf_token %}
                     <h2 class="center">Registrar item</h2>
                     <div class="input-box">
