@@ -51,7 +51,7 @@
     width: 40%;
     margin: 8% auto;
     border-radius: 10px;
-    background-color: rgba(134, 255, 174, 0.6);
+    background-color: rgba(74, 226, 124, 0.7);
     padding: 30px;
 }
 
@@ -79,14 +79,17 @@
 }
 
 .flex_form .content-update label,
-.flex_form .content-update input,
-.flex_form .content-update select{
+.flex_form .content-update input {
     display: block;
+}
+.flex_form .content-update label,
+.flex_form .content-update input,
+.flex_form .content-update-select select{
     margin: 10px 0;
     padding: 10px;
 }
 
-.flex_form .content-update button {
+.flex_form .content-update-select button {
     margin-left: 10px;
     padding: 10px;
     font-size: 17px;
@@ -97,10 +100,12 @@
     pointer-events: visible;
 }
 
-.content-update > label {
+.content-update > label,
+.content-update-select > label {
     font-size: 20px;
 }
 
+.content-update-select > input,
 .content-update > input {
     padding: 10px;
     font-size: 17px;
