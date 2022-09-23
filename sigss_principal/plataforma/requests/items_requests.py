@@ -82,6 +82,8 @@ def search_item(request):
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print("Error:",e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+        finally:
+            cursor.close()
         try:
             cursor2 = connection.cursor()
             cursor2.callproc("BUSCAR_ITEM_EN_MANTENIMIENTO_CORRECTIVO", [response.get("cod_item")])
@@ -90,6 +92,8 @@ def search_item(request):
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print("Error:",e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+        finally:
+            cursor2.close()
         
         if found_ and found_2:
             return JsonResponse({"msg": "Encontrados"}, status=200)
