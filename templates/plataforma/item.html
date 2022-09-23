@@ -91,14 +91,14 @@
         {% csrf_token %}
         <a class="btnClose">X</a>
         <input type="text" name="item" value="{{ item }}" disabled>
-        <div class="flex select_box">
+        <div class="flex_form select_box">
             <div class="content-update">
                 <label>Proveedor</label>
                 <select name="sl_providers" class="sl_providers"></select>
                 <button type="button" class="select_option"><i class="fa-sharp fa-solid fa-circle-check"></i></button>
             </div>
         </div>
-        <div class="flex content-new-prov">
+        <div class="flex_form content-new-prov">
             <div class="content-update">
                 <label>Código o RFC</label>
                 <label>Nombre</label>
