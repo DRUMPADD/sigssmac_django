@@ -88,28 +88,29 @@
     <form class="form_create">
         {% csrf_token %}
         <a class="btnClose">X</a>
-        <input type="text" name="item" value="{{ caracteristicas.1 }}">
-        <div class="content-update">
-            <label>Código o RFC</label>
-            <input type="text" name="id_prov" class="inp_hid">
+        <input type="text" name="item" value="{{ caracteristicas.1 }}" disabled>
+        <div class="toggle-event content-update">
+            <label>Proveedor</label>
+            <select name="sl_providers" class="sl_providers toggle-event"></select>
+            <button type="button" class="select_option toggle-event"></button>
         </div>
-        <div class="content-update">
-            <label>Nombre</label>
-            <input type="text" name="prov_name" class="inp_hid">
+        <div class="flex toggle-event disable">
+            <div class="content-update">
+                <label>Código o RFC</label>
+                <label>Nombre</label>
+                <label>Télefono</label>
+                <label>Email</label>
+                <label>País</label>
+            </div>
+            <div class="content-update">
+                <input type="text" name="id_prov" class="inp toggle-event disable">
+                <input type="text" name="prov_name" class="inp toggle-event disable">
+                <input type="text" name="number_phone" class="inp toggle-event disable">
+                <input type="text" name="email" class="inp toggle-event disable">
+                <input type="text" name="country" class="inp toggle-event disable">
+            </div>
         </div>
-        <div class="content-update">
-            <label>Télefono</label>
-            <input type="text" name="number_phone" class="inp_hid">
-        </div>
-        <div class="content-update">
-            <label>Email</label>
-            <input type="text" name="email" class="inp_hid">
-        </div>
-        <div class="content-update">
-            <label>País</label>
-            <input type="text" name="country" class="inp_hid">
-        </div>
-        <div class="content-update">
+        <div class="content-update-btn">
             <button type="submit" class="btnUpd btnSend">Realizar cambios</button>
         </div>
     </form>
