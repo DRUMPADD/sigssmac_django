@@ -72,21 +72,21 @@
     margin-top: 15px;
 }
 
-.flex .content-update label {
+.flex_form .content-update label {
     width: 200px;
     color: rgb(255, 255, 255);
     font-size: 18px;
 }
 
-.flex .content-update label,
-.flex .content-update input,
-.flex .content-update select{
+.flex_form .content-update label,
+.flex_form .content-update input,
+.flex_form .content-update select{
     display: block;
     margin: 10px 0;
     padding: 10px;
 }
 
-.flex .content-update button {
+.flex_form .content-update button {
     margin-left: 10px;
     padding: 10px;
     font-size: 17px;
