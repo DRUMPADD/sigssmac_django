@@ -9,6 +9,13 @@ let selectBox = document.querySelector(".select_box");
 let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
+let btnAppearForm = document.querySelector(".link-add");
+
+btnAppearForm.addEventListener("click", () => {
+    box_update_form.style.visibility = "visible";
+    box_update_form.style.opacity = 1;
+})
+
 if(prov_box.getElementsByClassName("id").length == 0) {
     async function getProviders () {
         let response = await fetch("/plataforma/proveedor/mostrarProveedores");
@@ -47,12 +54,6 @@ if(prov_box.getElementsByClassName("id").length == 0) {
             }
         })
     }
-    let btnAppearForm = document.querySelector(".link-add");
-
-    btnAppearForm.addEventListener("click", () => {
-        box_update_form.style.visibility = "visible";
-        box_update_form.style.opacity = 1;
-    })
 
     window.addEventListener("DOMContentLoaded", () => {
         showProviders();
