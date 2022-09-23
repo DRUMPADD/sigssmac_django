@@ -28,6 +28,12 @@
     font-weight: 600;
 }
 
+.flex-appear {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* ?? Formulario oculto */
 .update_hidden {
     position: fixed;
@@ -95,7 +101,8 @@
     font-size: 17px;
 }
 
-.btnUpd {
+.btnUpd,
+.select_option {
     padding: 13px;
     font-size: 18px;
     font-weight: 700;
@@ -120,6 +127,11 @@ div > .btnUpd {
     padding: 10px;
     background-color: #d81818;
     cursor: pointer;
+}
+
+
+.select_option:hover {
+    background-color: rgba(134, 255, 174, 0.6);
 }
 
 /* ?? Estilo de boton para aparecer formulario */
