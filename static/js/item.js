@@ -82,10 +82,10 @@ function hideUpdateForm() {
     box_update_form.style.visibility = "hidden";
     box_update_form.style.opacity = 0;
     form.reset();
-    selectBox.style.display == 'flex';
-    selectBox.style.visibility == 'visible';
-    selectBox.style.opacity == 1;
     if(prov_box.getElementsByClassName("id").length == 0) {
+        selectBox.style.display == 'flex';
+        selectBox.style.visibility == 'visible';
+        selectBox.style.opacity == 1;
         if(newProvBox.style.visibility == 'visible') {
             newProvBox.style.display == 'none';
             newProvBox.style.visibility == 'hidden';
