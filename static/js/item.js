@@ -16,6 +16,18 @@ btnAppearForm.addEventListener("click", () => {
     box_update_form.style.opacity = 1;
 })
 
+btn.addEventListener("click", () => {
+    if(sl_prov.value == "NUEVO") {
+        console.log(sl_prov.value);
+        selectBox.style.display = 'none';
+        selectBox.style.visibility = 'hidden';
+        selectBox.style.opacity = 0;
+        newProvBox.style.display = "flex";
+        newProvBox.style.visibility = "visible";
+        newProvBox.style.opacity = 1;
+    }
+})
+
 if(prov_box.getElementsByClassName("id").length == 0) {
     async function getProviders () {
         let response = await fetch("/plataforma/proveedor/mostrarProveedores");
@@ -41,18 +53,6 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         str_prov += `<option value="NUEVO">Nuevo proveedor</option>`
         
         sl_providers.innerHTML = str_prov;
-    
-        btn.addEventListener("click", () => {
-            if(sl_prov.value == "NUEVO") {
-                console.log(sl_prov.value);
-                selectBox.style.display = 'none';
-                selectBox.style.visibility = 'hidden';
-                selectBox.style.opacity = 0;
-                newProvBox.style.display = "flex";
-                newProvBox.style.visibility = "visible";
-                newProvBox.style.opacity = 1;
-            }
-        })
     }
 
     window.addEventListener("DOMContentLoaded", () => {
