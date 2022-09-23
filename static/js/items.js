@@ -203,7 +203,7 @@ function searchItem (item_id) {
         return response.json();
     })
     .then(d => {
-        console.log(d.msg);
+        deleteItem(d.msg, item_id);
         return d.msg;
     })
     .catch(e => {
@@ -215,6 +215,58 @@ function searchItem (item_id) {
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
+    })
+}
+
+function deleteItem (msg, item_id) {
+    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "/plataforma/equipo/eliminarItemCompleto" : "/plataforma/equipo/eliminarItem";
+    let confirm_message = msg == "Encontrados" || msg == "Encontrado" ? "Este equipo está asignado a uno o varios registros, ¿está seguro de eliminarlo?" : "¿Está seguro de eliminar este equipo?";
+    Swal.fire({
+        title: confirm_message,
+        text: "Esta acción no podrá ser revertida",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d30000',
+        confirmButtonText: 'Yes, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then(result => {
+        if(result.isConfirmed) {
+            fetch(url_fetch, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                body: JSON.stringify({
+                    cod_item: item_id
+                })
+            })
+            .then(response => {
+                return response.json();
+            })
+            .then(async d => {
+                await showItems();
+                Swal.fire({
+                    position: 'center',
+                    icon: d.status,
+                    title: d.msg,
+                    confirmButtonColor: '#19ec27',
+                    confirmButtonText: 'ACEPTAR',
+                })
+            })
+            .catch(e => {
+                console.log(e)
+                Swal.fire({
+                    position: 'center',
+                    icon: "error",
+                    title: "Error al buscar actividad",
+                    confirmButtonColor: '#df1c11',
+                    confirmButtonText: 'ACEPTAR',
+                })
+            })
+        }
     })
 }
 
