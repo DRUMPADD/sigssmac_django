@@ -227,3 +227,9 @@ div > .btnUpd {
     border: 1px solid #000;
     background-color:rgb(24, 177, 13);
 }
+
+/* ?? Contador de caracteres */
+#counter {
+    font-weight: 700;
+    position: fixed;
+}
