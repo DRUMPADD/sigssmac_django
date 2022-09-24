@@ -1,100 +1,84 @@
+{% extends 'plataforma/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es-MX">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title }}</title>
-    <link rel="stylesheet" href="{% static 'css/principal.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-    <link rel="stylesheet" href="{% static 'css/general.css' %}">
-</head>
-<body>
-    <header>
-        <h1>Plataforma industrial</h1>
-        <nav class="list">
-                <a href="{% url 'principal' %}" class="link"><span>General</span></a>
-                <a href="{% url 'actividades' %}" class="link"><span>Actividades</span></a>
-                <a href="{% url 'items' %}" class="link"><span>Artículos</span></a>
-                <a href="{% url 'manteinment' %}" class="link"><span>Mantenimiento correctivo</span></a>
-        </nav>
-    </header>
-    <div class="container">
-        <div class="general_mant">
-            <h1>Mantenimiento preventivo</h1>
-            <form class="form-mant">
-                <h3>Registro de mantenimiento</h3>
-                <input type="text" name="id_mant" hidden>
-                <div class="flex">
-                    <div>
-                        <label>Elegir máquina o equipo</label>
-                        <select name="sl_item" class="inp select-per">
-                            <option selected disabled>--Seleccionar--</option>
-                            {% for item in items %}
-                                <option value="{{ item.0 }}">{{ item.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Frecuencia</label>
-                        <select name="sl_frec" class="inp select-per">
-                            <option selected disabled>--Seleccionar--</option>
-                            {% for freq in frequence %}
-                                <option value="{{ freq.0 }}">{{ freq.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div>
-                        <label>Actividad</label>
-                        <select name="sl_act" class="inp select-per">
-                            <option selected disabled>--Seleccionar--</option>
-                            {% for activity in activities %}
-                                <option value="{{ activity.0 }}">{{ activity.1 }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/general.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="general_mant">
+        <h1>Mantenimiento preventivo</h1>
+        <form class="form-mant">
+            <h3>Registro de mantenimiento</h3>
+            <input type="text" name="id_mant" hidden>
+            <div class="flex">
+                <div>
+                    <label>Elegir máquina o equipo</label>
+                    <select name="sl_item" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for item in items %}
+                        <option value="{{ item.0 }}">{{ item.1 }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                
-                <div class="flex">
-                    <div>
-                        <label>Fecha de creación</label>
-                        <input type="date" name="fec-creacion" class="inp">
-                    </div>
-                    <div>
-                        <label>Fecha próxima</label>
-                        <input type="date" name="fec-proxima" class="inp">
-                    </div>
+                <div>
+                    <label>Frecuencia</label>
+                    <select name="sl_frec" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for freq in frequence %}
+                        <option value="{{ freq.0 }}">{{ freq.1 }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-                <div class="flex">
-                    <div>
-                        <input type="submit" class="inp btnGen" value="Registrar">
-                    </div>
+                <div>
+                    <label>Actividad</label>
+                    <select name="sl_act" class="inp select-per">
+                        <option selected disabled>--Seleccionar--</option>
+                        {% for activity in activities %}
+                        <option value="{{ activity.0 }}">{{ activity.1 }}</option>
+                        {% endfor %}
+                    </select>
                 </div>
-            </form>
-        </div>
-        <div class="scroll">
-            <table class="table">
-                <thead class="t_header">
-                    <tr>
-                        <th>ID</th>
-                        <th>Máquina/Equipo</th>
-                        <th>Código</th>
-                        <th>Ubicación</th>
-                        <th>Frecuencia</th>
-                        <th>Fecha de creación</th>
-                        <th>Código de actividad</th>
-                        <th>Actividades</th>
-                        <th>Próxima fecha</th>
-                        <th>Faltan (días)</th>
-                        <th colspan="3">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="t_body">
-                </tbody>
-            </table>
-        </div>
+            </div>
+            
+            <div class="flex">
+                <div>
+                    <label>Fecha de creación</label>
+                    <input type="date" name="fec-creacion" class="inp">
+                </div>
+                <div>
+                    <label>Fecha próxima</label>
+                    <input type="date" name="fec-proxima" class="inp">
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <input type="submit" class="inp btnGen" value="Registrar">
+                </div>
+            </div>
+        </form>
     </div>
+    <div class="scroll">
+        <table class="table">
+            <thead class="t_header">
+                <tr>
+                    <th>ID</th>
+                    <th>Máquina/Equipo</th>
+                    <th>Código</th>
+                    <th>Ubicación</th>
+                    <th>Frecuencia</th>
+                    <th>Fecha de creación</th>
+                    <th>Código de actividad</th>
+                    <th>Actividades</th>
+                    <th>Próxima fecha</th>
+                    <th>Faltan (días)</th>
+                    <th colspan="3">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="t_body">
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+{% block out-content %}
     <div class="update_hidden" id="content-hidden">
         <form class="form_update">
             {% csrf_token %}
@@ -138,8 +122,7 @@
             </div>
         </form>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
-    <script src="{% static 'js/general-config.js' %}"></script>
-    <script src="{% static 'js/general.js' %}"></script>
-</body>
-</html>
+{% endblock %}
+{% block js_code %}
+<script src="{% static 'js/general.js' %}"></script>
+{% endblock %}
