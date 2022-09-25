@@ -9,17 +9,19 @@
     <h1 class="center">Item {{ item }}</h1>
     <main class="box">
         <h2>Características generales</h2>
-        <div class="grid-area">
+        <div>
+            {% for item_d in item_info %}
             <div class="flex">
-                <div>
-                    <p>Nombre:</p>
-                    <p>{{ item_info.0 }}</p>
-                </div>
-                <div>
-                    <p>Cantidad:</p>
-                    <p>{{ item_info.1 }}</p>
-                </div>
+                <p>Nombre:</p>
+                <p>{{ item_d.0 }}</p>
             </div>
+            <div class="flex">
+                <p>Cantidad:</p>
+                <p>{{ item_d.1 }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="grid-area">
             <div class="flex">
                 <div>
                     <p>Nombre:</p>
@@ -68,70 +70,65 @@
         <div class="grid-area">
             <div class="flex">
                 <div>
-                    <p>Nombre:</p>
-                    <p class="id">{{ provider.0 }}</p>
+                    <label>Nombre:</label>
+                    <input class="id" name="prov_nam" value="{{ provider.0 }}" disabled>
                 </div>
                 <div>
-                    <p>Telefono:</p>
-                    <p>{{ provider.1 }}</p>
+                    <label>Telefono:</label>
+                    <input type="text" name="phone" value="{{ provider.1 }}" disabled>
                 </div>
             </div>
             <div class="flex">
                 <div>
-                    <p>Correo:</p>
-                    <p>{{ provider.3 }}</p>
+                    <label>Correo:</label>
+                    <input type="text" name="email" value="{{ provider.3 }}" disabled>
                 </div>
                 <div>
-                    <p>País:</p>
-                    <p>{{ provider.4 }}</p>
+                    <label>País:</label>
+                    <input type="text" name="country" value="{{ provider.4 }}" disabled>
                 </div>
             </div>
         </div>
         {% else %}
-            <div class="flex-appear">
-                <a href="#content-hidden" class="link-add">Agregar proveedor</a>
-            </div>
+        <div class="update_hidden" id="content-hidden">
+            <form class="form_create">
+                {% csrf_token %}
+                <a class="btnClose">X</a>
+                <div class="content-update">
+                    <input type="text" name="item" value="{{ item }}" disabled>
+                </div>
+                <div class="flex_form select_box">
+                    <div class="content-update-select">
+                        <label>Proveedor</label>
+                        <select name="sl_providers" class="sl_providers"></select>
+                        <button type="button" class="select_option"><i class="fa-sharp fa-solid fa-circle-check"></i></button>
+                    </div>
+                </div>
+                <div class="flex_form content-new-prov">
+                    <div class="content-update">
+                        <label>Código o RFC</label>
+                        <label>Nombre</label>
+                        <label>Télefono</label>
+                        <label>Email</label>
+                        <label>País</label>
+                    </div>
+                    <div class="content-update">
+                        <input type="text" name="id_prov" class="inp_hid toggle-event disable">
+                        <input type="text" name="prov_name" class="inp_hid toggle-event disable">
+                        <input type="text" name="number_phone" class="inp_hid toggle-event disable">
+                        <input type="text" name="email" class="inp_hid toggle-event disable">
+                        <input type="text" name="country" class="inp_hid toggle-event disable">
+                    </div>
+                </div>
+                <div class="content-update-btn">
+                    <button type="submit" class="btnUpd btnSend">Realizar cambios</button>
+                </div>
+            </form>
+        </div>
         {% endif %}
     </main>
 
 {% endblock  %}
-{% block out-content %}
-<div class="update_hidden" id="content-hidden">
-    <form class="form_create">
-        {% csrf_token %}
-        <a class="btnClose">X</a>
-        <div class="content-update">
-            <input type="text" name="item" value="{{ item }}" disabled>
-        </div>
-        <div class="flex_form select_box">
-            <div class="content-update-select">
-                <label>Proveedor</label>
-                <select name="sl_providers" class="sl_providers"></select>
-                <button type="button" class="select_option"><i class="fa-sharp fa-solid fa-circle-check"></i></button>
-            </div>
-        </div>
-        <div class="flex_form content-new-prov">
-            <div class="content-update">
-                <label>Código o RFC</label>
-                <label>Nombre</label>
-                <label>Télefono</label>
-                <label>Email</label>
-                <label>País</label>
-            </div>
-            <div class="content-update">
-                <input type="text" name="id_prov" class="inp_hid toggle-event disable">
-                <input type="text" name="prov_name" class="inp_hid toggle-event disable">
-                <input type="text" name="number_phone" class="inp_hid toggle-event disable">
-                <input type="text" name="email" class="inp_hid toggle-event disable">
-                <input type="text" name="country" class="inp_hid toggle-event disable">
-            </div>
-        </div>
-        <div class="content-update-btn">
-            <button type="submit" class="btnUpd btnSend">Realizar cambios</button>
-        </div>
-    </form>
-</div>
-{% endblock %}
 {% block js_code %}
     <script src="{% static 'js/item.js' %}"></script>
 {% endblock %}
