@@ -1,6 +1,5 @@
 let sl_providers = document.querySelector(".sl_providers")
 let form = document.querySelector(".form_create");
-let btnClose = document.querySelector(".btnClose");
 let btn = document.querySelector(".select_option");
 let selectBox = document.querySelector(".select_box");
 
@@ -67,10 +66,6 @@ function getCookie(name) {
     }
     return cookieValue;
 }
-
-btnClose.addEventListener("click", () => {
-    hideUpdateForm();
-});
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
