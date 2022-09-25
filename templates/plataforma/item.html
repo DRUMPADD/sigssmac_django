@@ -9,15 +9,19 @@
     <h1 class="center">Item {{ item }}</h1>
     <main class="box">
         <h2>Características generales</h2>
-        <div>
+        <div class="grid-area">
             {% for item_d in item_info %}
             <div class="flex">
-                <p>Nombre:</p>
-                <p>{{ item_d.0 }}</p>
+                <div>
+                    <p>Nombre:</p>
+                    <p>{{ item_d.0 }}</p>
+                </div>
             </div>
             <div class="flex">
-                <p>Cantidad:</p>
-                <p>{{ item_d.1 }}</p>
+                <div>
+                    <p>Cantidad:</p>
+                    <p>{{ item_d.1 }}</p>
+                </div>
             </div>
             {% endfor %}
         </div>
