@@ -1,30 +1,22 @@
 let sl_providers = document.querySelector(".sl_providers")
 let form = document.querySelector(".form_create");
-let box_update_form = document.getElementById("content-hidden");
 let btnClose = document.querySelector(".btnClose");
-let sl_prov = document.querySelector(".sl_providers");
 let btn = document.querySelector(".select_option");
 let selectBox = document.querySelector(".select_box");
 
 let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
-let btnAppearForm = document.querySelector(".link-add");
-
-btnAppearForm.addEventListener("click", () => {
-    box_update_form.style.visibility = "visible";
-    box_update_form.style.opacity = 1;
-})
-
 btn.addEventListener("click", () => {
-    if(sl_prov.value == "NUEVO") {
-        console.log(sl_prov.value);
-        selectBox.style.display = 'none';
-        selectBox.style.visibility = 'hidden';
-        selectBox.style.opacity = 0;
+    if(sl_providers.value === "NUEVO") {
+        console.log(sl_providers.value);
         newProvBox.style.display = "flex";
         newProvBox.style.visibility = "visible";
         newProvBox.style.opacity = 1;
+    } else {
+        newProvBox.style.display = "none";
+        newProvBox.style.visibility = "hidden";
+        newProvBox.style.opacity = 0;
     }
 })
 
@@ -74,24 +66,6 @@ function getCookie(name) {
         }
     }
     return cookieValue;
-}
-
-
-
-function hideUpdateForm() {
-    box_update_form.style.visibility = "hidden";
-    box_update_form.style.opacity = 0;
-    form.reset();
-    if(prov_box.getElementsByClassName("id").length == 0) {
-        selectBox.style.display == 'flex';
-        selectBox.style.visibility == 'visible';
-        selectBox.style.opacity == 1;
-        if(newProvBox.style.visibility == 'visible') {
-            newProvBox.style.display == 'none';
-            newProvBox.style.visibility == 'hidden';
-            newProvBox.style.opacity == 0;
-        }
-    }
 }
 
 btnClose.addEventListener("click", () => {
