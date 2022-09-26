@@ -1,6 +1,6 @@
 from sqlite3 import ProgrammingError
 from django.shortcuts import render, HttpResponse
-from django.db import connection, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist
+from django.db import connection, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error
 # Create your views here.
 def general_view(request):
     context = {
@@ -16,7 +16,7 @@ def general_view(request):
         cursor3 = connection.cursor()
         cursor3.execute("SELECT * FROM actividades")
         context["activities"] = cursor3.fetchall()
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
         print(e)
     return render(request, "plataforma/general.html", context)
 
@@ -59,7 +59,7 @@ def item_view(request, id_item):
         print(get_pro)
         context["existe_prov"] = True if get_pro else False
         context["provider"] = get_pro
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
         print(e)
     finally:
         cursor2.close()
@@ -79,7 +79,7 @@ def manteinment_view(request):
         context["items"] = cursor.fetchall()
         context["fails"] = cursor2.fetchall()
         context["novedad"] = cursor3.fetchall()
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
         print(e)
         return HttpResponse("<h1>Ocurrió un error</h1>")
     finally:
