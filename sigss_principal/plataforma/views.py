@@ -1,6 +1,6 @@
 from sqlite3 import ProgrammingError
 from django.shortcuts import render, HttpResponse
-from django.db import connection, OperationalError, DatabaseError, InternalError
+from django.db import connection, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist
 # Create your views here.
 def general_view(request):
     context = {
@@ -16,7 +16,7 @@ def general_view(request):
         cursor3 = connection.cursor()
         cursor3.execute("SELECT * FROM actividades")
         context["activities"] = cursor3.fetchall()
-    except (OperationalError, DatabaseError, InternalError) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
         print(e)
     return render(request, "plataforma/general.html", context)
 
@@ -24,7 +24,7 @@ def activities_view(request):
     context = {
         "title": "Actividades",
     }
-    return render(request, "plataforma/activities.html", context)
+    return render(request, "activities.html", context)
 
 def items_view(request):
     context = {
@@ -42,9 +42,13 @@ def item_view(request, id_item):
         cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
         get_info = cursor.fetchall()
         print(get_info)
-        context["caracteristicas"] = get_info
+        ar = []
+        for car in get_info:
+            if car[1] == id_item:
+                ar.append(car)
+        context["caracteristicas"] = ar
         context["title"] = 'Item ' + id_item
-    except (OperationalError, DatabaseError, ProgrammingError) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
         print(e)
     finally:
         cursor.close()
@@ -52,20 +56,14 @@ def item_view(request, id_item):
         cursor2 = connection.cursor()
         cursor2.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [id_item])
         get_pro = cursor2.fetchall()
-        context["existe_prov"] = True if get_pro[0][0] else False
+        print(get_pro)
+        context["existe_prov"] = True if get_pro else False
         context["provider"] = get_pro
-    except (OperationalError, DatabaseError, ProgrammingError) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
         print(e)
     finally:
         cursor2.close()
     return render(request, "plataforma/item.html", context)
-
-# def manteinment_1_view(request):
-#     context = {
-#         "title": "Mantenimiento preventivo",
-#         "message": "Esta ventana es para mantenimiento preventivo"
-#     }
-#     return render(request, "manteinment1.html", context)
 
 def manteinment_view(request):
     context = {
@@ -81,7 +79,7 @@ def manteinment_view(request):
         context["items"] = cursor.fetchall()
         context["fails"] = cursor2.fetchall()
         context["novedad"] = cursor3.fetchall()
-    except (OperationalError, DatabaseError, ProgrammingError) as e:
+    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
         print(e)
         return HttpResponse("<h1>Ocurrió un error</h1>")
     finally:
