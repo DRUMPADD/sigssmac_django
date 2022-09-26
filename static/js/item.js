@@ -8,7 +8,6 @@ let prov_box = document.getElementById("provider-content");
 if(prov_box.getElementsByClassName("id").length == 0) {
     btn.addEventListener("click", () => {
         if(sl_providers.value === "NUEVO") {
-            console.log(sl_providers.value);
             newProvBox.style.display = "flex";
             newProvBox.style.visibility = "visible";
             newProvBox.style.opacity = 1;
@@ -86,7 +85,6 @@ function registerProvider(values) {
         })
     })
     .catch(e => {
-        console.log(e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -115,7 +113,6 @@ form.addEventListener("submit", (e) => {
     }
     if(ar_answers.length > 3) {
         ar_answers.splice(2, 1)
-        console.log(ar_answers);
         registerProvider({
             item_id: ar_answers[1],
             prov_id: ar_answers[2],
@@ -125,7 +122,6 @@ form.addEventListener("submit", (e) => {
             country: ar_answers[6],
         })
     } else {
-        console.log(ar_answers);
         registerProvider({
             item_id: ar_answers[1],
             prov_id: ar_answers[2]
@@ -138,7 +134,6 @@ let btn_mod = document.querySelector(".select-mod");
 let btn_del = document.querySelector(".select-del");
 let i_del = document.querySelector(".del");
 let inputs_ = document.querySelectorAll(".input_prov");
-console.log(btn_mod);
 
 btn_mod.addEventListener("click", () => {
     inputs_.forEach(element => {

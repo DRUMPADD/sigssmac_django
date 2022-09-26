@@ -161,7 +161,6 @@ function modifyActivity() {
         return result.json();
     })
     .then(async data => {
-        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,
@@ -203,7 +202,6 @@ function searchActivity(id_act) {
         return data.msg;
     })
     .catch(e => {
-        console.log(e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -252,7 +250,6 @@ function deleteActivity(msg, act_cod) {
                 showActivities();
             })
             .catch(e => {
-                console.log(e)
                 Swal.fire({
                     position: 'center',
                     icon: "error",

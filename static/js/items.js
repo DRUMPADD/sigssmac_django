@@ -81,7 +81,6 @@ async function showItems() {
     for(let i = 0; i < btns_delete.length; i++) {
         btns_delete[i].addEventListener("click", (e) => {
             const parentTR = btns_delete[i].parentElement.parentElement;
-            console.log(parentTR.getElementsByTagName("td")[0].innerText);
             searchItem(parentTR.getElementsByTagName("td")[0].innerText);
         });
     }
@@ -121,7 +120,6 @@ function createItem (cod_item, name_item, quantity_item) {
         return response.json();
     })
     .then(async data => {
-        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,
@@ -133,7 +131,6 @@ function createItem (cod_item, name_item, quantity_item) {
         form.reset();
     })
     .catch(e => {
-        console.log("Error:",e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -163,7 +160,6 @@ function modifyItem () {
         return response.json();
     })
     .then(async data => {
-        console.log(data);
         await Swal.fire({
             position: 'center',
             icon: data.status,
@@ -175,7 +171,6 @@ function modifyItem () {
         hideUpdateForm();
     })
     .catch(e => {
-        console.log("Error:",e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -207,7 +202,6 @@ function searchItem (item_id) {
         return d.msg;
     })
     .catch(e => {
-        console.log(e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -257,7 +251,6 @@ function deleteItem (msg, item_id) {
                 })
             })
             .catch(e => {
-                console.log(e)
                 Swal.fire({
                     position: 'center',
                     icon: "error",

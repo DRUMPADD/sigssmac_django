@@ -98,7 +98,6 @@ function createManteinment (data_) {
         form.reset();
     })
     .catch(e => {
-        console.log("Error:",e)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -110,14 +109,12 @@ function createManteinment (data_) {
 }
 
 function modifyManteinment (data_) {
-    console.log(data_);
 }
 
 form.addEventListener("submit", (e) => {
     e.preventDefault();
     let ar = new Array();
     for(let i = 0; i < form.elements.length; i++) {
-        console.log(form.elements[i].name + ":", checkData(form.elements[i].value) + " - " + form.elements[i].value);
         ar.push(form.elements[i].value);
     }
 
@@ -136,7 +133,6 @@ form_update.addEventListener("submit", (e) => {
     e.preventDefault();
     let ar = new Array();
     for(let i = 0; i < form_update.elements.length; i++) {
-        console.log(form_update.elements[i].name + ":", checkData(form_update.elements[i].value) + " - " + form_update.elements[i].value);
         ar.push(form_update.elements[i].value);
     }
 

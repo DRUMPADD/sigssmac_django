@@ -133,7 +133,6 @@ function createManteinment (elements) {
         form_mant.reset();
     })
     .catch(err => {
-        console.log("Error:",err)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -180,7 +179,6 @@ function modifyManteinment (answers) {
         hideUpdateForm();
     })
     .catch(err => {
-        console.log("Error:",err)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -217,7 +215,6 @@ function deleteManteinment (mant_id) {
         showGeneralManteinment()
     })
     .catch(err => {
-        console.log("Error:",err)
         Swal.fire({
             position: 'center',
             icon: "error",
@@ -265,18 +262,7 @@ form_update.addEventListener("submit", (e) => {
     for(let i = 0; i < form_update.elements.length - 1; i++) {
         arr_els.push(form_update.elements[i].value);
         full = checkData(form_update.elements[i].value) ? full++ : full;
-        console.log(checkData(form_update.elements[i].value) ? full++ : full);
     }
-
-    console.log(full);
-    console.log({
-        item_id: arr_els[2],
-        frec_: arr_els[3],
-        create_date: arr_els[5],
-        act_: arr_els[4],
-        date_next: arr_els[6],
-        prev_cod: arr_els[1],
-    })
 
     modifyManteinment({
         item_id: arr_els[2],
