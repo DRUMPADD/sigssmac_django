@@ -1,4 +1,4 @@
-{% extends 'plataforma/base.html' %}
+{% extends 'base_layout.html' %}
 {% load static %}
 
 {% block styles %}
@@ -14,45 +14,45 @@
             <div class="flex">
                 <div>
                     <p>Nombre:</p>
-                    <p>{{ c.2 }}</p>
+                    <p>{% if c.2 != None %} {{ c.2 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Código:</p>
-                    <p>{{ c.1 }}</p>
+                    <p>{% if c.1 != None %} {{ c.1 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Marca:</p>
-                    <p>{{ c.4 }}</p>
+                    <p>{% if c.4 != None %} {{ c.4 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Fecha de compra:</p>
-                    <p>{{ c.5 }}</p>
+                    <p>{% if c.5 != None %} {{ c.5 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Estado:</p>
-                    <p>{{ c.3 }}</p>
+                    <p>{% if c.3 != None %} {{ c.3 }} {% endif %}</p>
                 </div>
             </div>
             <div class="flex">
                 <div>
                     <p>Cantidad:</p>
-                    <p>{{ c.11 }}</p>
+                    <p>{% if c.11 != None %} {{ c.11 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Serie:</p>
-                    <p>{{ c.7 }}</p>
+                    <p>{% if c.7 != None %} {{ c.7 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Modelo:</p>
-                    <p>{{ c.6 }}</p>
+                    <p>{% if c.6 != None %} {{ c.6 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Ubicación:</p>
-                    <p>{{ c.8 }}</p>
+                    <p>{% if c.8 != None %} {{ c.8 }} {% endif %}</p>
                 </div>
                 <div>
                     <p>Fecha de vencimiento de garantía:</p>
-                    <p>{{ c.9 }}</p>
+                    <p>{% if c.9 != None %} {{ c.9 }} {% endif %}</p>
                 </div>
             </div>
         </div>
@@ -62,26 +62,32 @@
         <h2>Datos del proveedor</h2>
         {% if existe_prov %}
         <div class="grid-area">
+            {% for prov in provider %}
             <div class="flex">
                 <div>
                     <label>Nombre:</label>
-                    <input class="id" name="prov_nam" value="{{ provider.0 }}" disabled>
+                    <input type="text" class="input_prov id" name="prov_nam" value="{{ prov.0 }}" disabled>
                 </div>
                 <div>
                     <label>Telefono:</label>
-                    <input type="text" name="phone" value="{{ provider.1 }}" disabled>
+                    <input type="text" class="input_prov" name="phone" value="{{ prov.1 }}" disabled>
                 </div>
             </div>
             <div class="flex">
                 <div>
                     <label>Correo:</label>
-                    <input type="text" name="email" value="{{ provider.3 }}" disabled>
+                    <input type="text" class="input_prov" name="email" value="{{ prov.2 }}" disabled>
                 </div>
                 <div>
                     <label>País:</label>
-                    <input type="text" name="country" value="{{ provider.4 }}" disabled>
+                    <input type="text" class="input_prov" name="country" value="{{ prov.3 }}" disabled>
                 </div>
             </div>
+            <div class="btns">
+                <button type="button" class="btn select-mod"><i class="fa-solid fa-pencil"></i></button>
+                <button type="button" class="btn select-del"><i class="del fa-solid fa-trash-can"></i></button>
+            </div>
+            {% endfor %}
         </div>
         {% else %}
         <form class="form_create">
@@ -118,7 +124,6 @@
         </form>
         {% endif %}
     </main>
-
 {% endblock  %}
 {% block js_code %}
     <script src="{% static 'js/item.js' %}"></script>
