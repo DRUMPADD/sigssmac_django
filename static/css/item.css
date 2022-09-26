@@ -22,7 +22,8 @@
     margin: 18px;
 }
 
-.flex div p {
+.flex div p,
+.flex div label {
     display: inline;
     font-size: 18px;
     font-weight: 600;
@@ -49,7 +50,7 @@
 
 .form_create {
     width: 40%;
-    margin: 8% auto;
+    margin: 0 auto;
     border-radius: 10px;
     background-color: rgba(74, 226, 124, 0.7);
     padding: 30px;
@@ -96,8 +97,9 @@
 
 .content-update-select {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    gap: 10px;
 }
 
 .content-update > label,
@@ -129,9 +131,10 @@
 }
 
 .select_option i {
-    font-size: 28px;
+    font-size: 32px;
     color: #000;
     cursor: pointer;
+    transition: .3s ease-out;
 }
 
 div > .btnUpd {
@@ -175,4 +178,18 @@ div > .btnUpd {
     display: none;
     visibility: hidden;
     opacity: 0;
+}
+
+
+.input_prov {
+    font-size: 17px;
+    padding: 10px;
+    border: 2px solid #fff;
+    background-color: #fff;
+    border-radius: 5px;
+    transition: all .2s ease;
+}
+
+.input_prov:focus {
+    border-color:  #ccc;
 }
