@@ -181,6 +181,7 @@ div > .btnUpd {
 }
 
 
+/* ? Estilos de inputs que contienen información */
 .input_prov {
     font-size: 17px;
     padding: 10px;
@@ -192,4 +193,33 @@ div > .btnUpd {
 
 .input_prov:focus {
     border-color:  #ccc;
+}
+
+/* ? Estilos de botones para habilitar modificación */
+.btns {
+    display: block;
+}
+
+.btn {
+    margin: 15% 10px;
+    border: none;
+    cursor: pointer;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.btn i {
+    padding: 5px;
+    font-size: 18px;
+    color: #fff;
+}
+
+
+.select-mod {
+    background-color: rgba(36, 94, 230, 0.87);
+}
+
+.select-del {
+    background-color: rgba(236, 34, 30, 0.87);
 }
