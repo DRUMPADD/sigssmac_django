@@ -44,3 +44,26 @@ def delete_provider(request):
         except (errors) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+
+def add_provider_to_item(request):
+    if request.method == 'POST':
+        mensaje = ""
+        try:
+            responses = json.loads(request.body.decode("utf-8"))
+            print(responses)
+            print(responses.get("item_id") if responses.get("item_id") != None else "")
+            print(responses.get("prov_id") if responses.get("prov_id") != None else "")
+            print(responses.get("p_nombre") if responses.get("p_nombre") != None else "")
+            print(responses.get("numero_t") if responses.get("numero_t") != None else "")
+            print(responses.get("_email") if responses.get("_email") != None else "")
+            print(responses.get("country") if responses.get("country") != None else "")
+            cursor = connection.cursor()
+            cursor.callproc("PROVEEDOR_COMPLETO_A_ITEM", [responses.get("item_id") if responses.get("item_id") != None else "", responses.get("prov_id") if responses.get("prov_id") != None else "", responses.get("p_nombre") if responses.get("p_nombre") != None else "", responses.get("numero_t") if responses.get("numero_t") != None else "", responses.get("_email") if responses.get("_email") != None else "", responses.get("country") if responses.get("country") != None else ""])
+            mensaje = cursor.fetchone()[0]
+            if mensaje == '':
+                return JsonResponse({"status": "success", "msg": "Proveedor agregado a item"}, status=200)
+            else:
+                return JsonResponse({"status": "success", "msg": mensaje}, status=200)
+        except (errors) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
