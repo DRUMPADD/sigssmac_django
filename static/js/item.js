@@ -75,6 +75,9 @@ function registerProvider(values) {
         },
         body: JSON.stringify(values)
     })
+    .then(res => {
+        return res.json();
+    })
     .then(async d => {
         Swal.fire({
             position: 'center',
@@ -85,6 +88,7 @@ function registerProvider(values) {
         })
     })
     .catch(e => {
+        console.log(e);
         Swal.fire({
             position: 'center',
             icon: "error",
