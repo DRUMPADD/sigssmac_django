@@ -47,6 +47,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     window.addEventListener("DOMContentLoaded", () => {
         showProviders();
     })
+
     form.addEventListener("submit", (e) => {
         e.preventDefault();
         let ar_answers = new Array();
@@ -81,25 +82,132 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         }
     })
 } else {
+    let btn_mod_car = document.querySelector(".select-mod-car");
+    let btn_del_car = document.querySelector(".select-del-car");
+    let i_del_c = document.querySelector(".del-car");
+    let i_mod_c = document.querySelector(".mod-car");
+    let inputs_car = document.querySelectorAll(".inp_car");
+    let form_car = document.querySelector(".form-caracteristics");
+    let btn_sub_car = document.querySelector(".update-car");
+    
     let btn_mod = document.querySelector(".select-mod");
     let btn_del = document.querySelector(".select-del");
     let i_del = document.querySelector(".del");
+    let i_mod = document.querySelector(".mod");
     let inputs_ = document.querySelectorAll(".input_prov");
+    let form_prov = document.querySelector(".form-provider");
+    let btn_sub_mod = document.querySelector(".update-mod");
+
+    btn_mod_car.addEventListener("click", () => {
+        inputs_car.forEach(element => {
+            element.removeAttribute("disabled");
+            element.classList.add("border-active")
+        })
+        i_del_c.classList.remove("fa-trash-can");
+        i_del_c.classList.add("fa-x");
+        i_mod_c.classList.remove("fa-pencil");
+        i_mod_c.classList.add("fa-floppy-disk");
+        btn_mod_car.style.display = "none";
+        btn_sub_car.style.display = "inline-block";
+    })
+    btn_del_car.addEventListener("click", () => {
+        inputs_car.forEach(element => {
+            element.setAttribute("disabled", "");
+            element.classList.remove("border-active")
+        })
+        i_del_c.classList.remove("fa-x");
+        i_del_c.classList.add("fa-trash-can");
+        i_mod_c.classList.remove("fa-floppy-disk");
+        i_mod_c.classList.add("fa-pencil");
+        btn_mod_car.style.display = "inline-block";
+        btn_sub_car.style.display = "none";
+    })
+
+    form_car.addEventListener("submit", (e) => {
+        e.preventDefault();
+        for(let i = 0; i < form_car.elements.length; i++) {
+            if(form_car.elements[i].type != "button" && form_car.elements[i].type != "submit") {
+                console.log(form_car.elements[i].name+":", form_car.elements[i].value,"- tipo:", typeof form_car.elements[i].value);
+            }
+        }
+
+        updateCaracteristics({
+            item_id: form_car["id"].value,
+            name_: form_car["name"].value,
+            quantity: form_car["quantity"].value,
+            brand: form_car["brand"].value,
+            bought_date: form_car["bought_date"].value,
+            state: form_car["sl_state"].value,
+            model: form_car["model"].value,
+            serial_n: form_car["serial_n"].value,
+            location: form_car["location"].value,
+            date_: form_car["date_"].value,
+        });
+
+
+    })
 
     btn_mod.addEventListener("click", () => {
         inputs_.forEach(element => {
             element.removeAttribute("disabled");
+            element.classList.add("border-active")
         })
         i_del.classList.remove("fa-trash-can");
         i_del.classList.add("fa-x");
+        i_mod.classList.remove("fa-pencil");
+        i_mod.classList.add("fa-floppy-disk");
+        btn_mod.style.display = "none";
+        btn_sub_mod.style.display = "inline-block";
     })
 
     btn_del.addEventListener("click", () => {
         inputs_.forEach(element => {
             element.setAttribute("disabled", "");
+            element.classList.remove("border-active")
         })
         i_del.classList.remove("fa-x");
         i_del.classList.add("fa-trash-can");
+        i_mod.classList.remove("fa-floppy-disk");
+        i_mod.classList.add("fa-pencil");
+        btn_sub_mod.style.display = "none";
+        btn_mod.style.display = "inline-block";
+    })
+
+    form_prov.addEventListener("submit", (e) => {
+        e.preventDefault();
+        modifyProvider({
+            nombre: form_prov["prov_nam"].value,
+            telefono: form_prov["phone"].value,
+            email: form_prov["email"].value,
+            pais: form_prov["country"].value,
+            cod_prov: form_prov["id_prov"].value,
+        })
+    })
+
+    let box_update_form = document.getElementById("prov-content");
+    let form_update = document.querySelector(".form_update");
+    let btn_change = document.querySelector(".btn-change");
+    let btnClose = document.querySelector(".btnClose");
+
+    btnClose.addEventListener("click", () => {
+        box_update_form.style.visibility = "hidden";
+        box_update_form.style.opacity = 0;
+    });
+
+    btn_change.addEventListener("click", (e) => {
+        box_update_form.style.visibility = "visible";
+        box_update_form.style.opacity = 1;
+        const parentTR = btn_change.parentElement.parentElement;
+        console.log(parentTR);
+        form_update["sl_providers"].value = parentTR.querySelector("#id_prov").value;
+    });
+
+    form_update.addEventListener("submit", (e) => {
+        e.preventDefault();
+        changeProvider({
+            item_id: form_update["id_item"].value,
+            prov_id: form_update["sl_providers"].value,
+        });
     })
 }
 
@@ -119,8 +227,8 @@ function getCookie(name) {
     return cookieValue;
 }
 
-function registerProvider(values) {
-    fetch("/plataforma/proveedor/agregarProveedorAItem", {
+function modifyProvider(values) {
+    fetch("/plataforma/proveedor/modificarProveedor", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -133,13 +241,14 @@ function registerProvider(values) {
         return res.json();
     })
     .then(async d => {
-        Swal.fire({
+        await Swal.fire({
             position: 'center',
             icon: d.status,
             title: d.msg,
             confirmButtonColor: '#19ec27',
             confirmButtonText: 'ACEPTAR',
         })
+        location.reload();
     })
     .catch(e => {
         console.log(e);
@@ -152,3 +261,75 @@ function registerProvider(values) {
         })
     })
 }
+
+function updateCaracteristics(values) {
+    fetch("/plataforma/equipo/modificarCaracteristicas", {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(values)
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        await Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        location.reload();
+    })
+    .catch(e => {
+        console.log(e);
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al buscar actividad",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
+function changeProvider(values) {
+    fetch("/plataforma/proveedor/cambiarProveedor", {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(values)
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        await Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        location.reload();
+    })
+    .catch(e => {
+        console.log(e);
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al buscar actividad",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
+// ? Copiar archivo
