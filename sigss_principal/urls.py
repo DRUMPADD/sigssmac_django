@@ -47,6 +47,7 @@ urlpatterns = [
     path("plataforma/equipo/buscarItem", it_req.search_item, name="searchItem"),
     path("plataforma/equipo/eliminarItem", it_req.delete_item, name="deleteItem"),
     path("plataforma/equipo/eliminarItemCompleto", it_req.delete_item_complete, name="deleteCompleteItem"),
+    path("plataforma/equipo/modificarCaracteristicas", it_req.modify_carateristics, name="modifyCaracteristics"),
     # path("mantenimiento_preventivo", manteinment_1_view, name="manteinment1"),
     # ? Manteinment requests
     path("plataforma/mantenimiento_correctivo", manteinment_view, name="manteinment"),
@@ -60,4 +61,5 @@ urlpatterns = [
     path("plataforma/proveedor/agregarProveedorAItem", pro_req.add_provider_to_item, name="addProviderToItem"),
     path("plataforma/proveedor/modificarProveedor", pro_req.modify_provider, name="modifyProviders"),
     path("plataforma/proveedor/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
+    path("plataforma/proveedor/cambiarProveedor", pro_req.change_provider, name="changeProviderToItem"),
 ]
