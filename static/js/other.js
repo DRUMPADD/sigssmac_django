@@ -304,6 +304,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 function reloadTag(where) {
+    hideForm();
     if(where == 'PROVEEDOR') {
         showProviders();
     } else if (where == 'FRECUENCIA') {
