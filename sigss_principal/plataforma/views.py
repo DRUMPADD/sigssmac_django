@@ -103,3 +103,9 @@ def manteinment_view(request):
         cursor2.close()
         cursor3.close()
     return render(request, "manteinment.html", context)
+
+def other_view(request):
+    context = {
+        "title": "Otros movimientos"
+    }
+    return render(request, "plataforma/others.html", context)
