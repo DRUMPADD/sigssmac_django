@@ -24,7 +24,7 @@ def activities_view(request):
     context = {
         "title": "Actividades",
     }
-    return render(request, "activities.html", context)
+    return render(request, "plataforma/activities.html", context)
 
 def items_view(request):
     context = {
