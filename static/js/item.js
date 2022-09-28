@@ -66,7 +66,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         }
         if(ar_answers.length > 3) {
             ar_answers.splice(2, 1)
-            registerProvider({
+            register_add_provider({
                 item_id: ar_answers[1],
                 prov_id: ar_answers[2],
                 p_nombre: ar_answers[3],
@@ -75,7 +75,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
                 country: ar_answers[6],
             })
         } else {
-            registerProvider({
+            register_add_provider({
                 item_id: ar_answers[1],
                 prov_id: ar_answers[2]
             })
@@ -227,6 +227,41 @@ function getCookie(name) {
     return cookieValue;
 }
 
+function register_add_provider(values) {
+    fetch("/plataforma/proveedor/agregarProveedorAItem", {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(values)
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(async d => {
+        await Swal.fire({
+            position: 'center',
+            icon: d.status,
+            title: d.msg,
+            confirmButtonColor: '#19ec27',
+            confirmButtonText: 'ACEPTAR',
+        })
+        location.reload();
+    })
+    .catch(e => {
+        console.log(e);
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al agregar nuevo proveedor a item",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
 function modifyProvider(values) {
     fetch("/plataforma/proveedor/modificarProveedor", {
         method: 'POST',
@@ -255,7 +290,7 @@ function modifyProvider(values) {
         Swal.fire({
             position: 'center',
             icon: "error",
-            title: "Error al buscar actividad",
+            title: "Error al modificar proveedor",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
@@ -290,7 +325,7 @@ function updateCaracteristics(values) {
         Swal.fire({
             position: 'center',
             icon: "error",
-            title: "Error al buscar actividad",
+            title: "Error al modificar características",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
@@ -325,11 +360,9 @@ function changeProvider(values) {
         Swal.fire({
             position: 'center',
             icon: "error",
-            title: "Error al buscar actividad",
+            title: "Error al cambiar proveedor",
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
     })
 }
-
-// ? Copiar archivo
