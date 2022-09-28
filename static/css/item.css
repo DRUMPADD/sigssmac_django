@@ -48,12 +48,18 @@
     opacity: 0;
 }
 
-.form_create {
+.form_create,
+.form_update {
     width: 40%;
     margin: 0 auto;
     border-radius: 10px;
     background-color: rgba(74, 226, 124, 0.7);
     padding: 30px;
+}
+
+.form_update {
+    margin-top: 10%;
+    margin-bottom: 10%;
 }
 
 .content-update-btn {
@@ -102,6 +108,7 @@
     gap: 10px;
 }
 
+
 .content-update > label,
 .content-update-select > label {
     font-size: 20px;
@@ -136,6 +143,8 @@
     cursor: pointer;
     transition: .3s ease-out;
 }
+
+
 
 div > .btnUpd {
     display: block;
@@ -181,9 +190,10 @@ div > .btnUpd {
 }
 
 
-/* ? Estilos de inputs que contienen información */
-.input_prov {
+.input_prov,
+.inp_car {
     font-size: 17px;
+    font-weight: 500;
     padding: 10px;
     border: 2px solid #fff;
     background-color: #fff;
@@ -191,11 +201,10 @@ div > .btnUpd {
     transition: all .2s ease;
 }
 
-.input_prov:focus {
-    border-color:  #ccc;
+.border-active {
+    border-color: #ccc;
 }
 
-/* ? Estilos de botones para habilitar modificación */
 .btns {
     display: block;
 }
@@ -211,15 +220,35 @@ div > .btnUpd {
 
 .btn i {
     padding: 5px;
-    font-size: 18px;
     color: #fff;
 }
 
+.del,
+.mod,
+.del-car,
+.mod-car,
+.upd,
+.upd-car,
+.cha {
+    font-size: 23px;
+}
 
-.select-mod {
+.btn-change {
+    background-color: rgb(6, 88, 231);
+}
+
+.update-car,
+.update-mod {
+    display: none;
+    background-color: rgba(13, 217, 6, 0.377);
+}
+
+.select-mod,
+.select-mod-car {
     background-color: rgba(36, 94, 230, 0.87);
 }
 
-.select-del {
+.select-del,
+.select-del-car {
     background-color: rgba(236, 34, 30, 0.87);
 }
