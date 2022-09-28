@@ -12,6 +12,10 @@ import sigss_principal.plataforma.requests.general_requests as g_req
 import sigss_principal.plataforma.requests.manteinment_requests as mnt_req
 # ? Importing Providers requests
 import sigss_principal.plataforma.requests.providers_requests as pro_req
+# ? Importing Other requests
+import sigss_principal.plataforma.requests.frequences_requests as fec_req
+import sigss_principal.plataforma.requests.novelties_requests as nov_req
+import sigss_principal.plataforma.requests.modes_requests as mod_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -62,4 +66,18 @@ urlpatterns = [
     path("plataforma/proveedor/modificarProveedor", pro_req.modify_provider, name="modifyProviders"),
     path("plataforma/proveedor/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
     path("plataforma/proveedor/cambiarProveedor", pro_req.change_provider, name="changeProviderToItem"),
+    # ? Other requests
+    path("plataforma/otrosRegistros", other_view, name="other"),
+    path("plataforma/frecuencia/mostrarFrecuencias", fec_req.showFrequences, name="showFrequences"),
+    path("plataforma/frecuencia/crearFrecuencia", fec_req.createFrequence, name="createFrequence"),
+    path("plataforma/frecuencia/modificarFrecuencia", fec_req.modifyFrequence, name="modifyFrequence"),
+    path("plataforma/frecuencia/eliminarFrecuencia", fec_req.deleteFrequence, name="deleteFrequence"),
+    path("plataforma/novedad/mostrarNovedades", nov_req.showNovelties, name="showNovelties"),
+    path("plataforma/novedad/crearNovedad", nov_req.createNovelty, name="createNovelty"),
+    path("plataforma/novedad/modificarNovedad", nov_req.modifyNovelty, name="modifyNovelty"),
+    path("plataforma/novedad/eliminarNovedad", nov_req.deleteNovelty, name="deleteNovelty"),
+    path("plataforma/modoFallo/mostrarModos", mod_req.showModes, name="showModes"),
+    path("plataforma/modoFallo/crearModo", mod_req.createMode, name="createMode"),
+    path("plataforma/modoFallo/modificarModo", mod_req.modifyMode, name="modifyMode"),
+    path("plataforma/modoFallo/eliminarModo", mod_req.deleteMode, name="deleteMode"),
 ]
