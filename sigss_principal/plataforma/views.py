@@ -79,7 +79,7 @@ def item_view(request, id_item):
         print(e)
     finally:
         cursor.close()
-    return render(request, "item.html", context)
+    return render(request, "plataforma/item.html", context)
 
 def manteinment_view(request):
     context = {
@@ -102,7 +102,7 @@ def manteinment_view(request):
         cursor.close()
         cursor2.close()
         cursor3.close()
-    return render(request, "manteinment.html", context)
+    return render(request, "plataforma/manteinment.html", context)
 
 def other_view(request):
     context = {
