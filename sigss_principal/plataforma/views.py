@@ -41,14 +41,22 @@ def item_view(request, id_item):
         cursor = connection.cursor()
         cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
         get_info = cursor.fetchall()
-        print(get_info)
         ar = []
         for car in get_info:
             if car[1] == id_item:
                 ar.append(car)
         context["caracteristicas"] = ar
         context["title"] = 'Item ' + id_item
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error, ConnectionDoesNotExist) as e:
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+    finally:
+        cursor.close()
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM estado_plat")
+        get_info = cursor.fetchall()
+        context["states"] = get_info
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
     finally:
         cursor.close()
@@ -56,14 +64,22 @@ def item_view(request, id_item):
         cursor2 = connection.cursor()
         cursor2.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [id_item])
         get_pro = cursor2.fetchall()
-        print(get_pro)
         context["existe_prov"] = True if get_pro else False
         context["provider"] = get_pro
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
     finally:
         cursor2.close()
-    return render(request, "plataforma/item.html", context)
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM proveedores")
+        get_pro = cursor.fetchall()
+        context["providers"] = get_pro
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
+        print(e)
+    finally:
+        cursor.close()
+    return render(request, "item.html", context)
 
 def manteinment_view(request):
     context = {
@@ -79,11 +95,11 @@ def manteinment_view(request):
         context["items"] = cursor.fetchall()
         context["fails"] = cursor2.fetchall()
         context["novedad"] = cursor3.fetchall()
-    except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
+    except (OperationalError, DatabaseError, ProgrammingError) as e:
         print(e)
         return HttpResponse("<h1>Ocurrió un error</h1>")
     finally:
         cursor.close()
         cursor2.close()
         cursor3.close()
-    return render(request, "plataforma/manteinment.html", context)
+    return render(request, "manteinment.html", context)
