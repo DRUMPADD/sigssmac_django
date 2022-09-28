@@ -102,14 +102,13 @@ def search_item(request):
         else:
             return JsonResponse({"status": "success", "msg": "No encontrado"}, status=200)
 
-def caract_item(request):
-    if request.methods == 'POST':
+def modify_carateristics(request):
+    if request.method == 'POST':
+        responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute()
-            return JsonResponse({"status": "success", "msg": "Características agregadas a item"}, status=200)
+            cursor.callproc("MODIFICAR_CARACTERISTICAS", [responses.get("item_id"), responses.get("name_"), responses.get("quantity"), responses.get("brand"), responses.get("bought_date"), responses.get("state"), responses.get("model"), responses.get("serial_n"), responses.get("location"), responses.get("date_")])
+            return JsonResponse({"status": "success", "msg": "Características agregadas"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
-        finally:
-            cursor.close()
