@@ -33,8 +33,9 @@
 
 .content-table {
     margin-top: 10px;
-    overflow-y: scroll;
+    width: 100%;
     min-height: 300px;
+    overflow-y: scroll;
 }
 
 i {
