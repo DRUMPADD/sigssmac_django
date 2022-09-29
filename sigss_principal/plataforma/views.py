@@ -1,12 +1,12 @@
-from sqlite3 import ProgrammingError
 from django.shortcuts import render, HttpResponse
 from django.db import connection, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error
+from django.template.exceptions import TemplateSyntaxError, TemplateDoesNotExist
 # Create your views here.
 def general_view(request):
-    context = {
-        "title": "Principal",
-    }
     try:
+        context = {
+            "title": "Principal",
+        }
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM maquinas_equipos")
         context["items"] = cursor.fetchall()
@@ -16,21 +16,33 @@ def general_view(request):
         cursor3 = connection.cursor()
         cursor3.execute("SELECT * FROM actividades")
         context["activities"] = cursor3.fetchall()
+        return render(request, "plataforma/general.html", context)
     except (OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error) as e:
         print(e)
-    return render(request, "plataforma/general.html", context)
+        return render(request, "plataforma/template_error.html")
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
 
 def activities_view(request):
-    context = {
-        "title": "Actividades",
-    }
-    return render(request, "plataforma/activities.html", context)
+    try:
+        context = {
+            "title": "Actividades",
+        }
+        return render(request, "plataforma/activities.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
 
 def items_view(request):
-    context = {
-        "title": "Listado de máquinas o equipo",
-    }
-    return render(request, "plataforma/items_new.html", context)
+    try:
+        context = {
+            "title": "Listado de máquinas o equipo",
+        }
+        return render(request, "plataforma/items_new.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
 
 def item_view(request, id_item):
     context = {
@@ -79,7 +91,11 @@ def item_view(request, id_item):
         print(e)
     finally:
         cursor.close()
-    return render(request, "plataforma/item.html", context)
+    try:
+        return render(request, "plataforma/item.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
 
 def manteinment_view(request):
     context = {
@@ -102,10 +118,18 @@ def manteinment_view(request):
         cursor.close()
         cursor2.close()
         cursor3.close()
-    return render(request, "plataforma/manteinment.html", context)
+    try:
+        return render(request, "plataforma/manteinment.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
 
 def other_view(request):
-    context = {
-        "title": "Otros movimientos"
-    }
-    return render(request, "plataforma/others.html", context)
+    try:
+        context = {
+            "title": "Otros movimientos"
+        }
+        return render(request, "plataforma/others.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print("Error en template:",er)
+        return render(request, "plataforma/template_error.html")
