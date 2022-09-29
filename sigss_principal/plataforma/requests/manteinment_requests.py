@@ -1,4 +1,4 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.db import connection
 from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors
 import json

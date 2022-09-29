@@ -1,4 +1,4 @@
-from django.http import JsonResponse, HttpResponse
+from django.http import JsonResponse
 from django.db import connection
 from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError
 import json
@@ -14,7 +14,7 @@ def show_general_mant(request):
         print(e)
         return JsonResponse({"msg": "Error en el sistema"}, status=200)
     except ValueError as e:
-        return HttpResponse("<h1>Nada</h1>")
+        return JsonResponse({"msg": "Error en el sistema"}, status=200)
     finally:
         cursor.close()
 
