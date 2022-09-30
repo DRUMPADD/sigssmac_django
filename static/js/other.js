@@ -35,8 +35,8 @@ function hideForm() {
         element.reset();
         element["id"].removeAttribute("disabled");
         if(element["option"].value != "AGREGAR") {
-            let h1Text = formSelected.querySelector("h1").innerText.split(" ")[1];
-            formSelected.querySelector("h1").innerText = "Agregar" + " " + h1Text;
+            let h1Text = element.querySelector("h1").innerText.split(" ")[1];
+            element.querySelector("h1").innerText = "Agregar" + " " + h1Text;
         }
         
         element["option"].value = "AGREGAR";
