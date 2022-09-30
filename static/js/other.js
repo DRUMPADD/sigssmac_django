@@ -134,7 +134,6 @@ async function showProviders() {
             const parentTR = element.parentElement.parentElement;
             boxForm[0].style.visibility = "visible";
             boxForm[0].style.opacity = 1;
-            console.log(boxForm[0]);
             formProvider["id"].setAttribute("disabled", "");
             formProvider["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
             formProvider["name_p"].value = parentTR.getElementsByTagName("td")[1].innerText;
@@ -162,7 +161,6 @@ async function getFrequences() {
 
 async function showFrequences() {
     let frequences = await getFrequences();
-    console.log(frequences);
     let ar_prov = new Array(frequences);
     let str_info = "";
     ar_prov[0].forEach(el => {
@@ -263,7 +261,6 @@ async function getModes() {
 
 async function showModes() {
     let modes = await getModes();
-    console.log(modes);
     let ar_prov = new Array(modes);
     let str_info = "";
     ar_prov[0].forEach(el => {
