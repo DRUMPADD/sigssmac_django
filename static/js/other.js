@@ -34,6 +34,11 @@ function hideForm() {
     formSelected.forEach((element, i) => {
         element.reset();
         element["id"].removeAttribute("disabled");
+        if(element["option"].value != "AGREGAR") {
+            let h1Text = formSelected.querySelector("h1").innerText.split(" ")[1];
+            formSelected.querySelector("h1").innerText = "Agregar" + " " + h1Text;
+        }
+        
         element["option"].value = "AGREGAR";
     })
     console.log("Reseteado");
