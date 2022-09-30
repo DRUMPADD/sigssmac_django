@@ -108,10 +108,10 @@ async function showProviders() {
                 <td>${el[3]}</td>
                 <td>${el[4]}</td>
                 <td class="flex-tr">
-                    <a class="btn-mod-prov">
+                    <a data-title="Modificar" class="btn-mod-prov">
                         <i class="i-mod fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a class="btn-del-prov">
+                    <a data-title="Eliminar" class="btn-del-prov">
                         <i class="i-del fa-solid fa-trash-can"></i>
                     </a>
                 </td>
@@ -162,10 +162,10 @@ async function showFrequences() {
                 <td>${el[0]}</td>
                 <td>${el[1]}</td>
                 <td class="flex-tr">
-                    <a class="btn-mod-freq">
+                    <a data-title="Modificar" class="btn-mod-freq">
                         <i class="i-mod fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a class="btn-del-freq">
+                    <a data-title="Eliminar" class="btn-del-freq">
                         <i class="i-del fa-solid fa-trash-can"></i>
                     </a>
                 </td>
@@ -212,10 +212,10 @@ async function showNovelties() {
                 <td>${el[0]}</td>
                 <td>${el[1]}</td>
                 <td class="flex-tr">
-                    <a class="btn-mod-nov">
+                    <a data-title="Modificar" class="btn-mod-nov">
                         <i class="i-mod fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a class="btn-del-nov">
+                    <a data-title="Eliminar" class="btn-del-nov">
                         <i class="i-del fa-solid fa-trash-can"></i>
                     </a>
                 </td>
@@ -263,10 +263,10 @@ async function showModes() {
                 <td>${el[0]}</td>
                 <td>${el[1]}</td>
                 <td class="flex-tr">
-                    <a class="btn-mod-fail">
+                    <a data-title="Modificar" class="btn-mod-fail">
                         <i class="i-mod fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a class="btn-del-fail">
+                    <a data-title="Eliminar" class="btn-del-fail">
                         <i class="i-del fa-solid fa-trash-can"></i>
                     </a>
                 </td>

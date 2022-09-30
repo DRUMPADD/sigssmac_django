@@ -56,9 +56,9 @@ async function showGeneralManteinment () {
                     <td>${element[8] != null ? element[8] : "Sin fecha"}</td>
                     <td>${element[9] != null ? element[9] : 0}</td>
                     <td style="display: none;">${element[10] != null ? element[10] : ""}</td>
-                    <td><a href="#" class="details"><i class="fa-solid fa-book"></i></a></td>
-                    <td><a href="#" class="btn-modificar"><i class="fa-solid fa-pencil"></i></a></td>
-                    <td><a href="#" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a></td>
+                    <td><a href="#" data-title="Ver detalles" class="details"><i class="fa-solid fa-book"></i></a></td>
+                    <td><a href="#" data-title="Modificar" class="btn-modificar"><i class="fa-solid fa-pencil"></i></a></td>
+                    <td><a href="#" data-title="Eliminar" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a></td>
                 </tr>
             `;
         }
