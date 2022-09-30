@@ -91,6 +91,27 @@
         </table>
     </div>
 </div>
+<div class="box">
+    <h1 class="h1">Estado</h1>
+    <div class="content-button">
+        <button type="button" class="btn">
+            <i class="fa-regular fa-floppy-disk"></i>
+        </button>
+    </div>
+    <div class="content-table">
+        <table class="table">
+            <thead class="t_header">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="t_body">
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock %}
 {% block out-content %}
     <div class="update_hidden">
@@ -172,6 +193,26 @@
                 </div>
                 <div class="content-update">
                     <input type="text" name="id" class="inp_hid">
+                    <input type="text" name="name" class="inp_hid">
+                </div>
+            </div>
+            <div class="content-update-btn">
+                <button type="submit" class="btnUpd">Registrar</button>
+            </div>
+        </form>
+    </div>
+    <div class="update_hidden">
+        <form class="form_update form-state" id="fail-hide">
+            <a class="btnClose"><i class="fa-solid fa-xmark"></i></a>
+            <h1 class="h1">Agregar estado</h1>
+            <input type="hidden" name="id">
+            <input type="hidden" name="option" value="AGREGAR">
+            <input type="hidden" name="sl_where" value="ESTADO">
+            <div class="flex_form">
+                <div class="content-update">
+                    <label>Nombre</label>
+                </div>
+                <div class="content-update">
                     <input type="text" name="name" class="inp_hid">
                 </div>
             </div>
