@@ -236,13 +236,12 @@ form_mant.addEventListener("submit", (e) => {
 
     if(validForm) {
         createManteinment(
-            {
-                prev_cod: arr_els[1], 
-                item_sl: arr_els[2], 
+            { 
+                item_id: arr_els[2], 
                 frec_: arr_els[3], 
                 act_: arr_els[4], 
-                fecha_cre: arr_els[5], 
-                fecha_prox: arr_els[6],
+                create_date: arr_els[5], 
+                date_next: arr_els[6],
             }
         );
     } else {
