@@ -197,8 +197,7 @@ textarea {
     content: attr(data-title);
     background-color: #fffffd;
     color: #000;
-    font-size: 24px;
-    font-family: Raleway;
+    font-size: 16px;
     position: absolute;
     padding: 5px 15px;
     bottom: 1.6em;
