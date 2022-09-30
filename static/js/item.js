@@ -176,7 +176,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     form_prov.addEventListener("submit", (e) => {
         e.preventDefault();
         modifyProvider({
-            nombre: form_prov["prov_nam"].value,
+            p_nombre: form_prov["prov_nam"].value,
             telefono: form_prov["phone"].value,
             email: form_prov["email"].value,
             pais: form_prov["country"].value,
