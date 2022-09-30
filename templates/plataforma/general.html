@@ -7,6 +7,7 @@
     <div class="general_mant">
         <h1>Mantenimiento preventivo</h1>
         <form class="form-mant">
+            {% csrf_token %}
             <h3>Registro de mantenimiento</h3>
             <input type="text" name="id_mant" hidden>
             <div class="flex">
