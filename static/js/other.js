@@ -156,7 +156,7 @@ async function showProviders() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            delete_data("PROVEEDOR", parentTR.getElementsByTagName("td")[0].innerText);
+            search_existing_data("PROVEEDOR", parentTR.getElementsByTagName("td")[0].innerText);
         })
     })
 }
