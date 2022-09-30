@@ -13,6 +13,7 @@ function getCookie(name) {
     }
     return cookieValue;
 }
+let TextDefault = "Modificar";
 let boxForm = document.querySelectorAll(".update_hidden");
 let btnShowForm = document.querySelectorAll(".btn");
 let btnsClose = document.querySelectorAll(".btnClose");
@@ -134,6 +135,9 @@ async function showProviders() {
             const parentTR = element.parentElement.parentElement;
             boxForm[0].style.visibility = "visible";
             boxForm[0].style.opacity = 1;
+            const form = formProvider;
+            let h1Text = form.querySelector("h1").innerText.split(" ")[1];
+            form.querySelector("h1").innerText = TextDefault + " " + h1Text;
             formProvider["id"].setAttribute("disabled", "");
             formProvider["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
             formProvider["name_p"].value = parentTR.getElementsByTagName("td")[1].innerText;
@@ -187,9 +191,12 @@ async function showFrequences() {
             const parentTR = element.parentElement.parentElement;
             boxForm[1].style.visibility = "visible";
             boxForm[1].style.opacity = 1;
-            formSelected[1]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            formSelected[1]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            formSelected[1]["option"].value = "MODIFICAR";
+            const form = formSelected[1];
+            let h1Text = form.querySelector("h1").innerText.split(" ")[1];
+            form.querySelector("h1").innerText = TextDefault + " " + h1Text;
+            form[1]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form[1]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form[1]["option"].value = "MODIFICAR";
         })
     })
     let btnDel = document.querySelectorAll(".btn-del-freq");
@@ -237,9 +244,12 @@ async function showNovelties() {
             const parentTR = element.parentElement.parentElement;
             boxForm[2].style.visibility = "visible";
             boxForm[2].style.opacity = 1;
-            formSelected[2]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            formSelected[2]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            formSelected[2]["option"].value = "MODIFICAR";
+            const form = formSelected[2];
+            let h1Text = form.querySelector("h1").innerText.split(" ")[1];
+            form.querySelector("h1").innerText = TextDefault + " " + h1Text;
+            form["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form["option"].value = "MODIFICAR";
         })
     })
     let btnDel = document.querySelectorAll(".btn-del-nov");
@@ -287,10 +297,13 @@ async function showModes() {
             const parentTR = element.parentElement.parentElement;
             boxForm[3].style.visibility = "visible";
             boxForm[3].style.opacity = 1;
-            formSelected[3]["id"].setAttribute("disabled", "");
-            formSelected[3]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            formSelected[3]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            formSelected[3]["option"].value = "MODIFICAR";
+            const form = formSelected[3];
+            let h1Text = form.querySelector("h1").innerText.split(" ")[1];
+            form.querySelector("h1").innerText = TextDefault + " " + h1Text;
+            form["id"].setAttribute("disabled", "");
+            form["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form["option"].value = "MODIFICAR";
         })
     })
     let btnDel = document.querySelectorAll(".btn-del-fail");
@@ -338,10 +351,13 @@ async function showStates() {
             const parentTR = element.parentElement.parentElement;
             boxForm[4].style.visibility = "visible";
             boxForm[4].style.opacity = 1;
-            formSelected[4]["id"].setAttribute("disabled", "");
-            formSelected[4]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            formSelected[4]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            formSelected[4]["option"].value = "MODIFICAR";
+            const form = formSelected[4];
+            let h1Text = form.querySelector("h1").innerText.split(" ")[1];
+            form.querySelector("h1").innerText = TextDefault + " " + h1Text;
+            form["id"].setAttribute("disabled", "");
+            form["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form["option"].value = "MODIFICAR";
         })
     })
     let btnDel = document.querySelectorAll(".btn-del-st");
