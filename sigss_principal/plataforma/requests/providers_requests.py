@@ -15,9 +15,14 @@ def show_providers(request):
 def create_provider(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("prov_id"))
+        print(responses.get("p_nombre"))
+        print(responses.get("numero_t"))
+        print(responses.get("email"))
+        print(responses.get("country"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("prov_id"), responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("country")])
+            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("prov_id"), responses.get("p_nombre"), responses.get("numero_t"), responses.get("email"), responses.get("country")])
             return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
         except (errors) as e:
             print(e)
@@ -26,9 +31,14 @@ def create_provider(request):
 def modify_provider(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("prov_id"))
+        print(responses.get("p_nombre"))
+        print(responses.get("numero_t"))
+        print(responses.get("email"))
+        print(responses.get("country"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("country"), responses.get("prov_id")])
+            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("p_nombre"), responses.get("numero_t"), responses.get("email"), responses.get("country"), responses.get("prov_id")])
             return JsonResponse({"status": "success", "msg": "Proveedor actualizado"}, status=200)
         except (errors) as e:
             print(e)
@@ -37,6 +47,7 @@ def modify_provider(request):
 def delete_provider(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("prov_id"))
         try:
             cursor = connection.cursor()
             cursor.callproc("ELIMINAR_PROVEEDOR", [responses.get("prov_id")])
@@ -82,6 +93,7 @@ def change_provider(request):
 def search_provider(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("prov_id"))
         try:
             cursor = connection.cursor()
             cursor.callproc("BUSCAR_PROVEEDOR_EXISTENTE", [responses.get("prov_id")])
