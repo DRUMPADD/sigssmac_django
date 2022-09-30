@@ -17,7 +17,7 @@ def create_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("prov_id"), responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
+            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("prov_id"), responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("country")])
             return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
         except (errors) as e:
             print(e)
@@ -28,7 +28,7 @@ def modify_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais"), responses.get("prov_id")])
+            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("p_nombre"), responses.get("telefono"), responses.get("email"), responses.get("country"), responses.get("prov_id")])
             return JsonResponse({"status": "success", "msg": "Proveedor actualizado"}, status=200)
         except (errors) as e:
             print(e)
@@ -55,10 +55,10 @@ def add_provider_to_item(request):
             print(responses.get("prov_id") if responses.get("prov_id") != None else "")
             print(responses.get("p_nombre") if responses.get("p_nombre") != None else "")
             print(responses.get("numero_t") if responses.get("numero_t") != None else "")
-            print(responses.get("_email") if responses.get("_email") != None else "")
+            print(responses.get("email") if responses.get("email") != None else "")
             print(responses.get("country") if responses.get("country") != None else "")
             cursor = connection.cursor()
-            cursor.callproc("PROVEEDOR_COMPLETO_A_ITEM", [responses.get("item_id") if responses.get("item_id") != None else "", responses.get("prov_id") if responses.get("prov_id") != None else "", responses.get("p_nombre") if responses.get("p_nombre") != None else "", responses.get("numero_t") if responses.get("numero_t") != None else "", responses.get("_email") if responses.get("_email") != None else "", responses.get("country") if responses.get("country") != None else ""])
+            cursor.callproc("PROVEEDOR_COMPLETO_A_ITEM", [responses.get("item_id") if responses.get("item_id") != None else "", responses.get("prov_id") if responses.get("prov_id") != None else "", responses.get("p_nombre") if responses.get("p_nombre") != None else "", responses.get("numero_t") if responses.get("numero_t") != None else "", responses.get("email") if responses.get("email") != None else "", responses.get("country") if responses.get("country") != None else ""])
             mensaje = cursor.fetchone()[0]
             if mensaje == '':
                 return JsonResponse({"status": "success", "msg": "Proveedor agregado a item"}, status=200)

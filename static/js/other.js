@@ -60,17 +60,17 @@ formProvider.addEventListener("submit", (e) => {
         save_data("PROVEEDOR", {
             prov_id: formProvider["id"].value,
             p_nombre: formProvider["name_p"].value,
-            telefono: formProvider["phone_number"].value,
+            numero_t: formProvider["phone_number"].value,
             email: formProvider["email"].value,
-            pais: formProvider["country"].value,
+            country: formProvider["country"].value,
         }) 
     } else {
         modify_data("PROVEEDOR", {
             prov_id: formProvider["id"].value,
             p_nombre: formProvider["name_p"].value,
-            telefono: formProvider["phone_number"].value,
+            numero_t: formProvider["phone_number"].value,
             email: formProvider["email"].value,
-            pais: formProvider["country"].value,
+            country: formProvider["country"].value,
         })
     }
 

@@ -71,7 +71,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
                 prov_id: ar_answers[2],
                 p_nombre: ar_answers[3],
                 numero_t: ar_answers[4],
-                _email: ar_answers[5],
+                email: ar_answers[5],
                 country: ar_answers[6],
             })
         } else {
@@ -177,9 +177,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         e.preventDefault();
         modifyProvider({
             p_nombre: form_prov["prov_nam"].value,
-            telefono: form_prov["phone"].value,
+            numero_t: form_prov["phone"].value,
             email: form_prov["email"].value,
-            pais: form_prov["country"].value,
+            country: form_prov["country"].value,
             prov_id: form_prov["id_prov"].value,
         })
     })
