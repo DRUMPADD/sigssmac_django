@@ -18,7 +18,7 @@ def createMode(request):
         print(answers)
         try:
             cursor = connection.cursor()
-            cursor.callproc("MODOS_AGREGAR", [answers.get("name")])
+            cursor.callproc("MODOS_AGREGAR", [answers.get("id"), answers.get("name")])
             return JsonResponse({"status": "success", "msg": "Modo de fallo agregado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
             print(e)
