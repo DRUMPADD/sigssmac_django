@@ -47,3 +47,20 @@ def deleteMode(request):
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+
+def searchMode(request):
+    if request.method == 'POST':
+        answers = json.loads(request.body.decode("utf-8"))
+        print(answers)
+        resp = ""
+        try:
+            cursor = connection.cursor()
+            cursor.callproc("MODOS_BUSCAR_EXISTENTE", [answers.get("id")])
+            resp = cursor.fetchone()[0]
+            if resp == "EXISTE":
+                return JsonResponse({"status": "success", "msg": resp}, status=200)
+            else:
+                return JsonResponse({"status": "success", "msg": ""}, status=200)
+        except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
