@@ -16,6 +16,7 @@ import sigss_principal.plataforma.requests.providers_requests as pro_req
 import sigss_principal.plataforma.requests.frequences_requests as fec_req
 import sigss_principal.plataforma.requests.novelties_requests as nov_req
 import sigss_principal.plataforma.requests.modes_requests as mod_req
+import sigss_principal.plataforma.requests.state_mant_requests as st_req
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -68,16 +69,24 @@ urlpatterns = [
     path("plataforma/proveedor/cambiarProveedor", pro_req.change_provider, name="changeProviderToItem"),
     # ? Other requests
     path("plataforma/otrosRegistros", other_view, name="other"),
+    path("plataforma/estado/mostrarEstados", st_req.showStates, name="showStates"),
+    path("plataforma/estado/crearEstado", st_req.createState, name="createState"),
+    path("plataforma/estado/modificarEstado", st_req.modifyState, name="modifyState"),
+    path("plataforma/estado/eliminarEstado", st_req.deleteState, name="deleteState"),
+    path("plataforma/estado/buscarEstado", st_req.searchState, name="searchState"),
     path("plataforma/frecuencia/mostrarFrecuencias", fec_req.showFrequences, name="showFrequences"),
     path("plataforma/frecuencia/crearFrecuencia", fec_req.createFrequence, name="createFrequence"),
     path("plataforma/frecuencia/modificarFrecuencia", fec_req.modifyFrequence, name="modifyFrequence"),
     path("plataforma/frecuencia/eliminarFrecuencia", fec_req.deleteFrequence, name="deleteFrequence"),
+    path("plataforma/frecuencia/buscarFrecuencia", fec_req.searchFrequence, name="searchFrequence"),
     path("plataforma/novedad/mostrarNovedades", nov_req.showNovelties, name="showNovelties"),
     path("plataforma/novedad/crearNovedad", nov_req.createNovelty, name="createNovelty"),
     path("plataforma/novedad/modificarNovedad", nov_req.modifyNovelty, name="modifyNovelty"),
     path("plataforma/novedad/eliminarNovedad", nov_req.deleteNovelty, name="deleteNovelty"),
+    path("plataforma/novedad/buscarNovedad", nov_req.searchNovelty, name="searchNovelty"),
     path("plataforma/modoFallo/mostrarModos", mod_req.showModes, name="showModes"),
     path("plataforma/modoFallo/crearModo", mod_req.createMode, name="createMode"),
     path("plataforma/modoFallo/modificarModo", mod_req.modifyMode, name="modifyMode"),
     path("plataforma/modoFallo/eliminarModo", mod_req.deleteMode, name="deleteMode"),
+    path("plataforma/modoFallo/buscarModo", mod_req.searchMode, name="searchMode"),
 ]
