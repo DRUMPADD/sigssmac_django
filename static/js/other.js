@@ -518,9 +518,7 @@ function delete_data(where, value, exist = "") {
                     "X-Requested-With": "XMLHttpRequest",
                     "X-CSRFToken": getCookie("csrftoken")
                 },
-                body: JSON.stringify({
-                    id: value
-                })
+                body: JSON.stringify(value)
             })
             .then(res => {
                 return res.json();
