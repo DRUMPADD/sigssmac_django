@@ -33,6 +33,8 @@ btnShowForm.forEach((element, index) => {
 function hideForm() {
     formSelected.forEach((element, i) => {
         element.reset();
+        element.style.visibility = "hidden";
+        element.style.opacity = 0;
         element["id"].removeAttribute("disabled");
         if(element["option"].value != "AGREGAR") {
             let h1Text = element.querySelector("h1").innerText.split(" ")[1];
@@ -41,7 +43,6 @@ function hideForm() {
         
         element["option"].value = "AGREGAR";
     })
-    console.log("Reseteado");
 }
 
 btnsClose.forEach((el, i) => {
