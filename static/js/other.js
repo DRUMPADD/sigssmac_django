@@ -156,7 +156,7 @@ async function showProviders() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            search_existing_data("PROVEEDOR", {prov_id: parentTR.getElementsByTagName("td")[0].innerText});
+            search_existing_data("PROVEEDOR", {prov_id: parentTR.getElementsByTagName("td")[0].innerText });
         })
     })
 }
@@ -208,7 +208,7 @@ async function showFrequences() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            delete_data(formSelected[1]["sl_where"].value, parentTR.getElementsByTagName("td")[0].innerText);
+            delete_data(formSelected[1]["sl_where"].value, { id: parentTR.getElementsByTagName("td")[0].innerText });
         })
     })
 }
@@ -261,7 +261,7 @@ async function showNovelties() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            delete_data(formSelected[2]["sl_where"].value, parentTR.getElementsByTagName("td")[0].innerText);
+            delete_data(formSelected[2]["sl_where"].value, { id: parentTR.getElementsByTagName("td")[0].innerText });
         })
     })
 }
@@ -315,7 +315,7 @@ async function showModes() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            delete_data(formSelected[3]["sl_where"].value, parentTR.getElementsByTagName("td")[0].innerText);
+            delete_data(formSelected[3]["sl_where"].value, { id: parentTR.getElementsByTagName("td")[0].innerText });
         })
     })
 }
@@ -369,7 +369,7 @@ async function showStates() {
     btnDel.forEach(element => {
         element.addEventListener("click", () => {
             const parentTR = element.parentElement.parentElement;
-            delete_data(formSelected[4]["sl_where"].value, parentTR.getElementsByTagName("td")[0].innerText);
+            delete_data(formSelected[4]["sl_where"].value, { id: parentTR.getElementsByTagName("td")[0].innerText });
         })
     })
 }
