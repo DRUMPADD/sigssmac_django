@@ -302,11 +302,63 @@ async function showModes() {
     })
 }
 
+async function getStates() {
+    let response = await fetch("/plataforma/estado/mostrarEstados");
+    let d = await response.json();
+    console.log(d.msg);
+    return d.msg;
+}
+
+async function showStates() {
+    let states = await getStates();
+    console.log(states);
+    let ar_state = new Array(states);
+    let str_info = "";
+    ar_state[0].forEach(el => {
+        str_info += `
+            <tr>
+                <td>${el[0]}</td>
+                <td>${el[1]}</td>
+                <td class="flex-tr">
+                    <a data-title="Modificar" class="btn-mod-st">
+                        <i class="i-mod fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a data-title="Eliminar" class="btn-del-st">
+                        <i class="i-del fa-solid fa-trash-can"></i>
+                    </a>
+                </td>
+            </tr>
+        `;
+    })
+
+    tBody[4].innerHTML = str_info;
+    let btnMod = document.querySelectorAll(".btn-mod-st");
+    btnMod.forEach(element => {
+        element.addEventListener("click", () => {
+            const parentTR = element.parentElement.parentElement;
+            boxForm[4].style.visibility = "visible";
+            boxForm[4].style.opacity = 1;
+            formSelected[4]["id"].setAttribute("disabled", "");
+            formSelected[4]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            formSelected[4]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            formSelected[4]["option"].value = "MODIFICAR";
+        })
+    })
+    let btnDel = document.querySelectorAll(".btn-del-st");
+    btnDel.forEach(element => {
+        element.addEventListener("click", () => {
+            const parentTR = element.parentElement.parentElement;
+            delete_data(formSelected[4]["sl_where"].value, parentTR.getElementsByTagName("td")[0].innerText);
+        })
+    })
+}
+
 window.addEventListener("DOMContentLoaded", () => {
     showProviders();
     showFrequences();
     showNovelties();
     showModes();
+    showStates();
 })
 
 
@@ -318,14 +370,16 @@ function reloadTag(where) {
         showFrequences();
     } else if (where == 'NOVEDAD') {
         showNovelties();
-    } else {
+    } else if(where == 'FALLO') {
         showModes();
+    } else {
+        showStates();
     }
 }
 
 // ?? Post functions
 function save_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/crearNovedad" : "/plataforma/modoFallo/crearModo";
+    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/crearNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/crearModo": "/plataforma/estado/crearEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -353,14 +407,14 @@ function save_data(where, values) {
             position: 'center',
             icon: "error",
             title: "Error al hacer el registro",
-            confirmButtonColor: '#19ec27',
+            confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
     })
 }
 
 function modify_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/modificarNovedad" : "/plataforma/modoFallo/modificarModo";
+    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/modificarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/modificarModo": "/plataforma/estado/modificarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -388,21 +442,50 @@ function modify_data(where, values) {
             position: 'center',
             icon: "error",
             title: "Error al hacer el registro",
-            confirmButtonColor: '#19ec27',
+            confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
     })
 }
 
-function delete_data(where, value) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/eliminarNovedad" : "/plataforma/modoFallo/eliminarModo";
+function search_existing_data(where, value) {
+    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/buscarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/buscarModo" : "/plataforma/estado/buscarEstado";
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            "Accept": "application/json",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRFToken": getCookie("csrftoken")
+        },
+        body: JSON.stringify(value)
+    })
+    .then(res => {
+        return res.json();
+    })
+    .then(d => {
+        delete_data(where, value, d.msg !== "" ? d.msg : "");
+    })
+    .catch(er => {
+        Swal.fire({
+            position: 'center',
+            icon: "error",
+            title: "Error al buscar dato",
+            confirmButtonColor: '#df1c11',
+            confirmButtonText: 'ACEPTAR',
+        })
+    })
+}
+
+function delete_data(where, value, exist = "") {
+    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/eliminarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/eliminarModo" : "/plataforma/estado/eliminarEstado";
+    let ifExistsInDB = exist == "EXISTE" ? "Este registro se encuentra asignado a uno o varios elementos, ¿Está seguro de eliminar este registro?": "¿Está seguro de eliminar este registro?";
     Swal.fire({
-        title: "¿Está seguro de eliminar este registro?",
+        title: ifExistsInDB,
         text: "Esta acción no podrá ser revertida",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
+        cancelButtonColor: '#df1c11',
         confirmButtonText: 'Si, eliminar',
         cancelButtonText: 'Cancelar',
     }).then(result => {
@@ -436,7 +519,7 @@ function delete_data(where, value) {
                     position: 'center',
                     icon: "error",
                     title: "Error al eliminar el registro",
-                    confirmButtonColor: '#19ec27',
+                    confirmButtonColor: '#df1c11',
                     confirmButtonText: 'ACEPTAR',
                 })
             })
