@@ -84,8 +84,10 @@ def search_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [responses.get("prov_id")])
-            if cursor.fetchall():
+            cursor.callproc("BUSCAR_PROVEEDOR_EXISTENTE", [responses.get("prov_id")])
+            resp = cursor.fetchall()
+            print(resp)
+            if resp:
                 return JsonResponse({"msg": "EXISTE"}, status=200)
             else:
                 return JsonResponse({"msg": ""}, status=200)
