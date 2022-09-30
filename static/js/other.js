@@ -58,7 +58,7 @@ formProvider.addEventListener("submit", (e) => {
     let option_selected = formProvider["option"].value;
     if(option_selected == "AGREGAR") {
         save_data("PROVEEDOR", {
-            cod_prov: formProvider["id"].value,
+            prov_id: formProvider["id"].value,
             nombre: formProvider["name_p"].value,
             telefono: formProvider["phone_number"].value,
             email: formProvider["email"].value,
@@ -66,7 +66,7 @@ formProvider.addEventListener("submit", (e) => {
         }) 
     } else {
         modify_data("PROVEEDOR", {
-            cod_prov: formProvider["id"].value,
+            prov_id: formProvider["id"].value,
             nombre: formProvider["name_p"].value,
             telefono: formProvider["phone_number"].value,
             email: formProvider["email"].value,

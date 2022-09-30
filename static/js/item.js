@@ -180,7 +180,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
             telefono: form_prov["phone"].value,
             email: form_prov["email"].value,
             pais: form_prov["country"].value,
-            cod_prov: form_prov["id_prov"].value,
+            prov_id: form_prov["id_prov"].value,
         })
     })
 

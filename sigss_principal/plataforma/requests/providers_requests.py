@@ -17,7 +17,7 @@ def create_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("cod_prov"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
+            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("prov_id"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
             return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
         except (errors) as e:
             print(e)
@@ -28,7 +28,7 @@ def modify_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais"), responses.get("cod_prov")])
+            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais"), responses.get("prov_id")])
             return JsonResponse({"status": "success", "msg": "Proveedor actualizado"}, status=200)
         except (errors) as e:
             print(e)
@@ -39,7 +39,7 @@ def delete_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.callproc("ELIMINAR_PROVEEDOR", [responses.get("cod_prov")])
+            cursor.callproc("ELIMINAR_PROVEEDOR", [responses.get("prov_id")])
             return JsonResponse({"status": "success", "msg": "Proveedor eliminado"}, status=200)
         except (errors) as e:
             print(e)
