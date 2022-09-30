@@ -30,8 +30,9 @@ btnShowForm.forEach((element, index) => {
 })
 
 function hideForm() {
-    formSelected.forEach((element) => {
+    formSelected.forEach((element, i) => {
         element.reset();
+        element["id"].removeAttribute("disabled");
         element["option"].value = "AGREGAR";
     })
     console.log("Reseteado");
@@ -75,9 +76,16 @@ formSelected.forEach((form, i) => {
             e.preventDefault();
             let option_selected = form["option"].value;
             if(option_selected == "AGREGAR") {
-                save_data(form["sl_where"].value, {
-                    name: form["name"].value,
-                }) 
+                if(form["sl_where"].value == "FALLO") {
+                    save_data(form["sl_where"].value, {
+                        id: form["id"].value,
+                        name: form["name"].value,
+                    }) 
+                } else {
+                    save_data(form["sl_where"].value, {
+                        name: form["name"].value,
+                    }) 
+                }
             } else {
                 modify_data(form["sl_where"].value, {
                     id: form["id"].value,
@@ -127,6 +135,7 @@ async function showProviders() {
             boxForm[0].style.visibility = "visible";
             boxForm[0].style.opacity = 1;
             console.log(boxForm[0]);
+            formProvider["id"].setAttribute("disabled", "");
             formProvider["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
             formProvider["name_p"].value = parentTR.getElementsByTagName("td")[1].innerText;
             formProvider["phone_number"].value = parentTR.getElementsByTagName("td")[2].innerText;
@@ -281,6 +290,7 @@ async function showModes() {
             const parentTR = element.parentElement.parentElement;
             boxForm[3].style.visibility = "visible";
             boxForm[3].style.opacity = 1;
+            formSelected[3]["id"].setAttribute("disabled", "");
             formSelected[3]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
             formSelected[3]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
             formSelected[3]["option"].value = "MODIFICAR";
