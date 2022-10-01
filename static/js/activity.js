@@ -52,12 +52,12 @@ async function showActivities() {
                     <td>${el[1]}</td>
                     <td>${el[2]}</td>
                     <td>
-                        <a data-title="Modificar" class="btn-modificar" href="#content-hidden">
+                        <a class="btn-modificar" href="#content-hidden">
                             <i class="fa-solid fa-pencil"></i>
                         </a>
                     </td>
                     <td>
-                        <a data-title="Eliminar" class="btn-eliminar" href="#">
+                        <a class="btn-eliminar" href="#">
                             <i class="fa-solid fa-trash-can"></i>
                         </a>
                     </td>
