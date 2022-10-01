@@ -5,6 +5,63 @@ let btn = document.querySelector(".select_option");
 let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
+let btn_mod_car = document.querySelector(".select-mod-car");
+let btn_del_car = document.querySelector(".select-del-car");
+let i_del_c = document.querySelector(".del-car");
+let i_mod_c = document.querySelector(".mod-car");
+let inputs_car = document.querySelectorAll(".inp_car");
+let form_car = document.querySelector(".form-caracteristics");
+let btn_sub_car = document.querySelector(".update-car");
+
+btn_mod_car.addEventListener("click", () => {
+    inputs_car.forEach(element => {
+        element.removeAttribute("disabled");
+        element.classList.add("border-active")
+    })
+    i_del_c.classList.remove("fa-trash-can");
+    i_del_c.classList.add("fa-x");
+    i_mod_c.classList.remove("fa-pencil");
+    i_mod_c.classList.add("fa-floppy-disk");
+    btn_mod_car.style.display = "none";
+    btn_sub_car.style.display = "inline-block";
+})
+btn_del_car.addEventListener("click", () => {
+    inputs_car.forEach(element => {
+        element.setAttribute("disabled", "");
+        element.classList.remove("border-active")
+    })
+    i_del_c.classList.remove("fa-x");
+    i_del_c.classList.add("fa-trash-can");
+    i_mod_c.classList.remove("fa-floppy-disk");
+    i_mod_c.classList.add("fa-pencil");
+    btn_mod_car.style.display = "inline-block";
+    btn_sub_car.style.display = "none";
+})
+
+form_car.addEventListener("submit", (e) => {
+    e.preventDefault();
+    for(let i = 0; i < form_car.elements.length; i++) {
+        if(form_car.elements[i].type != "button" && form_car.elements[i].type != "submit") {
+            console.log(form_car.elements[i].name+":", form_car.elements[i].value,"- tipo:", typeof form_car.elements[i].value);
+        }
+    }
+
+    updateCaracteristics({
+        item_id: form_car["id"].value,
+        name_: form_car["name"].value,
+        quantity: form_car["quantity"].value,
+        brand: form_car["brand"].value,
+        bought_date: form_car["bought_date"].value,
+        state: form_car["sl_state"].value,
+        model: form_car["model"].value,
+        serial_n: form_car["serial_n"].value,
+        location: form_car["location"].value,
+        date_: form_car["date_"].value,
+    });
+
+
+})
+
 if(prov_box.getElementsByClassName("id").length == 0) {
     btn.addEventListener("click", () => {
         if(sl_providers.value === "NUEVO") {
@@ -82,13 +139,6 @@ if(prov_box.getElementsByClassName("id").length == 0) {
         }
     })
 } else {
-    let btn_mod_car = document.querySelector(".select-mod-car");
-    let btn_del_car = document.querySelector(".select-del-car");
-    let i_del_c = document.querySelector(".del-car");
-    let i_mod_c = document.querySelector(".mod-car");
-    let inputs_car = document.querySelectorAll(".inp_car");
-    let form_car = document.querySelector(".form-caracteristics");
-    let btn_sub_car = document.querySelector(".update-car");
     
     let btn_mod = document.querySelector(".select-mod");
     let btn_del = document.querySelector(".select-del");
@@ -97,55 +147,6 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     let inputs_ = document.querySelectorAll(".input_prov");
     let form_prov = document.querySelector(".form-provider");
     let btn_sub_mod = document.querySelector(".update-mod");
-
-    btn_mod_car.addEventListener("click", () => {
-        inputs_car.forEach(element => {
-            element.removeAttribute("disabled");
-            element.classList.add("border-active")
-        })
-        i_del_c.classList.remove("fa-trash-can");
-        i_del_c.classList.add("fa-x");
-        i_mod_c.classList.remove("fa-pencil");
-        i_mod_c.classList.add("fa-floppy-disk");
-        btn_mod_car.style.display = "none";
-        btn_sub_car.style.display = "inline-block";
-    })
-    btn_del_car.addEventListener("click", () => {
-        inputs_car.forEach(element => {
-            element.setAttribute("disabled", "");
-            element.classList.remove("border-active")
-        })
-        i_del_c.classList.remove("fa-x");
-        i_del_c.classList.add("fa-trash-can");
-        i_mod_c.classList.remove("fa-floppy-disk");
-        i_mod_c.classList.add("fa-pencil");
-        btn_mod_car.style.display = "inline-block";
-        btn_sub_car.style.display = "none";
-    })
-
-    form_car.addEventListener("submit", (e) => {
-        e.preventDefault();
-        for(let i = 0; i < form_car.elements.length; i++) {
-            if(form_car.elements[i].type != "button" && form_car.elements[i].type != "submit") {
-                console.log(form_car.elements[i].name+":", form_car.elements[i].value,"- tipo:", typeof form_car.elements[i].value);
-            }
-        }
-
-        updateCaracteristics({
-            item_id: form_car["id"].value,
-            name_: form_car["name"].value,
-            quantity: form_car["quantity"].value,
-            brand: form_car["brand"].value,
-            bought_date: form_car["bought_date"].value,
-            state: form_car["sl_state"].value,
-            model: form_car["model"].value,
-            serial_n: form_car["serial_n"].value,
-            location: form_car["location"].value,
-            date_: form_car["date_"].value,
-        });
-
-
-    })
 
     btn_mod.addEventListener("click", () => {
         inputs_.forEach(element => {
