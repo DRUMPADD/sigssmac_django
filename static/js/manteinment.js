@@ -129,6 +129,14 @@ form.addEventListener("submit", (e) => {
     })
 })
 
+form.addEventListener("change", (e) => {
+    const d1 = (new Date(form["reporte"].value).getTime())/1000/60/60/24;
+    const d2 = (new Date(form["entrega"].value).getTime())/1000/60/60/24;
+    if(d1 && d2) {
+        form["dias"].value = d2 - d1;
+    }
+})
+
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
     let ar = new Array();
