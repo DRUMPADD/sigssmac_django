@@ -165,7 +165,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
 } else {
     
     let btn_mod = document.querySelector(".select-mod");
-    let btn_del_prov = document.querySelector("#delete > .fa-trash-can");
+    let btn_del_prov = document.querySelector("#delete");
     let btn_cancel = document.querySelector("#cancel");
     
     let inputs_ = document.querySelectorAll(".input_prov");
