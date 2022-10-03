@@ -141,10 +141,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
 } else {
     
     let btn_mod = document.querySelector(".select-mod");
-    let btn_del = document.querySelector(".select-del");
-    let btn_del_prov = document.querySelector(".select-del > .fa-trash-can");
-    let i_del = document.querySelector(".del");
-    let i_mod = document.querySelector(".mod");
+    let btn_del_prov = document.querySelector("#delete > .fa-trash-can");
+    let btn_cancel = document.querySelector("#cancel");
+    
     let inputs_ = document.querySelectorAll(".input_prov");
     let form_prov = document.querySelector(".form-provider");
     let btn_sub_mod = document.querySelector(".update-mod");
@@ -161,23 +160,19 @@ if(prov_box.getElementsByClassName("id").length == 0) {
             element.removeAttribute("disabled");
             element.classList.add("border-active")
         })
-        i_del.classList.remove("fa-trash-can");
-        i_del.classList.add("fa-x");
-        i_mod.classList.remove("fa-pencil");
-        i_mod.classList.add("fa-floppy-disk");
         btn_mod.style.display = "none";
         btn_sub_mod.style.display = "inline-block";
+        btn_cancel.style.display = "inline-block";
+        btn_del_prov.style.display = "none";
     })
-
-    btn_del.addEventListener("click", () => {
+    
+    btn_cancel.addEventListener("click", () => {
         inputs_.forEach(element => {
             element.setAttribute("disabled", "");
             element.classList.remove("border-active")
         })
-        i_del.classList.remove("fa-x");
-        i_del.classList.add("fa-trash-can");
-        i_mod.classList.remove("fa-floppy-disk");
-        i_mod.classList.add("fa-pencil");
+        btn_cancel.style.display = "none";
+        btn_del_prov.style.display = "inline-block";
         btn_sub_mod.style.display = "none";
         btn_mod.style.display = "inline-block";
     })
