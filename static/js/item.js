@@ -49,7 +49,7 @@ btn_del_car.addEventListener("click", () => {
             updateCaracteristics({
                 item_id: form_car["id"].value,
                 name_: null,
-                quantity: null,
+                quantity: 0,
                 brand: null,
                 bought_date: null,
                 state: null,
