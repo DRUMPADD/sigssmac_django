@@ -24,7 +24,7 @@ def create_general(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connection.cursor()
-            cursor.execute("INSERT INTO mantenimiento_prev (maq_eq_id_fk, frec_id_fk, fec_creacion, act_id_fk, fecha_prox) values(%s, %s, %s, %s, %s)", [responses.get("item_id"), responses.get("frec_"), responses.get("create_date"), responses.get("act_"), responses.get("date_next")])
+            cursor.execute("INSERT INTO mantenimiento_prev (maq_eq_id_fk, frec_id_fk, fec_creacion, act_id_fk, fecha_prox, cantidad_dias) values(%s, %s, %s, %s, %s, DATEDIFF(%s, %s))", [responses.get("item_id"), responses.get("frec_"), responses.get("create_date"), responses.get("act_"), responses.get("date_next"), responses.get("create_date"), responses.get("date_next")])
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo agregado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
