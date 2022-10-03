@@ -106,11 +106,7 @@
         {% else %}
         <form class="form_create">
             {% csrf_token %}
-            <div class="flex_form">
-                <div class="content-update">
-                    <input type="text" name="item" value="{{ item }}" disabled>
-                </div>
-            </div>
+            <input type="hidden" name="item" value="{{ item }}" disabled>
             <div class="flex_form select_box">
                 <div class="content-update-select">
                     <label>Proveedor</label>
@@ -147,11 +143,7 @@
             <form class="form_update">
                 {% csrf_token %}
                 <a class="btnClose">X</a>
-                <div class="flex_form">
-                    <div class="content-update">
-                        <input type="text" name="id_item" class="inp_hid" value="{{ item }}" disabled>
-                    </div>
-                </div>
+                <input type="hidden" name="id_item" class="inp_hid" value="{{ item }}" disabled>
                 <div class="flex_form">
                     <div class="content-update-select">
                         <label>Nombre</label>
