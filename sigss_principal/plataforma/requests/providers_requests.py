@@ -56,6 +56,17 @@ def delete_provider(request):
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
 
+def delete_provider_from_item(request):
+    if request.method == 'POST':
+        responses = json.loads(request.body.decode("utf-8"))
+        try:
+            cursor = connection.cursor()
+            cursor.execute("UPDATE maquinas_equipos SET proveedor = NULL where maq_eq_id = %s", [responses.get("id")])
+            return JsonResponse({"status": "success", "msg": "Proveedor eliminado de item"}, status=200)
+        except (errors) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+
 def add_provider_to_item(request):
     if request.method == 'POST':
         mensaje = ""
