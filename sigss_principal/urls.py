@@ -68,6 +68,7 @@ urlpatterns = [
     path("plataforma/proveedor/eliminarProveedor", pro_req.delete_provider, name="deleteProviders"),
     path("plataforma/proveedor/cambiarProveedor", pro_req.change_provider, name="changeProviderToItem"),
     path("plataforma/proveedor/buscarProveedor", pro_req.search_provider, name="searchProvider"),
+    path("plataforma/proveedor/quitarProveedor", pro_req.delete_provider_from_item, name="removeProviderToItem"),
     # ? Other requests
     path("plataforma/otrosRegistros", other_view, name="other"),
     path("plataforma/estado/mostrarEstados", st_req.showStates, name="showStates"),
