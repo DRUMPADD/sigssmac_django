@@ -36,18 +36,30 @@ btn_cancel.addEventListener("click", () => {
 })
 
 btn_del_car.addEventListener("click", () => {
-    updateCaracteristics({
-        item_id: null,
-        name_: null,
-        quantity: null,
-        brand: null,
-        bought_date: null,
-        state: null,
-        model: null,
-        serial_n: null,
-        location: null,
-        date_: null,
-    });
+    Swal.fire({
+        title: "Las características serán eliminadas, ¿desea continuar?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#df1c11',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then(res => {
+        if(res.isConfirmed) {
+            updateCaracteristics({
+                item_id: form_car["id"].value,
+                name_: null,
+                quantity: null,
+                brand: null,
+                bought_date: null,
+                state: null,
+                model: null,
+                serial_n: null,
+                location: null,
+                date_: null,
+            });
+        }
+    })
 })
 
 form_car.addEventListener("submit", (e) => {
