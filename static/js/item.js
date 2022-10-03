@@ -142,11 +142,23 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     
     let btn_mod = document.querySelector(".select-mod");
     let btn_del = document.querySelector(".select-del");
+    let btn_del_prov = document.querySelector(".select-del > .fa-trash-can");
     let i_del = document.querySelector(".del");
     let i_mod = document.querySelector(".mod");
     let inputs_ = document.querySelectorAll(".input_prov");
     let form_prov = document.querySelector(".form-provider");
     let btn_sub_mod = document.querySelector(".update-mod");
+
+    btn_del_prov.addEventListener("click", () => {
+        const parentForm = btn_del_prov.parentElement.parentElement.parentElement;
+        const getData = btn_del_prov.parentElement;
+        console.log(parentForm.querySelector("input[name='id_prov']").value);
+        console.log(getData.getAttribute("data-title").split(" ")[4]);
+
+        delete_prov_from_item({
+            id: getData.getAttribute("data-title").split(" ")[4],
+        })
+    })
 
     btn_mod.addEventListener("click", () => {
         inputs_.forEach(element => {
@@ -365,5 +377,53 @@ function changeProvider(values) {
             confirmButtonColor: '#df1c11',
             confirmButtonText: 'ACEPTAR',
         })
+    })
+}
+
+function delete_prov_from_item(values) {
+    Swal.fire({
+        title: "El proveedor será removido de este item, ¿desea continuar?",
+        text: "Esta acción no podrá ser revertida",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#df1c11',
+        confirmButtonText: 'Si, eliminar',
+        cancelButtonText: 'Cancelar',
+    }).then(result => {
+        if(result.isConfirmed) {
+            fetch("/plataforma/proveedor/quitarProveedor", {
+                method: 'POST',
+                headers: {
+                    "Accept": "application/json",
+                    "X-Requested-With": "XMLHttpRequest",
+                    "X-CSRFToken": getCookie("csrftoken")
+                },
+                body: JSON.stringify(values)
+            })
+            .then(res => {
+                return res.json();
+            })
+            .then(async d => {
+                await Swal.fire({
+                    position: 'center',
+                    icon: d.status,
+                    title: d.msg,
+                    confirmButtonColor: '#19ec27',
+                    confirmButtonText: 'ACEPTAR',
+                })
+                location.reload();
+            })
+            .catch(e => {
+                console.log(e);
+                Swal.fire({
+                    position: 'center',
+                    icon: "error",
+                    title: "Error al cambiar proveedor",
+                    confirmButtonColor: '#df1c11',
+                    confirmButtonText: 'ACEPTAR',
+                })
+            })
+        }
     })
 }
