@@ -239,7 +239,7 @@ div > .btnUpd {
 
 .update-car,
 .update-mod,
-.delete-item {
+.cancel {
     display: none;
 }
 
@@ -254,7 +254,6 @@ div > .btnUpd {
 }
 
 .select-del,
-.select-del-car,
-.delete-item {
+.select-del-car {
     background-color: rgba(236, 34, 30, 0.87);
 }
