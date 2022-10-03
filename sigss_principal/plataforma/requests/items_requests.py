@@ -105,6 +105,16 @@ def search_item(request):
 def modify_carateristics(request):
     if request.method == 'POST':
         responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("item_id"))
+        print(responses.get("name_"))
+        print(responses.get("quantity"))
+        print(responses.get("brand"))
+        print(responses.get("bought_date"))
+        print(responses.get("state"))
+        print(responses.get("model"))
+        print(responses.get("serial_n"))
+        print( responses.get("location"))
+        print(responses.get("date_"))
         try:
             cursor = connection.cursor()
             cursor.callproc("MODIFICAR_CARACTERISTICAS", [responses.get("item_id"), responses.get("name_"), responses.get("quantity"), responses.get("brand"), responses.get("bought_date"), responses.get("state"), responses.get("model"), responses.get("serial_n"), responses.get("location"), responses.get("date_")])
