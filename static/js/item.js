@@ -6,7 +6,8 @@ let newProvBox = document.querySelector(".content-new-prov");
 let prov_box = document.getElementById("provider-content");
 
 let btn_mod_car = document.querySelector(".select-mod-car");
-let btn_del_car = document.querySelector(".select-del-car");
+let btn_cancel = document.querySelector("#cancel-car");
+let btn_del_car = document.querySelector("#delete-car");
 let i_del_c = document.querySelector(".del-car");
 let i_mod_c = document.querySelector(".mod-car");
 let inputs_car = document.querySelectorAll(".inp_car");
@@ -18,24 +19,35 @@ btn_mod_car.addEventListener("click", () => {
         element.removeAttribute("disabled");
         element.classList.add("border-active")
     })
-    i_del_c.classList.remove("fa-trash-can");
-    i_del_c.classList.add("fa-x");
-    i_mod_c.classList.remove("fa-pencil");
-    i_mod_c.classList.add("fa-floppy-disk");
+    btn_del_car.style.display = "none";
+    btn_cancel.style.display = "inline-block";
     btn_mod_car.style.display = "none";
     btn_sub_car.style.display = "inline-block";
 })
-btn_del_car.addEventListener("click", () => {
+btn_cancel.addEventListener("click", () => {
     inputs_car.forEach(element => {
         element.setAttribute("disabled", "");
         element.classList.remove("border-active")
     })
-    i_del_c.classList.remove("fa-x");
-    i_del_c.classList.add("fa-trash-can");
-    i_mod_c.classList.remove("fa-floppy-disk");
-    i_mod_c.classList.add("fa-pencil");
+    btn_del_car.style.display = "inline-block";
+    btn_cancel.style.display = "none";
     btn_mod_car.style.display = "inline-block";
     btn_sub_car.style.display = "none";
+})
+
+btn_del_car.addEventListener("click", () => {
+    updateCaracteristics({
+        item_id: null,
+        name_: null,
+        quantity: null,
+        brand: null,
+        bought_date: null,
+        state: null,
+        model: null,
+        serial_n: null,
+        location: null,
+        date_: null,
+    });
 })
 
 form_car.addEventListener("submit", (e) => {
