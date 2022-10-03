@@ -150,13 +150,9 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     let btn_sub_mod = document.querySelector(".update-mod");
 
     btn_del_prov.addEventListener("click", () => {
-        const parentForm = btn_del_prov.parentElement.parentElement.parentElement;
         const getData = btn_del_prov.parentElement;
-        console.log(parentForm.querySelector("input[name='id_prov']").value);
-        console.log(getData.getAttribute("data-title").split(" ")[4]);
-
         delete_prov_from_item({
-            id: getData.getAttribute("data-title").split(" ")[4],
+            id: getData.getAttribute("id-item"),
         })
     })
 
