@@ -41,7 +41,7 @@ def modify_general(request):
         print(responses.get("prev_cod"))
         try:
             cursor = connection.cursor()
-            cursor.execute("UPDATE mantenimiento_prev SET maq_eq_id_fk = %s, frec_id_fk = %s, fec_creacion = %s, act_id_fk = %s, fecha_prox = %s where id_prev = %s", [responses.get("item_id"), responses.get("frec_"), responses.get("create_date"), responses.get("act_"), responses.get("date_next"), responses.get("prev_cod")])
+            cursor.callproc("ACTUALIZAR_MANTENIMIENTO_PREVENTIVO", [responses.get("item_id"), responses.get("frec_"), responses.get("create_date"), responses.get("act_"), responses.get("date_next"), responses.get("prev_cod")])
             return JsonResponse({"status": "success", "msg": "Mantenimiento preventivo actualizado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError) as e:
             print(e)
