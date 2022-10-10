@@ -85,8 +85,42 @@ DATABASES = {
         'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
         'HOST': os.environ.get("MYSQL_HOST"),
         'PORT': os.environ.get("MYSQL_PORT"),
+    },
+    'sigssmac_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get("MYSQL_HOST"),
+        'USER': os.environ.get("MYSQL_USER"),
+        'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
+        'NAME': 'fluidos4_sigssmac',
+        'PORT': os.environ.get("MYSQL_PORT"),
+    },
+    'api_energy_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get("MYSQL_HOST"),
+        'USER': os.environ.get("MYSQL_USER"),
+        'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
+        'NAME': os.environ.get("MYSQL_NAME2"),
+        'PORT': os.environ.get("MYSQL_PORT"),
+    },
+    'mcgreen_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get("MYSQL_HOST"),
+        'USER': os.environ.get("MYSQL_USER"),
+        'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
+        'NAME': os.environ.get("MYSQL_NAME3"),
+        'PORT': os.environ.get("MYSQL_PORT"),
+    },
+    'tarco_db': {
+        'ENGINE': 'django.db.backends.mysql',
+        'HOST': os.environ.get("MYSQL_HOST"),
+        'USER': os.environ.get("MYSQL_USER"),
+        'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
+        'NAME': os.environ.get("MYSQL_NAME4"),
+        'PORT': os.environ.get("MYSQL_PORT"),
     }
 }
+
+DATABASE_ROUTERS = ['routers.routers.SigssmacRouter', 'routers.routers.TarcoRouter', 'routers.routers.ApiEnergyRouter', 'routers.routers.McGreenRouter']
 
 
 # Password validation
