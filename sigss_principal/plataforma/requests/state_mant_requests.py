@@ -1,11 +1,11 @@
 from django.http import JsonResponse
-from django.db import connection
+from django.db import connections
 from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError
 import json
 
 def showStates(request):
     try:
-        getStates = connection.cursor()
+        getStates = connections["sigssmac_db"].cursor()
         getStates.execute("SELECT * FROM estado_plat")
         return JsonResponse({ "msg": getStates.fetchall() }, status=200)
     except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -17,7 +17,7 @@ def createState(request):
         responses = json.loads(request.body.decode("utf-8"))
         print(responses.get("name"))
         try:
-            conn = connection.cursor()
+            conn = connections["sigssmac_db"].cursor()
             conn.callproc("ESTADO_AGREGAR", [responses.get("name")])
             return JsonResponse({ "status": "success", "msg": "Estado agregado" }, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -30,7 +30,7 @@ def modifyState(request):
         print(responses.get("id"))
         print(responses.get("name"))
         try:
-            conn = connection.cursor()
+            conn = connections["sigssmac_db"].cursor()
             conn.callproc("ESTADO_MODIFICAR", [responses.get("id"), responses.get("name")])
             return JsonResponse({ "status": "success", "msg": "Estado "+ responses.get("id") +" modificado" }, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -42,7 +42,7 @@ def deleteState(request):
         responses = json.loads(request.body.decode("utf-8"))
         print(responses.get("id"))
         try:
-            conn = connection.cursor()
+            conn = connections["sigssmac_db"].cursor()
             conn.callproc("ESTADO_ELIMINAR", [responses.get("id")])
             return JsonResponse({ "status": "success", "msg": "Estado "+ responses.get("id") +" eliminado" }, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -54,7 +54,7 @@ def searchState(request):
         responses = json.loads(request.body.decode("utf-8"))
         print(responses.get("id"))
         try:
-            conn = connection.cursor()
+            conn = connections["sigssmac_db"].cursor()
             conn.callproc("ESTADO_BUSCAR_EXISTENTE", [responses.get("id")])
             return JsonResponse({ "status": "success", "msg": "Estado "+ responses.get("id") +" eliminado" }, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:

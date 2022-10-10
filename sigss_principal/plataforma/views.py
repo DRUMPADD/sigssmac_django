@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse
-from django.db import connection, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error
+from django.db import connections, OperationalError, DatabaseError, InternalError, DataError, IntegrityError, InterfaceError, ProgrammingError, NotSupportedError, Error
 from django.template.exceptions import TemplateSyntaxError, TemplateDoesNotExist
 # Create your views here.
 def general_view(request):
@@ -7,13 +7,13 @@ def general_view(request):
         context = {
             "title": "Principal",
         }
-        cursor = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
         cursor.execute("SELECT * FROM maquinas_equipos")
         context["items"] = cursor.fetchall()
-        cursor2 = connection.cursor()
+        cursor2 = connections["sigssmac_db"].cursor()
         cursor2.execute("SELECT * FROM frecuencia")
         context["frequence"] = cursor2.fetchall()
-        cursor3 = connection.cursor()
+        cursor3 = connections["sigssmac_db"].cursor()
         cursor3.execute("SELECT * FROM actividades")
         context["activities"] = cursor3.fetchall()
         return render(request, "plataforma/general.html", context)
@@ -50,7 +50,7 @@ def item_view(request, id_item):
     }
     print("ID:",id_item)
     try:
-        cursor = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
         cursor.callproc("CARACTERISTICAS_ITEM", [id_item])
         get_info = cursor.fetchall()
         ar = []
@@ -64,7 +64,7 @@ def item_view(request, id_item):
     finally:
         cursor.close()
     try:
-        cursor = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
         cursor.execute("SELECT * FROM estado_plat")
         get_info = cursor.fetchall()
         context["states"] = get_info
@@ -73,7 +73,7 @@ def item_view(request, id_item):
     finally:
         cursor.close()
     try:
-        cursor2 = connection.cursor()
+        cursor2 = connections["sigssmac_db"].cursor()
         cursor2.callproc("MOSTRAR_PROVEEDOR_EN_ITEM", [id_item])
         get_pro = cursor2.fetchall()
         context["existe_prov"] = True if get_pro else False
@@ -83,7 +83,7 @@ def item_view(request, id_item):
     finally:
         cursor2.close()
     try:
-        cursor = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
         cursor.execute("SELECT * FROM proveedores")
         get_pro = cursor.fetchall()
         context["providers"] = get_pro
@@ -102,9 +102,9 @@ def manteinment_view(request):
         "title": "Mantenimiento correctivo",
     }
     try:
-        cursor = connection.cursor()
-        cursor2 = connection.cursor()
-        cursor3 = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
+        cursor2 = connections["sigssmac_db"].cursor()
+        cursor3 = connections["sigssmac_db"].cursor()
         cursor.execute("SELECT * FROM maquinas_equipos")
         cursor2.execute("SELECT * FROM modos_fallo")
         cursor3.execute("SELECT * FROM novedad")

@@ -1,11 +1,11 @@
 from django.http import JsonResponse
-from django.db import connection
+from django.db import connections
 from django.db import InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError
 import json
 
 def showModes(request):
     try:
-        cursor = connection.cursor()
+        cursor = connections["sigssmac_db"].cursor()
         cursor.execute("SELECT * FROM modos_fallo")
         return JsonResponse({"msg": cursor.fetchall()}, status=200)
     except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -17,7 +17,7 @@ def createMode(request):
         answers = json.loads(request.body.decode("utf-8"))
         print(answers)
         try:
-            cursor = connection.cursor()
+            cursor = connections["sigssmac_db"].cursor()
             cursor.callproc("MODOS_AGREGAR", [answers.get("id"), answers.get("name")])
             return JsonResponse({"status": "success", "msg": "Modo de fallo agregado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -29,7 +29,7 @@ def modifyMode(request):
         answers = json.loads(request.body.decode("utf-8"))
         print(answers)
         try:
-            cursor = connection.cursor()
+            cursor = connections["sigssmac_db"].cursor()
             cursor.callproc("MODOS_MODIFICAR", [answers.get("id"), answers.get("name")])
             return JsonResponse({"status": "success", "msg": "Modo de fallo: "+ answers.get("id") +" actualizado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -41,7 +41,7 @@ def deleteMode(request):
         answers = json.loads(request.body.decode("utf-8"))
         print(answers)
         try:
-            cursor = connection.cursor()
+            cursor = connections["sigssmac_db"].cursor()
             cursor.callproc("MODOS_ELIMINAR", [answers.get("id")])
             return JsonResponse({"status": "success", "msg": "Modo de fallo: "+ answers.get("id") +" eliminado"}, status=200)
         except (InternalError, IntegrityError, InterfaceError, ProgrammingError, DataError, OperationalError) as e:
@@ -54,7 +54,7 @@ def searchMode(request):
         print(answers)
         resp = ""
         try:
-            cursor = connection.cursor()
+            cursor = connections["sigssmac_db"].cursor()
             cursor.callproc("MODOS_BUSCAR_EXISTENTE", [answers.get("id")])
             resp = cursor.fetchone()[0]
             if resp == "EXISTE":
