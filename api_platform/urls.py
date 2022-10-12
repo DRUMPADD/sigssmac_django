@@ -60,7 +60,6 @@ urlpatterns = [
     path("operaciones_api/proveedor/buscarProveedor", pro_req.search_provider, name="searchProvider"),
     path("operaciones_api/proveedor/quitarProveedor", pro_req.delete_provider_from_item, name="removeProviderToItem"),
     # ? Other requests
-    path("operaciones_api/otrosRegistros", other_views, name="other"),
     path("operaciones_api/estado/mostrarEstados", st_req.showStates, name="showStates"),
     path("operaciones_api/estado/crearEstado", st_req.createState, name="createState"),
     path("operaciones_api/estado/modificarEstado", st_req.modifyState, name="modifyState"),

@@ -59,7 +59,6 @@ urlpatterns = [
     path("operaciones_tarco/proveedor/buscarProveedor", pro_req.search_provider, name="searchProvider"),
     path("operaciones_tarco/proveedor/quitarProveedor", pro_req.delete_provider_from_item, name="removeProviderToItem"),
     # ? Other requests
-    path("operaciones_tarco/otrosRegistros", other_view, name="other"),
     path("operaciones_tarco/estado/mostrarEstados", st_req.showStates, name="showStates"),
     path("operaciones_tarco/estado/crearEstado", st_req.createState, name="createState"),
     path("operaciones_tarco/estado/modificarEstado", st_req.modifyState, name="modifyState"),

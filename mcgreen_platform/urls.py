@@ -59,7 +59,6 @@ urlpatterns = [
     path("operaciones_mcgreen/proveedor/buscarProveedor", pro_req.search_provider, name="searchProvider"),
     path("operaciones_mcgreen/proveedor/quitarProveedor", pro_req.delete_provider_from_item, name="removeProviderToItem"),
     # ? Other requests
-    path("operaciones_mcgreen/otrosRegistros", other_view, name="other"),
     path("operaciones_mcgreen/estado/mostrarEstados", st_req.showStates, name="showStates"),
     path("operaciones_mcgreen/estado/crearEstado", st_req.createState, name="createState"),
     path("operaciones_mcgreen/estado/modificarEstado", st_req.modifyState, name="modifyState"),
