@@ -92,3 +92,20 @@ def change_provider(request):
         except (errors) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
+
+def search_provider(request):
+    if request.method == 'POST':
+        responses = json.loads(request.body.decode("utf-8"))
+        print(responses.get("prov_id"))
+        try:
+            cursor = connections["sigssmac_db"].cursor()
+            cursor.callproc("BUSCAR_PROVEEDOR_EXISTENTE", [responses.get("prov_id")])
+            resp = cursor.fetchall()
+            print(resp)
+            if resp:
+                return JsonResponse({"msg": "EXISTE"}, status=200)
+            else:
+                return JsonResponse({"msg": ""}, status=200)
+        except (errors) as e:
+            print(e)
+            return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
