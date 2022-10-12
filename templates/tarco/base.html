@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/principal.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+    <header>
+        <h1>Plataforma industrial</h1>
+        <nav class="list">
+                <a href="{% url 'generalMantTARCO' %}" class="link"><span>General</span></a>
+                <a href="{% url 'activitiesTARCO' %}" class="link"><span>Actividades</span></a>
+                <a href="{% url 'itemsTARCO' %}" class="link"><span>Artículos</span></a>
+                <a href="{% url 'corMantTARCO' %}" class="link"><span>Mantenimiento correctivo</span></a>
+                <a href="{% url 'otherRegistersTARCO' %}" class="link"><span>Otros registros</span></a>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+    {% block out-content %}
+    {% endblock %}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.32/dist/sweetalert2.all.min.js"></script>
+    <script src="{% static 'js/general-config.js' %}"></script>
+    {% block js_code %}
+    {% endblock %}
+</body>
+</html>
