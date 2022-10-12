@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getGeneralManteinment () {
-    let response = await fetch("/plataforma/general/mostrarGeneral");
+    let response = await fetch("/operaciones_api/general/mostrarGeneral");
     let data = await response.json();
     return data.msg;
 }
@@ -109,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function createManteinment (elements) {
-    fetch("/plataforma/general/crearGeneral", {
+    fetch("/operaciones_api/general/crearGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -155,7 +155,7 @@ function checkData(value_inp) {
 }
 
 function modifyManteinment (answers) {
-    fetch("/plataforma/general/modificarGeneral", {
+    fetch("/operaciones_api/general/modificarGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -190,7 +190,7 @@ function modifyManteinment (answers) {
 }
 
 function deleteManteinment (mant_id) {
-    fetch("/plataforma/general/eliminarGeneral", {
+    fetch("/operaciones_api/general/eliminarGeneral", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

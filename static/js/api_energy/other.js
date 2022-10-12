@@ -105,7 +105,7 @@ formSelected.forEach((form, i) => {
 
 // ?? Providers 
 async function getProviders() {
-    let response = await fetch("/plataforma/proveedor/mostrarProveedores");
+    let response = await fetch("/operaciones_api/proveedor/mostrarProveedores");
     let d = await response.json();
     return d.msg;
 }
@@ -164,7 +164,7 @@ async function showProviders() {
 
 // ?? Frequences
 async function getFrequences() {
-    let response = await fetch("/plataforma/frecuencia/mostrarFrecuencias");
+    let response = await fetch("/operaciones_api/frecuencia/mostrarFrecuencias");
     let d = await response.json();
     return d.msg;
 }
@@ -217,7 +217,7 @@ async function showFrequences() {
 
 // ?? Novelties
 async function getNovelties() {
-    let response = await fetch("/plataforma/novedad/mostrarNovedades");
+    let response = await fetch("/operaciones_api/novedad/mostrarNovedades");
     let d = await response.json();
     return d.msg;
 }
@@ -269,7 +269,7 @@ async function showNovelties() {
 
 // ?? Fail modes
 async function getModes() {
-    let response = await fetch("/plataforma/modoFallo/mostrarModos");
+    let response = await fetch("/operaciones_api/modoFallo/mostrarModos");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -322,7 +322,7 @@ async function showModes() {
 }
 
 async function getStates() {
-    let response = await fetch("/plataforma/estado/mostrarEstados");
+    let response = await fetch("/operaciones_api/estado/mostrarEstados");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -401,7 +401,7 @@ function reloadTag(where) {
 
 // ?? Post functions
 function save_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/crearNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/crearModo": "/plataforma/estado/crearEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_api/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/operaciones_api/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/operaciones_api/novedad/crearNovedad" : where == 'FALLO' ? "/operaciones_api/modoFallo/crearModo": "/operaciones_api/estado/crearEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -436,7 +436,7 @@ function save_data(where, values) {
 }
 
 function modify_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/modificarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/modificarModo": "/plataforma/estado/modificarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_api/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/operaciones_api/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_api/novedad/modificarNovedad" : where == 'FALLO' ? "/operaciones_api/modoFallo/modificarModo": "/operaciones_api/estado/modificarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -471,7 +471,7 @@ function modify_data(where, values) {
 }
 
 function search_existing_data(where, value) {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/buscarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/buscarModo" : "/plataforma/estado/buscarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_api/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/operaciones_api/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_api/novedad/buscarNovedad" : where == 'FALLO' ? "/operaciones_api/modoFallo/buscarModo" : "/operaciones_api/estado/buscarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -499,7 +499,7 @@ function search_existing_data(where, value) {
 }
 
 function delete_data(where, value, exist = "") {
-    let url = where == 'PROVEEDOR' ? "/plataforma/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/plataforma/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/plataforma/novedad/eliminarNovedad" : where == 'FALLO' ? "/plataforma/modoFallo/eliminarModo" : "/plataforma/estado/eliminarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_api/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/operaciones_api/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_api/novedad/eliminarNovedad" : where == 'FALLO' ? "/operaciones_api/modoFallo/eliminarModo" : "/operaciones_api/estado/eliminarEstado";
     let ifExistsInDB = exist == "EXISTE" ? "Este registro se encuentra asignado a uno o varios elementos, ¿Está seguro de eliminar este registro?": "¿Está seguro de eliminar este registro?";
     Swal.fire({
         title: ifExistsInDB,
