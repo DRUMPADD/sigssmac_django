@@ -34,7 +34,7 @@ let form = document.querySelector("#form_act");
 
 // ?? Conseguir datos de tabla actividades desde servidor
 async function getActivities() {
-    let response = await fetch("{% url 'showAcivitiesAPI' %}");
+    let response = await fetch("/operaciones_api/actividades/mostrarActividad");
     let data = await response.json();
     return data.msg;
 }
@@ -106,7 +106,7 @@ function checkDescription(descrip) {
 }
 
 function createActivity () {
-    fetch("{% url 'createActivityAPI' %}", {
+    fetch("/operaciones_api/actividades/crear_actividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -145,7 +145,7 @@ function createActivity () {
 }
 
 function modifyActivity() {
-    fetch("{% url 'modifyActivityAPI' %}", {
+    fetch("/operaciones_api/actividades/modificarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -183,7 +183,7 @@ function modifyActivity() {
 }
 
 function searchActivity(id_act) {
-    fetch("{% url 'searchActivityAPI' %}", {
+    fetch("/operaciones_api/actividades/buscarActividad", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -212,7 +212,7 @@ function searchActivity(id_act) {
     })
 }
 function deleteActivity(msg, act_cod) {
-    let url_fetch = msg == "Encontrado" ? "{% url 'deleteAllActivityAPI' %}" : "{% url 'deleteActivityAPI' %}"; 
+    let url_fetch = msg == "Encontrado" ? "/operaciones_api/actividades/eliminarActividadCompleto" : "/operaciones_api/actividades/eliminarActividad"; 
     let confirm_message = msg == "Encontrado" ? "Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?" : "¿Está seguro de eliminar esta actividad?";
     Swal.fire({
         title: confirm_message,

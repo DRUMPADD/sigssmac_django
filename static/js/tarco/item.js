@@ -100,7 +100,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     })
     
     async function getProviders () {
-        let response = await fetch("{% url 'showProvidersTARCO' %}");
+        let response = await fetch("/operaciones_tarco/proveedor/mostrarProveedores");
         let data = await response.json();
         return data.msg;
     }
@@ -256,7 +256,7 @@ function getCookie(name) {
 }
 
 function register_add_provider(values) {
-    fetch("{% url 'addProviderToItemTARCO' %}", {
+    fetch("/operaciones_tarco/proveedor/agregarProveedorAItem", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -291,7 +291,7 @@ function register_add_provider(values) {
 }
 
 function modifyProvider(values) {
-    fetch("{% url 'modifyProvidersTARCO' %}", {
+    fetch("/operaciones_tarco/proveedor/modificarProveedor", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -326,7 +326,7 @@ function modifyProvider(values) {
 }
 
 function updateCaracteristics(values) {
-    fetch("{% url 'modifyCaracteristicsTARCO' %}", {
+    fetch("/operaciones_tarco/equipo/modificarCaracteristicas", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -361,7 +361,7 @@ function updateCaracteristics(values) {
 }
 
 function changeProvider(values) {
-    fetch("{% url 'changeProviderToItemTARCO' %}", {
+    fetch("/operaciones_tarco/proveedor/cambiarProveedor", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -407,7 +407,7 @@ function delete_prov_from_item(values) {
         cancelButtonText: 'Cancelar',
     }).then(result => {
         if(result.isConfirmed) {
-            fetch("{% url 'removeProviderToItemTARCO' %}", {
+            fetch("/operaciones_tarco/proveedor/quitarProveedor", {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",

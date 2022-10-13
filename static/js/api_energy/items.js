@@ -32,7 +32,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getItems() {
-    let response = await fetch("{% url 'showItemsAPI' %}");
+    let response = await fetch("/operaciones_api/equipo/mostrarItems");
     let data = await response.json();
     return data.msg;
 }
@@ -50,7 +50,7 @@ async function showItems() {
                     <td>${element[1]}</td>
                     <td>${element[2]}</td>
                     <td style="display: flex; justify-content: center;">
-                        <a data-title="Ver características" href="/api_energy/operaciones_api/equipo/info_item/${element[0]}" class="btn btn-see-charac">
+                        <a data-title="Ver características" href="/operaciones_api/equipo/info_item/${element[0]}" class="btn btn-see-charac">
                             <i class="fa-regular fa-file-lines"></i>
                         </a>
                         <a class="btn btn-modificar" href="#content-hidden">
@@ -103,7 +103,7 @@ function checkQuantity(quantity) {
 }
 
 function createItem (cod_item, name_item, quantity_item) {
-    fetch("{% url 'createItemAPI' %}", {
+    fetch("/operaciones_api/equipo/registrarItem", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -142,7 +142,7 @@ function createItem (cod_item, name_item, quantity_item) {
 }
 
 function modifyItem () {
-    fetch("{% url 'modifyItemsAPI' %}", {
+    fetch("/operaciones_api/equipo/modificarItem", {
         method: 'POST',
         mode: 'same-origin',
         headers: {
@@ -183,7 +183,7 @@ function modifyItem () {
 
 
 function searchItem (item_id) {
-    fetch("{% url 'searchItemAPI' %}", {
+    fetch("/operaciones_api/equipo/buscarItem", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -213,7 +213,7 @@ function searchItem (item_id) {
 }
 
 function deleteItem (msg, item_id) {
-    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "{% url 'deleteCompleteItemAPI' %}" : "{% url 'deleteItemAPI' %}";
+    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "/operaciones_api/equipo/eliminarItemCompleto" : "/operaciones_api/equipo/eliminarItem";
     let confirm_message = msg == "Encontrados" || msg == "Encontrado" ? "Este equipo está asignado a uno o varios registros, ¿está seguro de eliminarlo?" : "¿Está seguro de eliminar este equipo?";
     Swal.fire({
         title: confirm_message,
