@@ -118,15 +118,25 @@ form.addEventListener("submit", (e) => {
         ar.push(form.elements[i].value);
     }
 
-    createManteinment({
-        item: ar[1],
-        days: ar[6],
-        novedad: ar[3],
-        fail: ar[2],
-        report_date: ar[4],
-        rec_date: ar[5],
-        notes: ar[7],
-    })
+    if((form["sl_item"].value != undefined || form["sl_item"].value != "")) {
+        createManteinment({
+            item: ar[1],
+            days: ar[6],
+            novedad: ar[3],
+            fail: ar[2],
+            report_date: ar[4],
+            rec_date: ar[5],
+            notes: ar[7],
+        })
+    } else {
+        Swal.fire({
+            position: 'center',
+            icon: 'warning',
+            title: 'Todos los campos son requeridos',
+            confirmButtonColor: '#d33',
+            confirmButtonText: 'ACEPTAR',
+        })
+    }
 })
 
 form.addEventListener("change", (e) => {
