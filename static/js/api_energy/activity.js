@@ -93,16 +93,8 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 
-function checkId (inputId) {
-    return inputId === '';
-}
-
-function checkName(name) {
-    return name === '';
-}
-
-function checkDescription(descrip) {
-    return descrip === '';
+function checkInput(inputId) {
+    return inputId == '';
 }
 
 function createActivity () {
@@ -265,9 +257,9 @@ function deleteActivity(msg, act_cod) {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let isIdValid = checkId(e.target.id.value),
-        isNameValid = checkName(e.target.name_act.value),
-        isDescriptionValid = checkDescription(e.target.description.value);
+    let isIdValid = checkInput(e.target.id.value),
+        isNameValid = checkInput(e.target.name_act.value),
+        isDescriptionValid = checkInput(e.target.description.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(!isFormValid) {
         createActivity();
