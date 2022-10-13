@@ -100,7 +100,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     })
     
     async function getProviders () {
-        let response = await fetch("/mcgreen/operaciones_mcgreen/proveedor/mostrarProveedores");
+        let response = await fetch("{% url 'showProvidersMCGREEN' %}");
         let data = await response.json();
         return data.msg;
     }
@@ -256,7 +256,7 @@ function getCookie(name) {
 }
 
 function register_add_provider(values) {
-    fetch("/mcgreen/operaciones_mcgreen/proveedor/agregarProveedorAItem", {
+    fetch("{% url 'addProviderToItemMCGREEN' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -291,7 +291,7 @@ function register_add_provider(values) {
 }
 
 function modifyProvider(values) {
-    fetch("/mcgreen/operaciones_mcgreen/proveedor/modificarProveedor", {
+    fetch("{% url 'modifyProvidersMCGREEN' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -326,7 +326,7 @@ function modifyProvider(values) {
 }
 
 function updateCaracteristics(values) {
-    fetch("/mcgreen/operaciones_mcgreen/equipo/modificarCaracteristicas", {
+    fetch("{% url 'modifyCaracteristicsMCGREEN' %}", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -361,7 +361,7 @@ function updateCaracteristics(values) {
 }
 
 function changeProvider(values) {
-    fetch("/mcgreen/operaciones_mcgreen/proveedor/cambiarProveedor", {
+    fetch("{% url 'changeProviderToItemMCGREEN' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -407,7 +407,7 @@ function delete_prov_from_item(values) {
         cancelButtonText: 'Cancelar',
     }).then(result => {
         if(result.isConfirmed) {
-            fetch("/mcgreen/operaciones_mcgreen/proveedor/quitarProveedor", {
+            fetch("{% url 'removeProviderToItemMCGREEN' %}", {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",

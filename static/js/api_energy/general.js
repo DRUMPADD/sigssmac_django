@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getGeneralManteinment () {
-    let response = await fetch("/api_energy/operaciones_api/general/mostrarGeneral");
+    let response = await fetch("{% url 'showGeneralMntAPI' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -109,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function createManteinment (elements) {
-    fetch("/api_energy/operaciones_api/general/crearGeneral", {
+    fetch("{% url 'createGeneralMntAPI' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -155,7 +155,7 @@ function checkData(value_inp) {
 }
 
 function modifyManteinment (answers) {
-    fetch("/api_energy/operaciones_api/general/modificarGeneral", {
+    fetch("{% url 'modifyGeneralMntAPI' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -190,7 +190,7 @@ function modifyManteinment (answers) {
 }
 
 function deleteManteinment (mant_id) {
-    fetch("/api_energy/operaciones_api/general/eliminarGeneral", {
+    fetch("{% url 'deleteGeneralMntAPI' %}", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

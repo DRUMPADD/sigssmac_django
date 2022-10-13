@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getCorMant () {
-    let res = await fetch("/tarco_plat/operaciones_tarco/correctivo/mostrarCorrectivo");
+    let res = await fetch("{% url 'showManteinmentsTARCO' %}");
     let d = await res.json();
     return d.msg;
 }
@@ -74,7 +74,7 @@ function checkData (value_) {
 }
 
 function createManteinment (data_) {
-    fetch("/tarco_plat/operaciones_tarco/correctivo/agregarCorrectivo", {
+    fetch("{% url 'createManteinmentTARCO' %}", {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

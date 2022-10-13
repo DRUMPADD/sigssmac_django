@@ -105,7 +105,7 @@ formSelected.forEach((form, i) => {
 
 // ?? Providers 
 async function getProviders() {
-    let response = await fetch("/api_energy/operaciones_api/proveedor/mostrarProveedores");
+    let response = await fetch("{% url 'showProvidersAPI' %}");
     let d = await response.json();
     return d.msg;
 }
@@ -164,7 +164,7 @@ async function showProviders() {
 
 // ?? Frequences
 async function getFrequences() {
-    let response = await fetch("/api_energy/operaciones_api/frecuencia/mostrarFrecuencias");
+    let response = await fetch("{% url 'showFrequencesAPI' %}");
     let d = await response.json();
     return d.msg;
 }
@@ -217,7 +217,7 @@ async function showFrequences() {
 
 // ?? Novelties
 async function getNovelties() {
-    let response = await fetch("/api_energy/operaciones_api/novedad/mostrarNovedades");
+    let response = await fetch("{% url 'showNoveltiesAPI' %}");
     let d = await response.json();
     return d.msg;
 }
@@ -269,7 +269,7 @@ async function showNovelties() {
 
 // ?? Fail modes
 async function getModes() {
-    let response = await fetch("/api_energy/operaciones_api/modoFallo/mostrarModos");
+    let response = await fetch("{% url 'showModesAPI' %}");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -322,7 +322,7 @@ async function showModes() {
 }
 
 async function getStates() {
-    let response = await fetch("/api_energy/operaciones_api/estado/mostrarEstados");
+    let response = await fetch("{% url 'showStatesAPI' %}");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -401,7 +401,7 @@ function reloadTag(where) {
 
 // ?? Post functions
 function save_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/api_energy/operaciones_api/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/api_energy/operaciones_api/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/api_energy/operaciones_api/novedad/crearNovedad" : where == 'FALLO' ? "/api_energy/operaciones_api/modoFallo/crearModo": "/api_energy/operaciones_api/estado/crearEstado";
+    let url = where == 'PROVEEDOR' ? "{% url 'createProvidersAPI' %}" : where == 'FRECUENCIA' ? "{% url 'createFrequenceAPI' %}" : where == 'NOVEDAD' ? "{% url 'createNoveltyAPI' %}" : where == 'FALLO' ? "{% url 'createModeAPI' %}": "{% url 'createStateAPI' %}";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -436,7 +436,7 @@ function save_data(where, values) {
 }
 
 function modify_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "/api_energy/operaciones_api/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/api_energy/operaciones_api/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/api_energy/operaciones_api/novedad/modificarNovedad" : where == 'FALLO' ? "/api_energy/operaciones_api/modoFallo/modificarModo": "/api_energy/operaciones_api/estado/modificarEstado";
+    let url = where == 'PROVEEDOR' ? "{% url 'modifyProvidersAPI' %}" : where == 'FRECUENCIA' ? "{% url 'modifyFrequenceAPI' %}" : where == 'NOVEDAD' ? "{% url 'modifyNoveltyAPI' %}" : where == 'FALLO' ? "{% url 'modifyModeAPI' %}": "{% url 'modifyStateAPI' %}";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -471,7 +471,7 @@ function modify_data(where, values) {
 }
 
 function search_existing_data(where, value) {
-    let url = where == 'PROVEEDOR' ? "/api_energy/operaciones_api/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/api_energy/operaciones_api/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/api_energy/operaciones_api/novedad/buscarNovedad" : where == 'FALLO' ? "/api_energy/operaciones_api/modoFallo/buscarModo" : "/api_energy/operaciones_api/estado/buscarEstado";
+    let url = where == 'PROVEEDOR' ? "{% url 'searchProviderAPI' %}" : where == 'FRECUENCIA' ? "{% url 'searchFrequenceAPI' %}" : where == 'NOVEDAD' ? "{% url 'searchNoveltyAPI' %}" : where == 'FALLO' ? "{% url 'searchModeAPI' %}" : "{% url 'searchStateAPI' %}";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -499,7 +499,7 @@ function search_existing_data(where, value) {
 }
 
 function delete_data(where, value, exist = "") {
-    let url = where == 'PROVEEDOR' ? "/api_energy/operaciones_api/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/api_energy/operaciones_api/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/api_energy/operaciones_api/novedad/eliminarNovedad" : where == 'FALLO' ? "/api_energy/operaciones_api/modoFallo/eliminarModo" : "/api_energy/operaciones_api/estado/eliminarEstado";
+    let url = where == 'PROVEEDOR' ? "{% url 'deleteProvidersAPI' %}" : where == 'FRECUENCIA' ? "{% url 'deleteFrequenceAPI' %}" : where == 'NOVEDAD' ? "{% url 'deleteNoveltyAPI' %}" : where == 'FALLO' ? "{% url 'deleteModeAPI' %}" : "{% url 'deleteStateAPI' %}";
     let ifExistsInDB = exist == "EXISTE" ? "Este registro se encuentra asignado a uno o varios elementos, ¿Está seguro de eliminar este registro?": "¿Está seguro de eliminar este registro?";
     Swal.fire({
         title: ifExistsInDB,

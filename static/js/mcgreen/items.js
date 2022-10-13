@@ -32,7 +32,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getItems() {
-    let response = await fetch("/mcgreen/operaciones_mcgreen/equipo/mostrarItems");
+    let response = await fetch("{% url 'showItemsMCGREEN' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -50,7 +50,7 @@ async function showItems() {
                     <td>${element[1]}</td>
                     <td>${element[2]}</td>
                     <td style="display: flex; justify-content: center;">
-                        <a data-title="Ver características" href="/mcgreen/operaciones_mcgreen/equipo/info_item/${element[0]}" class="btn btn-see-charac">
+                        <a data-title="Ver características" href="/mcgreen/operaciones_api/equipo/info_item/${element[0]}" class="btn btn-see-charac">
                             <i class="fa-regular fa-file-lines"></i>
                         </a>
                         <a class="btn btn-modificar" href="#content-hidden">
@@ -103,7 +103,7 @@ function checkQuantity(quantity) {
 }
 
 function createItem (cod_item, name_item, quantity_item) {
-    fetch("/mcgreen/operaciones_mcgreen/equipo/registrarItem", {
+    fetch("{% url 'createItemMCGREEN' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -142,7 +142,7 @@ function createItem (cod_item, name_item, quantity_item) {
 }
 
 function modifyItem () {
-    fetch("/mcgreen/operaciones_mcgreen/equipo/modificarItem", {
+    fetch("{% url 'modifyItemsMCGREEN' %}", {
         method: 'POST',
         mode: 'same-origin',
         headers: {
@@ -183,7 +183,7 @@ function modifyItem () {
 
 
 function searchItem (item_id) {
-    fetch("/mcgreen/operaciones_mcgreen/equipo/buscarItem", {
+    fetch("{% url 'searchItemMCGREEN' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -213,7 +213,7 @@ function searchItem (item_id) {
 }
 
 function deleteItem (msg, item_id) {
-    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "/mcgreen/operaciones_mcgreen/equipo/eliminarItemCompleto" : "/mcgreen/operaciones_mcgreen/equipo/eliminarItem";
+    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "{% url 'deleteCompleteItemMCGREEN' %}" : "{% url 'deleteItemMCGREEN' %}";
     let confirm_message = msg == "Encontrados" || msg == "Encontrado" ? "Este equipo está asignado a uno o varios registros, ¿está seguro de eliminarlo?" : "¿Está seguro de eliminar este equipo?";
     Swal.fire({
         title: confirm_message,

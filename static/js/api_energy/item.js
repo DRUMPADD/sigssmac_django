@@ -100,7 +100,7 @@ if(prov_box.getElementsByClassName("id").length == 0) {
     })
     
     async function getProviders () {
-        let response = await fetch("/api_energy/operaciones_api/proveedor/mostrarProveedores");
+        let response = await fetch("{% url 'showProvidersAPI' %}");
         let data = await response.json();
         return data.msg;
     }
@@ -256,7 +256,7 @@ function getCookie(name) {
 }
 
 function register_add_provider(values) {
-    fetch("/api_energy/operaciones_api/proveedor/agregarProveedorAItem", {
+    fetch("{% url 'addProviderToItemAPI' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -291,7 +291,7 @@ function register_add_provider(values) {
 }
 
 function modifyProvider(values) {
-    fetch("/api_energy/operaciones_api/proveedor/modificarProveedor", {
+    fetch("{% url 'modifyProvidersAPI' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -326,7 +326,7 @@ function modifyProvider(values) {
 }
 
 function updateCaracteristics(values) {
-    fetch("/api_energy/operaciones_api/equipo/modificarCaracteristicas", {
+    fetch("{% url 'modifyCaracteristicsAPI' %}", {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -361,7 +361,7 @@ function updateCaracteristics(values) {
 }
 
 function changeProvider(values) {
-    fetch("/api_energy/operaciones_api/proveedor/cambiarProveedor", {
+    fetch("{% url 'changeProviderToItemAPI' %}", {
         method: 'POST',
         headers: {
             "Accept": "application/json",
@@ -407,7 +407,7 @@ function delete_prov_from_item(values) {
         cancelButtonText: 'Cancelar',
     }).then(result => {
         if(result.isConfirmed) {
-            fetch("/api_energy/operaciones_api/proveedor/quitarProveedor", {
+            fetch("{% url 'removeProviderToItemAPI' %}", {
                 method: 'POST',
                 headers: {
                     "Accept": "application/json",

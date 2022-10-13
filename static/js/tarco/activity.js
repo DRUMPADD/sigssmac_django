@@ -34,7 +34,7 @@ let form = document.querySelector("#form_act");
 
 // ?? Conseguir datos de tabla actividades desde servidor
 async function getActivities() {
-    let response = await fetch("/tarco_plat/operaciones_tarco/actividades/mostrarActividad");
+    let response = await fetch("{% url 'showAcivitiesTARCO' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -106,7 +106,7 @@ function checkDescription(descrip) {
 }
 
 function createActivity () {
-    fetch("/tarco_plat/operaciones_tarco/actividades/crear_actividad", {
+    fetch("{% url 'createActivityTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -145,7 +145,7 @@ function createActivity () {
 }
 
 function modifyActivity() {
-    fetch("/tarco_plat/operaciones_tarco/actividades/modificarActividad", {
+    fetch("{% url 'modifyActivityTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -183,7 +183,7 @@ function modifyActivity() {
 }
 
 function searchActivity(id_act) {
-    fetch("/tarco_plat/operaciones_tarco/actividades/buscarActividad", {
+    fetch("{% url 'searchActivityTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -212,7 +212,7 @@ function searchActivity(id_act) {
     })
 }
 function deleteActivity(msg, act_cod) {
-    let url_fetch = msg == "Encontrado" ? "/tarco_plat/operaciones_tarco/actividades/eliminarActividadCompleto" : "/tarco_plat/operaciones_tarco/actividades/eliminarActividad"; 
+    let url_fetch = msg == "Encontrado" ? "{% url 'deleteAllActivityTARCO' %}" : "{% url 'deleteActivityTARCO' %}"; 
     let confirm_message = msg == "Encontrado" ? "Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?" : "¿Está seguro de eliminar esta actividad?";
     Swal.fire({
         title: confirm_message,

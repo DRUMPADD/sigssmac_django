@@ -32,7 +32,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getItems() {
-    let response = await fetch("/tarco_plat/operaciones_tarco/equipo/mostrarItems");
+    let response = await fetch("{% url 'showItemsTARCO' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -50,7 +50,7 @@ async function showItems() {
                     <td>${element[1]}</td>
                     <td>${element[2]}</td>
                     <td style="display: flex; justify-content: center;">
-                        <a data-title="Ver características" href="/tarco_plat/operaciones_tarco/equipo/info_item/${element[0]}" class="btn btn-see-charac">
+                        <a data-title="Ver características" href="/api_energy/operaciones_api/equipo/info_item/${element[0]}" class="btn btn-see-charac">
                             <i class="fa-regular fa-file-lines"></i>
                         </a>
                         <a class="btn btn-modificar" href="#content-hidden">
@@ -103,7 +103,7 @@ function checkQuantity(quantity) {
 }
 
 function createItem (cod_item, name_item, quantity_item) {
-    fetch("/tarco_plat/operaciones_tarco/equipo/registrarItem", {
+    fetch("{% url 'createItemTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -142,7 +142,7 @@ function createItem (cod_item, name_item, quantity_item) {
 }
 
 function modifyItem () {
-    fetch("/tarco_plat/operaciones_tarco/equipo/modificarItem", {
+    fetch("{% url 'modifyItemsTARCO' %}", {
         method: 'POST',
         mode: 'same-origin',
         headers: {
@@ -183,7 +183,7 @@ function modifyItem () {
 
 
 function searchItem (item_id) {
-    fetch("/tarco_plat/operaciones_tarco/equipo/buscarItem", {
+    fetch("{% url 'searchItemTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -213,7 +213,7 @@ function searchItem (item_id) {
 }
 
 function deleteItem (msg, item_id) {
-    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "/tarco_plat/operaciones_tarco/equipo/eliminarItemCompleto" : "/tarco_plat/operaciones_tarco/equipo/eliminarItem";
+    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "{% url 'deleteCompleteItemTARCO' %}" : "{% url 'deleteItemTARCO' %}";
     let confirm_message = msg == "Encontrados" || msg == "Encontrado" ? "Este equipo está asignado a uno o varios registros, ¿está seguro de eliminarlo?" : "¿Está seguro de eliminar este equipo?";
     Swal.fire({
         title: confirm_message,

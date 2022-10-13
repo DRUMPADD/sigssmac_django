@@ -32,7 +32,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getItems() {
-    let response = await fetch("/api_energy/operaciones_api/equipo/mostrarItems");
+    let response = await fetch("{% url 'showItemsAPI' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -103,7 +103,7 @@ function checkQuantity(quantity) {
 }
 
 function createItem (cod_item, name_item, quantity_item) {
-    fetch("/api_energy/operaciones_api/equipo/registrarItem", {
+    fetch("{% url 'createItemAPI' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -142,7 +142,7 @@ function createItem (cod_item, name_item, quantity_item) {
 }
 
 function modifyItem () {
-    fetch("/api_energy/operaciones_api/equipo/modificarItem", {
+    fetch("{% url 'modifyItemsAPI' %}", {
         method: 'POST',
         mode: 'same-origin',
         headers: {
@@ -183,7 +183,7 @@ function modifyItem () {
 
 
 function searchItem (item_id) {
-    fetch("/api_energy/operaciones_api/equipo/buscarItem", {
+    fetch("{% url 'searchItemAPI' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -213,7 +213,7 @@ function searchItem (item_id) {
 }
 
 function deleteItem (msg, item_id) {
-    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "/api_energy/operaciones_api/equipo/eliminarItemCompleto" : "/api_energy/operaciones_api/equipo/eliminarItem";
+    let url_fetch = msg == "Encontrados" || msg == "Encontrado" ? "{% url 'deleteCompleteItemAPI' %}" : "{% url 'deleteItemAPI' %}";
     let confirm_message = msg == "Encontrados" || msg == "Encontrado" ? "Este equipo está asignado a uno o varios registros, ¿está seguro de eliminarlo?" : "¿Está seguro de eliminar este equipo?";
     Swal.fire({
         title: confirm_message,

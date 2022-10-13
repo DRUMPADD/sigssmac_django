@@ -34,7 +34,7 @@ let form = document.querySelector("#form_act");
 
 // ?? Conseguir datos de tabla actividades desde servidor
 async function getActivities() {
-    let response = await fetch("/mcgreen/operaciones_mcgreen/actividades/mostrarActividad");
+    let response = await fetch("{% url 'showAcivitiesMCGREEN' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -106,7 +106,7 @@ function checkDescription(descrip) {
 }
 
 function createActivity () {
-    fetch("/mcgreen/operaciones_mcgreen/actividades/crear_actividad", {
+    fetch("{% url 'createActivityMCGREEN' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -145,7 +145,7 @@ function createActivity () {
 }
 
 function modifyActivity() {
-    fetch("/mcgreen/operaciones_mcgreen/actividades/modificarActividad", {
+    fetch("{% url 'modifyActivityMCGREEN' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -183,7 +183,7 @@ function modifyActivity() {
 }
 
 function searchActivity(id_act) {
-    fetch("/mcgreen/operaciones_mcgreen/actividades/buscarActividad", {
+    fetch("{% url 'searchActivityMCGREEN' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -212,7 +212,7 @@ function searchActivity(id_act) {
     })
 }
 function deleteActivity(msg, act_cod) {
-    let url_fetch = msg == "Encontrado" ? "/mcgreen/operaciones_mcgreen/actividades/eliminarActividadCompleto" : "/mcgreen/operaciones_mcgreen/actividades/eliminarActividad"; 
+    let url_fetch = msg == "Encontrado" ? "{% url 'deleteAllActivityMCGREEN' %}" : "{% url 'deleteActivityMCGREEN' %}"; 
     let confirm_message = msg == "Encontrado" ? "Esta actividad está asignada a uno o varios items, ¿está seguro de eliminarla?" : "¿Está seguro de eliminar esta actividad?";
     Swal.fire({
         title: confirm_message,

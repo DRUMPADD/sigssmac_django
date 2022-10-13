@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getGeneralManteinment () {
-    let response = await fetch("/tarco_plat/operaciones_tarco/general/mostrarGeneral");
+    let response = await fetch("{% url 'showGeneralMntTARCO' %}");
     let data = await response.json();
     return data.msg;
 }
@@ -109,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function createManteinment (elements) {
-    fetch("/tarco_plat/operaciones_tarco/general/crearGeneral", {
+    fetch("{% url 'createGeneralMntTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -155,7 +155,7 @@ function checkData(value_inp) {
 }
 
 function modifyManteinment (answers) {
-    fetch("/tarco_plat/operaciones_tarco/general/modificarGeneral", {
+    fetch("{% url 'modifyGeneralMntTARCO' %}", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -190,7 +190,7 @@ function modifyManteinment (answers) {
 }
 
 function deleteManteinment (mant_id) {
-    fetch("/tarco_plat/operaciones_tarco/general/eliminarGeneral", {
+    fetch("{% url 'deleteGeneralMntTARCO' %}", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
