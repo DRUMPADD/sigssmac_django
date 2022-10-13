@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getCorMant () {
-    let res = await fetch("mcgreen/operaciones_mcgreen/correctivo/mostrarCorrectivo");
+    let res = await fetch("/operaciones_mcgreen/correctivo/mostrarCorrectivo");
     let d = await res.json();
     return d.msg;
 }
@@ -74,7 +74,7 @@ function checkData (value_) {
 }
 
 function createManteinment (data_) {
-    fetch("mcgreen/operaciones_mcgreen/correctivo/agregarCorrectivo", {
+    fetch("/operaciones_mcgreen/correctivo/agregarCorrectivo", {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

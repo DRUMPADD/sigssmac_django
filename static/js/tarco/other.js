@@ -105,7 +105,7 @@ formSelected.forEach((form, i) => {
 
 // ?? Providers 
 async function getProviders() {
-    let response = await fetch("tarco/operaciones_tarco/proveedor/mostrarProveedores");
+    let response = await fetch("/operaciones_tarco/proveedor/mostrarProveedores");
     let d = await response.json();
     return d.msg;
 }
@@ -164,7 +164,7 @@ async function showProviders() {
 
 // ?? Frequences
 async function getFrequences() {
-    let response = await fetch("tarco/operaciones_tarco/frecuencia/mostrarFrecuencias");
+    let response = await fetch("/operaciones_tarco/frecuencia/mostrarFrecuencias");
     let d = await response.json();
     return d.msg;
 }
@@ -217,7 +217,7 @@ async function showFrequences() {
 
 // ?? Novelties
 async function getNovelties() {
-    let response = await fetch("tarco/operaciones_tarco/novedad/mostrarNovedades");
+    let response = await fetch("/operaciones_tarco/novedad/mostrarNovedades");
     let d = await response.json();
     return d.msg;
 }
@@ -269,7 +269,7 @@ async function showNovelties() {
 
 // ?? Fail modes
 async function getModes() {
-    let response = await fetch("tarco/operaciones_tarco/modoFallo/mostrarModos");
+    let response = await fetch("/operaciones_tarco/modoFallo/mostrarModos");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -322,7 +322,7 @@ async function showModes() {
 }
 
 async function getStates() {
-    let response = await fetch("tarco/operaciones_tarco/estado/mostrarEstados");
+    let response = await fetch("/operaciones_tarco/estado/mostrarEstados");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -401,7 +401,7 @@ function reloadTag(where) {
 
 // ?? Post functions
 function save_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "tarco/operaciones_tarco/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "tarco/operaciones_tarco/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "tarco/operaciones_tarco/novedad/crearNovedad" : where == 'FALLO' ? "tarco/operaciones_tarco/modoFallo/crearModo": "tarco/operaciones_tarco/estado/crearEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_tarco/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/operaciones_tarco/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/operaciones_tarco/novedad/crearNovedad" : where == 'FALLO' ? "/operaciones_tarco/modoFallo/crearModo": "/operaciones_tarco/estado/crearEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -436,7 +436,7 @@ function save_data(where, values) {
 }
 
 function modify_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "tarco/operaciones_tarco/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "tarco/operaciones_tarco/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "tarco/operaciones_tarco/novedad/modificarNovedad" : where == 'FALLO' ? "tarco/operaciones_tarco/modoFallo/modificarModo": "tarco/operaciones_tarco/estado/modificarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_tarco/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/operaciones_tarco/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_tarco/novedad/modificarNovedad" : where == 'FALLO' ? "/operaciones_tarco/modoFallo/modificarModo": "/operaciones_tarco/estado/modificarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -471,7 +471,7 @@ function modify_data(where, values) {
 }
 
 function search_existing_data(where, value) {
-    let url = where == 'PROVEEDOR' ? "tarco/operaciones_tarco/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "tarco/operaciones_tarco/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "tarco/operaciones_tarco/novedad/buscarNovedad" : where == 'FALLO' ? "tarco/operaciones_tarco/modoFallo/buscarModo" : "tarco/operaciones_tarco/estado/buscarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_tarco/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/operaciones_tarco/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_tarco/novedad/buscarNovedad" : where == 'FALLO' ? "/operaciones_tarco/modoFallo/buscarModo" : "/operaciones_tarco/estado/buscarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -499,7 +499,7 @@ function search_existing_data(where, value) {
 }
 
 function delete_data(where, value, exist = "") {
-    let url = where == 'PROVEEDOR' ? "tarco/operaciones_tarco/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "tarco/operaciones_tarco/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "tarco/operaciones_tarco/novedad/eliminarNovedad" : where == 'FALLO' ? "tarco/operaciones_tarco/modoFallo/eliminarModo" : "tarco/operaciones_tarco/estado/eliminarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_tarco/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/operaciones_tarco/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_tarco/novedad/eliminarNovedad" : where == 'FALLO' ? "/operaciones_tarco/modoFallo/eliminarModo" : "/operaciones_tarco/estado/eliminarEstado";
     let ifExistsInDB = exist == "EXISTE" ? "Este registro se encuentra asignado a uno o varios elementos, ¿Está seguro de eliminar este registro?": "¿Está seguro de eliminar este registro?";
     Swal.fire({
         title: ifExistsInDB,

@@ -105,7 +105,7 @@ formSelected.forEach((form, i) => {
 
 // ?? Providers 
 async function getProviders() {
-    let response = await fetch("mcgreen/operaciones_mcgreen/proveedor/mostrarProveedores");
+    let response = await fetch("/operaciones_mcgreen/proveedor/mostrarProveedores");
     let d = await response.json();
     return d.msg;
 }
@@ -164,7 +164,7 @@ async function showProviders() {
 
 // ?? Frequences
 async function getFrequences() {
-    let response = await fetch("mcgreen/operaciones_mcgreen/frecuencia/mostrarFrecuencias");
+    let response = await fetch("/operaciones_mcgreen/frecuencia/mostrarFrecuencias");
     let d = await response.json();
     return d.msg;
 }
@@ -217,7 +217,7 @@ async function showFrequences() {
 
 // ?? Novelties
 async function getNovelties() {
-    let response = await fetch("mcgreen/operaciones_mcgreen/novedad/mostrarNovedades");
+    let response = await fetch("/operaciones_mcgreen/novedad/mostrarNovedades");
     let d = await response.json();
     return d.msg;
 }
@@ -269,7 +269,7 @@ async function showNovelties() {
 
 // ?? Fail modes
 async function getModes() {
-    let response = await fetch("mcgreen/operaciones_mcgreen/modoFallo/mostrarModos");
+    let response = await fetch("/operaciones_mcgreen/modoFallo/mostrarModos");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -322,7 +322,7 @@ async function showModes() {
 }
 
 async function getStates() {
-    let response = await fetch("mcgreen/operaciones_mcgreen/estado/mostrarEstados");
+    let response = await fetch("/operaciones_mcgreen/estado/mostrarEstados");
     let d = await response.json();
     console.log(d.msg);
     return d.msg;
@@ -401,7 +401,7 @@ function reloadTag(where) {
 
 // ?? Post functions
 function save_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "mcgreen/operaciones_mcgreen/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "mcgreen/operaciones_mcgreen/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "mcgreen/operaciones_mcgreen/novedad/crearNovedad" : where == 'FALLO' ? "mcgreen/operaciones_mcgreen/modoFallo/crearModo": "mcgreen/operaciones_mcgreen/estado/crearEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_mcgreen/proveedor/agregarProveedor" : where == 'FRECUENCIA' ? "/operaciones_mcgreen/frecuencia/crearFrecuencia" : where == 'NOVEDAD' ? "/operaciones_mcgreen/novedad/crearNovedad" : where == 'FALLO' ? "/operaciones_mcgreen/modoFallo/crearModo": "/operaciones_mcgreen/estado/crearEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -436,7 +436,7 @@ function save_data(where, values) {
 }
 
 function modify_data(where, values) {
-    let url = where == 'PROVEEDOR' ? "mcgreen/operaciones_mcgreen/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "mcgreen/operaciones_mcgreen/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "mcgreen/operaciones_mcgreen/novedad/modificarNovedad" : where == 'FALLO' ? "mcgreen/operaciones_mcgreen/modoFallo/modificarModo": "mcgreen/operaciones_mcgreen/estado/modificarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_mcgreen/proveedor/modificarProveedor" : where == 'FRECUENCIA' ? "/operaciones_mcgreen/frecuencia/modificarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_mcgreen/novedad/modificarNovedad" : where == 'FALLO' ? "/operaciones_mcgreen/modoFallo/modificarModo": "/operaciones_mcgreen/estado/modificarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -471,7 +471,7 @@ function modify_data(where, values) {
 }
 
 function search_existing_data(where, value) {
-    let url = where == 'PROVEEDOR' ? "mcgreen/operaciones_mcgreen/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "mcgreen/operaciones_mcgreen/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "mcgreen/operaciones_mcgreen/novedad/buscarNovedad" : where == 'FALLO' ? "mcgreen/operaciones_mcgreen/modoFallo/buscarModo" : "mcgreen/operaciones_mcgreen/estado/buscarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_mcgreen/proveedor/buscarProveedor" : where == 'FRECUENCIA' ? "/operaciones_mcgreen/frecuencia/buscarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_mcgreen/novedad/buscarNovedad" : where == 'FALLO' ? "/operaciones_mcgreen/modoFallo/buscarModo" : "/operaciones_mcgreen/estado/buscarEstado";
     fetch(url, {
         method: 'POST',
         headers: {
@@ -499,7 +499,7 @@ function search_existing_data(where, value) {
 }
 
 function delete_data(where, value, exist = "") {
-    let url = where == 'PROVEEDOR' ? "mcgreen/operaciones_mcgreen/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "mcgreen/operaciones_mcgreen/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "mcgreen/operaciones_mcgreen/novedad/eliminarNovedad" : where == 'FALLO' ? "mcgreen/operaciones_mcgreen/modoFallo/eliminarModo" : "mcgreen/operaciones_mcgreen/estado/eliminarEstado";
+    let url = where == 'PROVEEDOR' ? "/operaciones_mcgreen/proveedor/eliminarProveedor" : where == 'FRECUENCIA' ? "/operaciones_mcgreen/frecuencia/eliminarFrecuencia" : where == 'NOVEDAD' ? "/operaciones_mcgreen/novedad/eliminarNovedad" : where == 'FALLO' ? "/operaciones_mcgreen/modoFallo/eliminarModo" : "/operaciones_mcgreen/estado/eliminarEstado";
     let ifExistsInDB = exist == "EXISTE" ? "Este registro se encuentra asignado a uno o varios elementos, ¿Está seguro de eliminar este registro?": "¿Está seguro de eliminar este registro?";
     Swal.fire({
         title: ifExistsInDB,
