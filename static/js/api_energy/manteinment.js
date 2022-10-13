@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getCorMant () {
-    let res = await fetch("api_energy/operaciones_api/correctivo/mostrarCorrectivo");
+    let res = await fetch("operaciones_api/correctivo/mostrarCorrectivo");
     let d = await res.json();
     return d.msg;
 }
@@ -74,7 +74,7 @@ function checkData (value_) {
 }
 
 function createManteinment (data_) {
-    fetch("api_energy/operaciones_api/correctivo/agregarCorrectivo", {
+    fetch("operaciones_api/correctivo/agregarCorrectivo", {
         method: 'POST',
         headers: {
             "Content-Type": 'application/json',

@@ -31,7 +31,7 @@ btnClose.addEventListener("click", () => {
 });
 
 async function getGeneralManteinment () {
-    let response = await fetch("mcgreen/operaciones_mcgreen/general/mostrarGeneral");
+    let response = await fetch("operaciones_mcgreen/general/mostrarGeneral");
     let data = await response.json();
     return data.msg;
 }
@@ -109,7 +109,7 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 function createManteinment (elements) {
-    fetch("mcgreen/operaciones_mcgreen/general/crearGeneral", {
+    fetch("operaciones_mcgreen/general/crearGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -155,7 +155,7 @@ function checkData(value_inp) {
 }
 
 function modifyManteinment (answers) {
-    fetch("mcgreen/operaciones_mcgreen/general/modificarGeneral", {
+    fetch("operaciones_mcgreen/general/modificarGeneral", {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -190,7 +190,7 @@ function modifyManteinment (answers) {
 }
 
 function deleteManteinment (mant_id) {
-    fetch("mcgreen/operaciones_mcgreen/general/eliminarGeneral", {
+    fetch("operaciones_mcgreen/general/eliminarGeneral", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
