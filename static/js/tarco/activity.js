@@ -262,7 +262,7 @@ form.addEventListener("submit", (e) => {
         isNameValid = checkInput(e.target.name_act.value),
         isDescriptionValid = checkInput(e.target.description.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    if(!isFormValid) {
+    if(isFormValid) {
         createActivity();
     } else {
         Swal.fire({

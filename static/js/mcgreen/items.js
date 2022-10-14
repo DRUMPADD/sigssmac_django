@@ -90,16 +90,8 @@ window.addEventListener("DOMContentLoaded", () => {
     showItems();
 })
 
-function checkId (inputId) {
-    return inputId === '';
-}
-
-function checkName(name) {
-    return name === '';
-}
-
-function checkQuantity(quantity) {
-    return quantity === null || quantity === undefined;
+function checkInput(inputId) {
+    return inputId != "" && inputId != undefined && inputId != null;
 }
 
 function createItem (cod_item, name_item, quantity_item) {
@@ -266,11 +258,11 @@ function deleteItem (msg, item_id) {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let isIdValid = checkId(e.target.cod_item.value),
-        isNameValid = checkName(e.target.name_item.value),
-        isDescriptionValid = checkQuantity(e.target.quantity_item.value);
+    let isIdValid = checkInput(e.target.cod_item.value),
+        isNameValid = checkInput(e.target.name_item.value),
+        isDescriptionValid = checkInput(e.target.quantity_item.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    if(!isFormValid) {
+    if(isFormValid) {
         createItem(
             e.target.cod_item.value,
             e.target.name_item.value,
@@ -290,11 +282,11 @@ form.addEventListener("submit", (e) => {
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let isIdValid = checkId(e.target.id_.value),
-        isNameValid = checkName(e.target.new_name.value),
-        isDescriptionValid = checkQuantity(e.target.new_stuck.value);
+    let isIdValid = checkInput(e.target.id_.value),
+        isNameValid = checkInput(e.target.new_name.value),
+        isDescriptionValid = checkInput(e.target.new_stuck.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    if(!isFormValid) {
+    if(isFormValid) {
         modifyItem();
     } else {
         Swal.fire({
