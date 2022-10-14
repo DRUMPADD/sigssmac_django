@@ -94,7 +94,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 function checkInput(inputId) {
-    return inputId == '';
+    return inputId != "" && inputId != undefined && inputId != null;
 }
 
 function createActivity () {
@@ -261,7 +261,7 @@ form.addEventListener("submit", (e) => {
         isNameValid = checkInput(e.target.name_act.value),
         isDescriptionValid = checkInput(e.target.description.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
-    if(!isFormValid) {
+    if(isFormValid) {
         createActivity();
     } else {
         Swal.fire({
@@ -276,7 +276,7 @@ form.addEventListener("submit", (e) => {
 
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
-    let validForm = e.target.id_act.val !== '' && e.target.new_name.val !== '';
+    let validForm = checkInput(e.target.id_act.value) && checkInput(e.target.new_name.value);
     if(validForm) {
         modifyActivity();
     } else {

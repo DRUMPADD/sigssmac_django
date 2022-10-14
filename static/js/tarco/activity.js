@@ -93,9 +93,10 @@ window.addEventListener("DOMContentLoaded", () => {
 })
 
 
-function checkInput (inputId) {
-    return inputId == '';
+function checkInput(inputId) {
+    return inputId != "" && inputId != undefined && inputId != null;
 }
+
 
 function createActivity () {
     fetch("/operaciones_tarco/actividades/crear_actividad", {
@@ -276,7 +277,7 @@ form.addEventListener("submit", (e) => {
 
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
-    let validForm = e.target.id_act.val !== '' && e.target.new_name.val !== '';
+    let validForm = checkInput(e.target.id_act.value) && checkInput(e.target.new_name.value);
     if(validForm) {
         modifyActivity();
     } else {
