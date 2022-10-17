@@ -1,7 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import render
 from django.template import TemplateDoesNotExist, TemplateSyntaxError
 from django.db import connections
-from django.db import OperationalError, DatabaseError, ProgrammingError
+from django.db import DatabaseError, IntegrityError, NotSupportedError, InterfaceError, OperationalError, ProgrammingError, InternalError
 # Create your views here.
 def index(request):
     context = {
@@ -89,3 +90,62 @@ def other_view(request):
     except (TemplateDoesNotExist, TemplateSyntaxError) as er:
         print("Error en template:",er)
         return render(request, "plataforma/template_error.html")
+
+def accidentability_view(request):
+    try:
+        context = {
+            "title": "Accidentabilidad"
+        }
+        try:
+            cursor = connections["mcgreen_db"].cursor()
+            cursor.execute("select * from app_personal_propio")
+            context["personal_propio"] = cursor.fetchall()
+        except (OperationalError, InterfaceError, ProgrammingError) as e:
+            print(e)
+            return render(request, "plataforma/template_error.html", {
+                "mensaje": "Contacte con el servicio de sistemas"
+            })
+        try:
+            cursor = connections["mcgreen_db"].cursor()
+            cursor.execute("select * from app_personal_con")
+            context["personal_contratado"] = cursor.fetchall()
+        except (OperationalError, InterfaceError, ProgrammingError) as e:
+            print(e)
+            return render(request, "plataforma/template_error.html", {
+                "mensaje": "Contacte con el servicio de sistemas"
+            })
+        try:
+            cursor = connections["mcgreen_db"].cursor()
+            cursor.callproc("DETALLES_ACCIDENTABILIDAD")
+            estadisticas = cursor.fetchall()
+            context["detalles_acci"] = estadisticas
+            cont_total_acc = 0
+            cont_emp = 0
+            for est in estadisticas:
+                cont_total_acc = cont_total_acc + est[4]
+                cont_emp = cont_emp + est[1]
+            context["total_est"] = cont_total_acc
+            context["total_emp"] = cont_emp
+        except (DatabaseError, IntegrityError, NotSupportedError, InterfaceError, OperationalError, ProgrammingError) as e:
+            print(e)
+            return render(request, "plataforma/template_error.html", {
+                "mensaje": "Contacte con el servicio de sistemas"
+            })
+        return render(request, "api_energy/accidents.html", context)
+    except (TemplateDoesNotExist, TemplateSyntaxError) as er:
+        print(er)
+        return render(request, "plataforma/template_error.html")
+
+def data_every_month(request):
+    mensaje = ""
+    try:
+        cursor = connections["mcgreen_db"].cursor()
+        cursor.callproc("DETALLES_ACCIDENTABILIDAD")
+        mensaje = cursor.fetchall()
+        print(mensaje)
+        for con in mensaje:
+            print(con)
+        return JsonResponse({"respuesta": mensaje}, status=200) 
+    except (OperationalError, InternalError, ProgrammingError) as e:
+        print(e)
+        return JsonResponse({"respuesta": "Error en el sistema"}, status=200)
