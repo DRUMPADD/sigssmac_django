@@ -253,8 +253,6 @@ form_registro.addEventListener("submit", (e) => {
                 "acci_c_baja": [form_registro["acci_c_baja"][0].value, form_registro["acci_c_baja"][1].value],
                 "dias_inc": [form_registro["dias_inc"][0].value, form_registro["dias_inc"][1].value],
             });
-    
-            form_registro.reset();
         } else {
             swal.fire({
                 position: 'center',
