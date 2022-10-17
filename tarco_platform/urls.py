@@ -11,6 +11,6 @@ urlpatterns = [
 
     # ?? Accidentabilidad
     path("/accidentabilidad", accidentability_view, name="accidentabilityTARCO"),
-    path("datos_generales_obtenidos", data_every_month, name="datos_generales_obtenidos"),
+    path("/datos_generales_obtenidos", data_every_month, name="datos_generales_obtenidos"),
     path("/registrar_acci", register_accident, name="registrar_info"),
 ]
