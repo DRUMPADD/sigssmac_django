@@ -132,7 +132,7 @@ def accidentability_view(request):
             return render(request, "plataforma/template_error.html", {
                 "mensaje": "Contacte con el servicio de sistemas"
             })
-        return render(request, "api_energy/accidents.html", context)
+        return render(request, "tarco/accidents.html", context)
     except (TemplateDoesNotExist, TemplateSyntaxError) as er:
         print(er)
         return render(request, "plataforma/template_error.html")
