@@ -33,6 +33,8 @@ import api_platform.requests.frequences_requests as api_fec_req
 import api_platform.requests.novelties_requests as api_nov_req
 import api_platform.requests.modes_requests as api_mod_req
 import api_platform.requests.state_mant_requests as api_st_req
+import api_platform.views as api_acc_v
+import api_platform.accidents as api_acc
 
 # ? Importing Activities requests
 import mcgreen_platform.requests.activity_requests as mcgreen_act_req
@@ -49,6 +51,8 @@ import mcgreen_platform.requests.frequences_requests as mcgreen_fec_req
 import mcgreen_platform.requests.novelties_requests as mcgreen_nov_req
 import mcgreen_platform.requests.modes_requests as mcgreen_mod_req
 import mcgreen_platform.requests.state_mant_requests as mcgreen_st_req
+import mcgreen_platform.views as mcgreen_acc_v
+import mcgreen_platform.accidents as mcgreen_acc
 
 # ? Importing Activities requests
 import tarco_platform.requests.activity_requests as tarco_act_req
@@ -65,6 +69,8 @@ import tarco_platform.requests.frequences_requests as tarco_fec_req
 import tarco_platform.requests.novelties_requests as tarco_nov_req
 import tarco_platform.requests.modes_requests as tarco_mod_req
 import tarco_platform.requests.state_mant_requests as tarco_st_req
+import tarco_platform.views as tarco_acc_v
+import tarco_platform.accidents as tarco_acc
 
 urlpatterns = [
     path("", principal, name="inicio"),
@@ -199,6 +205,8 @@ urlpatterns = [
     path("operaciones_api/modoFallo/eliminarModo", api_mod_req.deleteMode, name="deleteModeAPI"),
     path("operaciones_api/modoFallo/buscarModo", api_mod_req.searchMode, name="searchModeAPI"),
 
+    path("operaciones_api/datos_generales_obtenidos", api_acc_v.data_every_month, name="datos_generales_obtenidos"),
+    path("operaciones_api/registrar_accidente", api_acc.register_accident, name="registrar_info"),
 
     # ? MCGREEN - All requests
     # ? General manteinment requests
@@ -258,6 +266,9 @@ urlpatterns = [
     path("operaciones_mcgreen/modoFallo/eliminarModo", mcgreen_mod_req.deleteMode, name="deleteModeMCGREEN"),
     path("operaciones_mcgreen/modoFallo/buscarModo", mcgreen_mod_req.searchMode, name="searchModeMCGREEN"),
 
+    path("operaciones_mcgreen/datos_generales_obtenidos", mcgreen_acc_v.data_every_month, name="datos_generales_obtenidos"),
+    path("operaciones_mcgreen/registrar_accidente", mcgreen_acc.register_accident, name="registrar_info"),
+
     # ? TARCO - All requests
     # ? General manteinment requests
     path("operaciones_tarco/general/mostrarGeneral", tarco_g_req.show_general_mant, name="showGeneralMntTARCO"),
@@ -315,4 +326,7 @@ urlpatterns = [
     path("operaciones_tarco/modoFallo/modificarModo", tarco_mod_req.modifyMode, name="modifyModeTARCO"),
     path("operaciones_tarco/modoFallo/eliminarModo", tarco_mod_req.deleteMode, name="deleteModeTARCO"),
     path("operaciones_tarco/modoFallo/buscarModo", tarco_mod_req.searchMode, name="searchModeTARCO"),
+
+    path("operaciones_tarco/datos_generales_obtenidos", tarco_acc_v.data_every_month, name="datos_generales_obtenidos"),
+    path("operaciones_tarco/registrar_accidente", tarco_acc.register_accident, name="registrar_info"),
 ]

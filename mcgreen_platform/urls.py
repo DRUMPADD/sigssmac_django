@@ -10,6 +10,4 @@ urlpatterns = [
 
     # ?? Accidentabilidad
     path("accidentabilidad", accidentability_view, name="accidentabilityMCGREEN"),
-    path("datos_generales_obtenidos", data_every_month, name="datos_generales_obtenidos"),
-    path("registrar_accidente", register_accident, name="registrar_info"),
 ]

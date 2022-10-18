@@ -2,7 +2,7 @@ const indices_ = document.getElementById("indices_");
 const canvas_ = document.getElementById("datos_accidentabilidad");
 const tbody_det = document.querySelector(".tbody_det");
 async function obtener_datos() {
-    let datos = await fetch("tarco_plat/datos_generales_obtenidos");
+    let datos = await fetch("/operaciones_tarco/datos_generales_obtenidos");
     let res = await datos.json();
     return res;
 }
@@ -199,7 +199,7 @@ function getCookie(name) {
 }
 
 function enviar_registro(datos) {
-    fetch("tarco_plat/registrar_accidente", {
+    fetch("/operaciones_tarco/registrar_accidente", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

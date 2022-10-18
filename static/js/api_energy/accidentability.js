@@ -2,7 +2,7 @@ const indices_ = document.getElementById("indices_");
 const canvas_ = document.getElementById("datos_accidentabilidad");
 const tbody_det = document.querySelector(".tbody_det");
 async function obtener_datos() {
-    let datos = await fetch("api_energy/datos_generales_obtenidos");
+    let datos = await fetch("/operaciones_api/datos_generales_obtenidos");
     let res = await datos.json();
     return res;
 }
@@ -199,7 +199,7 @@ function getCookie(name) {
 }
 
 function enviar_registro(datos) {
-    fetch("api_energy/registrar_accidente", {
+    fetch("/operaciones_api/registrar_accidente", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
