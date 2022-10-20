@@ -48,11 +48,7 @@
     <form class="form_update">
         {% csrf_token %}
         <a class="btnClose">X</a>
-        <div class="flex">
-            <div class="content-update">
-                <input type="text" name="id_" class="inp_hid" disabled>
-            </div>
-        </div>
+        <input type="hidden" name="id_" class="inp_hid">
         <div class="flex">
             <div class="content-update">
                 <label>Nombre</label>
