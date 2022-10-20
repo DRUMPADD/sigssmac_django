@@ -108,7 +108,6 @@ function createActivity () {
             'X-CSRFToken': getCookie('csrftoken'),
         },
         body: JSON.stringify({
-            cod_act: form["cod_act"].value,
             name_act: form["name_act"].value,
             desc: form["description"].value,
         })
@@ -260,8 +259,7 @@ function deleteActivity(msg, act_cod) {
 form.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    let isIdValid = checkInput(e.target.id.value),
-        isNameValid = checkInput(e.target.name_act.value),
+    let isNameValid = checkInput(e.target.name_act.value),
         isDescriptionValid = checkInput(e.target.description.value);
     let isFormValid = isIdValid && isNameValid && isDescriptionValid;
     if(isFormValid) {
