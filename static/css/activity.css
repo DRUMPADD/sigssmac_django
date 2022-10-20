@@ -158,6 +158,13 @@ input {
     font-size: 17px;
 }
 
+.block {
+    display: block;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 5px;
+}
+
 .btnUpd {
     padding: 13px;
     font-size: 18px;
