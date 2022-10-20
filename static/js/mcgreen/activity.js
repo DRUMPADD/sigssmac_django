@@ -261,7 +261,7 @@ form.addEventListener("submit", (e) => {
 
     let isNameValid = checkInput(e.target.name_act.value),
         isDescriptionValid = checkInput(e.target.description.value);
-    let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+    let isFormValid = isNameValid && isDescriptionValid;
     if(isFormValid) {
         createActivity();
     } else {
