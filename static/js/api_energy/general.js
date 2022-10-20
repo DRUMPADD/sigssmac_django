@@ -53,9 +53,10 @@ async function showGeneralManteinment () {
                     <td>${element[5] != null ? element[5] : ""}</td>
                     <td>${element[6] != null ? element[6] : ""}</td>
                     <td>${element[7] != null ? element[7] : ""}</td>
-                    <td>${element[8] != null ? element[8] : "Sin fecha"}</td>
-                    <td>${element[9] != null ? element[9] : 0}</td>
-                    <td style="display: none;">${element[10] != null ? element[10] : ""}</td>
+                    <td>${element[8] != null ? element[8] : ""}</td>
+                    <td>${element[9] != null ? element[9] : "Sin fecha"}</td>
+                    <td>${element[10] != null ? element[10] : 0}</td>
+                    <td style="display: none;">${element[11] != null ? element[11] : ""}</td>
                     <td><a href="#" data-title="Ver detalles" class="details"><i class="fa-solid fa-book"></i></a></td>
                     <td><a href="#" class="btn-modificar"><i class="fa-solid fa-pencil"></i></a></td>
                     <td><a href="#" class="btn-eliminar"><i class="fa-solid fa-trash-can"></i></a></td>
@@ -74,11 +75,11 @@ async function showGeneralManteinment () {
             box_update_form.style.opacity = 1;
             const parentTR = btnsUpdate[i].parentElement.parentElement;
             form_update["id_mant"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            form_update["sl_item"].value = parentTR.getElementsByTagName("td")[2].innerText;
-            form_update["sl_frec"].value = parentTR.getElementsByTagName("td")[10].innerText;
-            form_update["sl_act"].value = parentTR.getElementsByTagName("td")[6].innerText;
-            form_update["fec-creacion"].value = parentTR.getElementsByTagName("td")[5].innerText;
-            form_update["fec-proxima"].value = parentTR.getElementsByTagName("td")[8].innerText;
+            form_update["sl_item"].value = parentTR.getElementsByTagName("td")[3].innerText;
+            form_update["sl_frec"].value = parentTR.getElementsByTagName("td")[11].innerText;
+            form_update["sl_act"].value = parentTR.getElementsByTagName("td")[7].innerText;
+            form_update["fec-creacion"].value = parentTR.getElementsByTagName("td")[6].innerText;
+            form_update["fec-proxima"].value = parentTR.getElementsByTagName("td")[9].innerText;
         });
     }
     

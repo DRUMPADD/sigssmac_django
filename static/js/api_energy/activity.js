@@ -75,6 +75,7 @@ async function showActivities() {
             const parentTR = btns_update[i].parentElement.parentElement;
             form_update["id_act"].value = parentTR.getElementsByTagName("td")[0].innerText;
             form_update["new_name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form_update["desc"].value = parentTR.getElementsByTagName("td")[2].innerText;
         });
     }
     
@@ -147,6 +148,7 @@ function modifyActivity() {
         body: JSON.stringify({
             cod_act: form_update["id_act"].value,
             newName: form_update["new_name"].value,
+            desc: form_update["desc"].value,
         })
     })
     .then(result => {
@@ -276,7 +278,7 @@ form.addEventListener("submit", (e) => {
 
 form_update.addEventListener("submit", (e) => {
     e.preventDefault();
-    let validForm = checkInput(e.target.id_act.value) && checkInput(e.target.new_name.value);
+    let validForm = checkInput(e.target.id_act.value) && checkInput(e.target.new_name.value) && checkInput(e.target.desc.value);
     if(validForm) {
         modifyActivity();
     } else {
