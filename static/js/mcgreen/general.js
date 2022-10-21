@@ -144,14 +144,7 @@ function createManteinment (elements) {
     })
 }
 
-function checkSelect(value_inp) {
-    return value_inp != null && value_inp != undefined && value_inp != "" && value_inp != '--Seleccionar--';
-}
-
-function checkDate(value_inp) {
-    return value_inp != null && value_inp != undefined && value_inp != "";
-}
-function checkData(value_inp) {
+function checkInput(value_inp) {
     return value_inp != null && value_inp != undefined && value_inp != "" && value_inp != '--Seleccionar--';
 }
 
@@ -233,7 +226,7 @@ form_mant.addEventListener("submit", (e) => {
         arr_els.push(form_mant.elements[i].value);
     }
 
-    let validForm = checkSelect(arr_els[0]) && checkSelect(arr_els[1]) && checkSelect(arr_els[2]) && checkDate(arr_els[3]) && checkDate(arr_els[4]);
+    let validForm = checkInput(arr_els[0]) && checkInput(arr_els[1]) && checkInput(arr_els[2]) && checkInput(arr_els[3]) && checkInput(arr_els[4]);
 
     if(validForm) {
         createManteinment(
@@ -261,7 +254,7 @@ form_update.addEventListener("submit", (e) => {
     let arr_els = new Array(), full = 0;
     for(let i = 0; i < form_update.elements.length - 1; i++) {
         arr_els.push(form_update.elements[i].value);
-        full = checkData(form_update.elements[i].value) ? full++ : full;
+        full = checkInput(form_update.elements[i].value) ? full++ : full;
     }
 
     modifyManteinment({
