@@ -6,7 +6,7 @@ import json
 def show_items(request):
     try:
         cursor = connections["tarco_db"].cursor()
-        cursor.execute("SELECT * FROM maquinas_equipos")
+        cursor.callproc("EQUIPOS_MOSTRAR")
         items = cursor.fetchall()
         print(items)
         return JsonResponse({"msg": items}, status=200)
@@ -22,8 +22,12 @@ def create_item(request):
         print(responses.get("quantity"))
         try:
             cursor = connections["tarco_db"].cursor()
-            cursor.execute("INSERT INTO maquinas_equipos (maq_eq_id, n_item, cantidad) values(%s, %s, %s)", (responses.get("cod_"), responses.get("name_"), responses.get("quantity")))
-            return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
+            cursor.callproc("EQUIPO_AGREGAR", [responses.get("cod_"), responses.get("name_"), responses.get("quantity")])
+            confirm_message = cursor.fetchall()
+            if not confirm_message:
+                return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
+            else:
+                return JsonResponse({"status": "error", "msg": confirm_message[0][0]}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError, DataError, DatabaseError, OperationalError) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
@@ -36,7 +40,7 @@ def modify_item(request):
         print(responses.get("new_stuck"))
         try:
             cursor = connections["tarco_db"].cursor()
-            cursor.execute("UPDATE maquinas_equipos set n_item = %s, cantidad = %s where maq_eq_id = %s", (responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")))
+            cursor.callproc("EQUIPO_MODIFICAR", [responses.get("new_name"), responses.get("new_stuck"), responses.get("id_")])
             return JsonResponse({"status": "success", "msg": "Item actualizado"}, status=200)
         except (ProgrammingError, InternalError, InterfaceError, IntegrityError) as e:
             print(e)
