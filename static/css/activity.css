@@ -159,6 +159,7 @@ input {
 }
 
 .block {
+    width: 100%;
     display: block;
     padding: 10px;
     font-size: 17px;
