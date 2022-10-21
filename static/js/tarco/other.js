@@ -200,9 +200,9 @@ async function showFrequences() {
             const form = formSelected[1];
             let h1Text = form.querySelector("h1").innerText.split(" ")[1];
             form.querySelector("h1").innerText = TextDefault + " " + h1Text;
-            form[1]["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
-            form[1]["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
-            form[1]["option"].value = "MODIFICAR";
+            form["id"].value = parentTR.getElementsByTagName("td")[0].innerText;
+            form["name"].value = parentTR.getElementsByTagName("td")[1].innerText;
+            form["option"].value = "MODIFICAR";
         })
     })
     let btnDel = document.querySelectorAll(".btn-del-freq");
