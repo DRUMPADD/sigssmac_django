@@ -20,7 +20,7 @@ def create_provider(request):
             cursor = connections["tarco_db"].cursor()
             cursor.callproc("PROVEEDOR_AGREGAR", [responses.get("cod_prov"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
             message_confirm = cursor.fetchall()
-            if message_confirm:
+            if not message_confirm:
                 return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
             else:
                 return JsonResponse({"status": "error", "msg": message_confirm[0][0]}, status=200)
