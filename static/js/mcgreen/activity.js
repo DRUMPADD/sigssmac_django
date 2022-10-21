@@ -148,7 +148,7 @@ function modifyActivity() {
         body: JSON.stringify({
             cod_act: form_update["id_act"].value,
             newName: form_update["new_name"].value,
-            desc: form_update["desc"].value,
+            desc: form_update["descrip"].value,
         })
     })
     .then(result => {
