@@ -233,16 +233,16 @@ form_mant.addEventListener("submit", (e) => {
         arr_els.push(form_mant.elements[i].value);
     }
 
-    let validForm = checkSelect(arr_els[2]) && checkSelect(arr_els[2]) && checkSelect(arr_els[4]) && checkDate(arr_els[5]) && checkDate(arr_els[6]);
+    let validForm = checkSelect(arr_els[0]) && checkSelect(arr_els[1]) && checkSelect(arr_els[2]) && checkDate(arr_els[3]) && checkDate(arr_els[4]);
 
     if(validForm) {
         createManteinment(
             { 
-                item_id: arr_els[2], 
-                frec_: arr_els[3], 
-                act_: arr_els[4], 
-                create_date: arr_els[5], 
-                date_next: arr_els[6],
+                item_id: arr_els[0], 
+                frec_: arr_els[1], 
+                act_: arr_els[2], 
+                create_date: arr_els[3], 
+                date_next: arr_els[4],
             }
         );
     } else {
