@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.db import connections
-from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors
+from django.db import InternalError as errors, IntegrityError as errors, InterfaceError as errors, ProgrammingError as errors, DataError as errors, DatabaseError as errors, OperationalError as errors
 import json
 
 def show_providers(request):
