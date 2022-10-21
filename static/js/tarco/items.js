@@ -259,9 +259,8 @@ form.addEventListener("submit", (e) => {
     e.preventDefault();
 
     let isIdValid = checkInput(e.target.cod_item.value),
-        isNameValid = checkInput(e.target.name_item.value),
-        isDescriptionValid = checkInput(e.target.quantity_item.value);
-    let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+        isNameValid = checkInput(e.target.name_item.value);
+    let isFormValid = isIdValid && isNameValid;
     if(isFormValid) {
         createItem(
             e.target.cod_item.value,
@@ -284,8 +283,8 @@ form_update.addEventListener("submit", (e) => {
 
     let isIdValid = checkInput(e.target.id_.value),
         isNameValid = checkInput(e.target.new_name.value),
-        isDescriptionValid = checkInput(e.target.new_stuck.value);
-    let isFormValid = isIdValid && isNameValid && isDescriptionValid;
+        isStuckValid = checkInput(e.target.new_stuck.value);
+    let isFormValid = isIdValid && isNameValid && isStuckValid;
     if(isFormValid) {
         modifyItem();
     } else {
