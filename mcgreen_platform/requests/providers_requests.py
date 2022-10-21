@@ -6,7 +6,7 @@ import json
 def show_providers(request):
     try:
         cursor = connections["mcgreen_db"].cursor()
-        cursor.execute("SELECT * FROM proveedores")
+        cursor.callproc("PROVEEDORES_MOSTRAR")
         return JsonResponse({"msg": cursor.fetchall()}, status=200)
     except (errors) as e:
         print(e)
@@ -18,7 +18,7 @@ def create_provider(request):
         print(responses)
         try:
             cursor = connections["mcgreen_db"].cursor()
-            cursor.execute("INSERT INTO proveedores (cod_prov, nombre, telefono, email, pais) values(%s, %s, %s, %s, %s)", [responses.get("cod_prov"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
+            cursor.callproc("PROVEEDOR_AGREGAR", [responses.get("cod_prov"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
             return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
         except (errors) as e:
             print(e)
@@ -30,7 +30,7 @@ def modify_provider(request):
         print(responses)
         try:
             cursor = connections["mcgreen_db"].cursor()
-            cursor.execute("UPDATE proveedores SET nombre = %s, telefono = %s, email = %s, pais = %s where cod_prov = %s", [responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais"), responses.get("cod_prov")])
+            cursor.callproc("PROVEEDOR_MODIFICAR", [responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais"), responses.get("cod_prov")])
             return JsonResponse({"status": "success", "msg": "Proveedor actualizado"}, status=200)
         except (errors) as e:
             print(e)
@@ -53,7 +53,7 @@ def delete_provider_from_item(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connections["mcgreen_db"].cursor()
-            cursor.execute("UPDATE maquinas_equipos SET proveedor = NULL where maq_eq_id = %s", [responses.get("id")])
+            cursor.callproc("PROVEEDOR_CAMBIAR_A_ITEM", [None, responses.get("id")])
             return JsonResponse({"status": "success", "msg": "Proveedor eliminado de item"}, status=200)
         except (errors) as e:
             print(e)
@@ -87,7 +87,7 @@ def change_provider(request):
         responses = json.loads(request.body.decode("utf-8"))
         try:
             cursor = connections["mcgreen_db"].cursor()
-            cursor.execute("UPDATE maquinas_equipos SET proveedor = %s where maq_eq_id = %s", [responses.get("prov_id") if responses.get("prov_id") != "QUITAR" else None, responses.get("item_id")])
+            cursor.callproc("PROVEEDOR_CAMBIAR_A_ITEM", [responses.get("prov_id") if responses.get("prov_id") != "QUITAR" else None, responses.get("item_id")])
             return JsonResponse({"status": "success", "msg": "Proveedor actualizado"}, status=200)
         except (errors) as e:
             print(e)
