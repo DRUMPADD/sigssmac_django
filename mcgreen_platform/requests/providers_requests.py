@@ -19,7 +19,11 @@ def create_provider(request):
         try:
             cursor = connections["mcgreen_db"].cursor()
             cursor.callproc("PROVEEDOR_AGREGAR", [responses.get("cod_prov"), responses.get("nombre"), responses.get("telefono"), responses.get("email"), responses.get("pais")])
-            return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
+            message_confirm = cursor.fetchall()
+            if message_confirm:
+                return JsonResponse({"status": "success", "msg": "Proveedor agregado"}, status=200)
+            else:
+                return JsonResponse({"status": "error", "msg": message_confirm[0][0]}, status=200)
         except (errors) as e:
             print(e)
             return JsonResponse({"status": "error", "msg": "Error en el sistema"}, status=200)
