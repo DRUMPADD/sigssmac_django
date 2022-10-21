@@ -24,6 +24,7 @@ def create_item(request):
             cursor = connections["mcgreen_db"].cursor()
             cursor.callproc("EQUIPO_AGREGAR", [responses.get("cod_"), responses.get("name_"), responses.get("quantity")])
             confirm_message = cursor.fetchall()
+            print(confirm_message)
             if not confirm_message:
                 return JsonResponse({"status": "success", "msg": "Item agregado"}, status=200)
             else:
