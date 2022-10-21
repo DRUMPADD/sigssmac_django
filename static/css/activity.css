@@ -139,7 +139,7 @@ input {
 
 .form_update {
     width: 40%;
-    margin: 20% auto;
+    margin: 10% auto;
     border-radius: 10px;
     background-color: rgba(74, 226, 124, 0.7);
     padding: 30px;
@@ -209,6 +209,7 @@ div > .btnUpd {
 .btnClose {
     color: #fff;
     padding: 10px;
+    border-radius: 10px;
     background-color: #d81818;
     cursor: pointer;
 }
