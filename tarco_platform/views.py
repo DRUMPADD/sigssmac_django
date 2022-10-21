@@ -9,6 +9,18 @@ def index(request):
     context = {
         "title": "Mantenimiento preventivo"
     }
+    try:
+        cursor = connections["tarco_db"].cursor()
+        cursor.execute("SELECT * FROM maquinas_equipos")
+        context["items"] = cursor.fetchall()
+        cursor2 = connections["tarco_db"].cursor()
+        cursor2.execute("SELECT * FROM frecuencia")
+        context["frequence"] = cursor2.fetchall()
+        cursor3 = connections["tarco_db"].cursor()
+        cursor3.execute("SELECT * FROM actividades")
+        context["activities"] = cursor3.fetchall()
+    except (OperationalError, DatabaseError, InternalError) as e:
+        print(e)
     return render(request, "tarco/index.html", context)
 
 def activities(request):
