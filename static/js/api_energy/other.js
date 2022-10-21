@@ -31,10 +31,12 @@ btnShowForm.forEach((element, index) => {
 })
 
 function hideForm() {
+    boxForm.forEach(el => {
+        el.style.visibility = "hidden";
+        el.style.opacity = 0;
+    })
     formSelected.forEach((element, i) => {
         element.reset();
-        element.style.visibility = "hidden";
-        element.style.opacity = 0;
         element["id"].removeAttribute("disabled");
         if(element["option"].value != "AGREGAR") {
             let h1Text = element.querySelector("h1").innerText.split(" ")[1];
