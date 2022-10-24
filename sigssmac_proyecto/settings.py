@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "sigss_principal.apps.SigssPrincipalConfig",
+    'storages'
 ]
 
 MIDDLEWARE = [
@@ -175,6 +176,10 @@ STATIC_ROOT = str(os.environ.get("ALLOWED_HOSTS")) + "/static/"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# https://sigssmac.nyc3.digitaloceanspaces.com
+from .cdn.conf import *
+
 
 STATICFILES_FINDERS = [
     'django.contrib.staticfiles.finders.FileSystemFinder',
