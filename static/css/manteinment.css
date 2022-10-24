@@ -230,6 +230,7 @@ div > .btnUpd {
 
 /* ?? Contador de caracteres */
 #counter {
+    float: right;
     font-weight: 700;
-    position: fixed;
+    padding: 5px 0 0 0;
 }
