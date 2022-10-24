@@ -17,11 +17,11 @@
     text-align: center;
 }
 
-.form_manteinment .labels {
+/* .form_manteinment .labels {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .labels .input_box {
     display: block;
