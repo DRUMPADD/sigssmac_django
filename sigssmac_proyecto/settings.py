@@ -91,7 +91,7 @@ DATABASES = {
         'HOST': os.environ.get("MYSQL_HOST"),
         'USER': os.environ.get("MYSQL_USER"),
         'PASSWORD': os.environ.get("MYSQL_PASSWORD"),
-        'NAME': 'fluidos4_sigssmac',
+        'NAME': os.environ.get("MYSQL_NAME"),
         'PORT': os.environ.get("MYSQL_PORT"),
     },
     'api_energy_db': {
@@ -175,8 +175,3 @@ STATIC_ROOT = str(os.environ.get("ALLOWED_HOSTS")) + "/static/"
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_FINDERS = [
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-]
