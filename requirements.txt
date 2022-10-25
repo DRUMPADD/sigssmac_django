@@ -1,6 +1,6 @@
 Django==4.1.2
-django-allauth==0.44.0
-django-guardian==1.4.1
+django-allauth==0.51.0
+django-guardian==2.4.0
 django-social-auth==0.7.28
 django-userena==2.0.1
 docutils==0.17.1
