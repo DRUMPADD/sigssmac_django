@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "sigss_principal.apps.SigssPrincipalConfig",
+    'guardian',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,11 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend', # this is default
+    'guardian.backends.ObjectPermissionBackend',
+)
 
 WSGI_APPLICATION = 'sigssmac_proyecto.wsgi.application'
 
